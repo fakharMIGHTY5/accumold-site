@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AccuMold — Photo in. Report out.</title>
+<meta name="description" content="A free app that turns a phone photo into an instant mold risk report. Scan your space, understand the risk, and act — right from your phone.">
+<link rel="icon" href="assets/ui/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/core.css?v=4">
+<link rel="stylesheet" href="css/views.css?v=4">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" data-theme="dark">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="AccuMold home">
+      <img src="assets/ui/logo-mark.png" alt="">
+      <img class="brand-word" src="assets/ui/logo-word.png" alt="AccuMold">
+    </a>
+    <div class="hud" data-hud>
+      <span class="dot"></span>
+      <span>Austin, TX</span>
+      <span>RH <b data-rh>55%</b></span>
+      <span>TEMP <b data-temp>93°F</b></span>
+    </div>
+    <button class="burger" aria-expanded="false" aria-label="Menu"><i></i><i></i><i></i></button>
+    <nav class="nav-links">
+      <a class="nav-link" href="how-it-works.html">How it works</a>
+      <a class="nav-link" href="app.html">The app</a>
+      <a class="nav-link" href="who-its-for.html">Who it's for</a>
+      <a class="nav-link" href="evidence.html">Evidence</a>
+      <a class="nav-link" href="consultations.html">Consultations</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="btn btn-sm nav-cta" href="#download">Download free</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero">
+  <div class="hero-stage" data-scanner="assets/img/mold-09.jpg">
+    <canvas></canvas>
+  </div>
+  <div class="hero-veil"></div>
+
+  <div class="reticles">
+    <div class="ret hi" data-x="0.52" data-y="0.44">
+      <div class="ret-tag hi"><span>Microbial growth</span><em>94%</em></div>
+      <div class="ret-box" style="--w:150px;--h:120px"></div>
+    </div>
+    <div class="ret hi" data-x="0.72" data-y="0.40">
+      <div class="ret-tag hi"><span>Moisture migration</span><em>88%</em></div>
+      <div class="ret-box" style="--w:120px;--h:150px"></div>
+    </div>
+    <div class="ret" data-x="0.62" data-y="0.63">
+      <div class="ret-tag"><span>Efflorescence</span><em>71%</em></div>
+      <div class="ret-box" style="--w:110px;--h:80px"></div>
+    </div>
+    <div class="ret" data-x="0.86" data-y="0.56">
+      <div class="ret-tag"><span>Substrate staining</span><em>64%</em></div>
+      <div class="ret-box" style="--w:96px;--h:96px"></div>
+    </div>
+  </div>
+
+  <div class="hero-in wrap">
+    <div class="hero-copy">
+      <p class="eyebrow" style="color:var(--blue-glow)">AccuMold · Mold intelligence</p>
+      <h1 class="h-mega">Photo in.<br><span class="g">Report out.</span></h1>
+      <p class="hero-sub">A free app that turns a phone photo into an instant mold risk report.</p>
+      <div class="hero-cta">
+        <a class="btn btn-lg" href="#download">Download free</a>
+        <a class="btn btn-lg btn-ghost" href="how-it-works.html">See how it works</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scan-hud">
+    <div class="r"><span>Surface scan</span><b data-scan-pct>0%</b></div>
+    <div class="bar"><i data-scan-bar></i></div>
+    <div class="r" style="margin-top:12px"><span>Anomalies found</span><b data-scan-hits>00</b></div>
+    <div class="r"><span>Risk level</span><b data-scan-verdict>SCANNING</b></div>
+  </div>
+  <div class="scan-hint hero-scroll">Drag to sweep the wall</div>
+</section>
+
+<!-- ============ 2. TRUST ============ -->
+<section class="sec-tight" style="padding-block:34px;background:var(--white);border-bottom:1px solid var(--line)">
+  <div class="wrap" style="display:flex;gap:clamp(20px,4vw,60px);align-items:center;justify-content:space-between;flex-wrap:wrap">
+    <p class="mono" style="color:var(--tx-3);margin:0">Built on real inspection expertise</p>
+    <div class="trust">
+      <img src="assets/img/trust-bbb.png" alt="BBB Accredited Business">
+      <img src="assets/img/trust-iaqa.png" alt="Indoor Air Quality Association">
+      <span class="mono" style="color:var(--tx-3)">Moisture Master Pros</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. THE PROBLEM ============ -->
+<section class="sec prob">
+  <div class="dotfield" style="opacity:.35"></div>
+  <div class="wrap" style="position:relative">
+    <div style="max-width:760px;margin-bottom:clamp(40px,5vw,72px)" data-rise>
+      <p class="eyebrow">The problem</p>
+      <h2 class="h1">You can see something.<br>You just can't prove it.</h2>
+    </div>
+    <div class="grid g-3">
+      <article class="card prob-card" data-rise data-d="1">
+        <span class="n">01 — UNCERTAINTY</span>
+        <div class="tile" style="margin-bottom:22px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9.5"/></svg>
+        </div>
+        <h3 class="h3">No idea if it's serious</h3>
+        <p>A stain on the ceiling. A smell in the hallway. Nothing tells you whether it's cosmetic or structural — so you do nothing.</p>
+      </article>
+      <article class="card prob-card" data-rise data-d="2">
+        <span class="n">02 — POWERLESSNESS</span>
+        <div class="tile r" style="margin-bottom:22px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/><path d="m3 3 18 18"/></svg>
+        </div>
+        <h3 class="h3">Renters get ignored</h3>
+        <p>Reporting it isn't enough. Without documentation, a landlord can call it condensation and move on. You need evidence with a timestamp.</p>
+      </article>
+      <article class="card prob-card" data-rise data-d="3">
+        <span class="n">03 — FRICTION</span>
+        <div class="tile a" style="margin-bottom:22px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/></svg>
+        </div>
+        <h3 class="h3">Inspections are slow and expensive</h3>
+        <p>Booking a professional means waiting days and paying hundreds — before anyone can tell you whether there was a problem at all.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. THE FOUR-STEP RAIL ============ -->
+<section class="rail" data-rail>
+  <div class="rail-track">
+    <div class="rail-sticky">
+      <div class="rail-in">
+        <div>
+          <p class="eyebrow" style="color:var(--blue-glow)">Spot · Scan · Report · Act</p>
+          <div class="rail-steps">
+
+            <div class="rail-step on">
+              <div class="k">STEP 01</div>
+              <h3>Spot it.</h3>
+              <p>Something looks wrong. A dark patch behind the toilet, a bloom on the bedroom ceiling, a warped skirting board. Open the app.</p>
+            </div>
+
+            <div class="rail-step">
+              <div class="k">STEP 02</div>
+              <h3>Scan it.</h3>
+              <p>Five quick questions and one photo. The app reads the surface, cross-references the humidity and temperature where you are, and starts working.</p>
+            </div>
+
+            <div class="rail-step">
+              <div class="k">STEP 03</div>
+              <h3>Report it.</h3>
+              <p>An instant risk level in plain English, with the reasoning written out. No jargon, no diagnosis you need a dictionary for.</p>
+            </div>
+
+            <div class="rail-step">
+              <div class="k">STEP 04</div>
+              <h3>Act on it.</h3>
+              <p>Keep the report. Send it to your landlord. Or book a live consultation with a certified inspector, right there in the app.</p>
+            </div>
+
+          </div>
+          <div class="rail-prog"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        </div>
+
+        <!-- the phone runs the real flow -->
+        <div class="device">
+          <div class="device-screen">
+
+            <!-- 01 spot -->
+            <div class="appui on" data-screen>
+              <div class="vf">
+                <img src="assets/img/mold-02.jpg" alt="">
+                <div class="vf-frame"><span></span><span></span><span></span><span></span></div>
+                <div class="vf-note">Frame the affected area</div>
+                <div class="vf-shutter"></div>
+              </div>
+            </div>
+
+            <!-- 02 scan -->
+            <div class="appui" data-screen>
+              <div class="vf">
+                <img src="assets/img/mold-02.jpg" alt="">
+                <div class="vf-frame"><span></span><span></span><span></span><span></span></div>
+                <div class="vf-sweep"></div>
+                <div class="vf-note">Capturing surface data…</div>
+              </div>
+            </div>
+
+            <!-- 03 analysing → report -->
+            <div class="appui" data-screen>
+              <div class="an">
+                <div class="an-img">
+                  <img src="assets/img/mold-02.jpg" alt=""><i></i>
+                </div>
+                <div class="an-steps">
+                  <div class="an-row done"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span><b>Surface texture mapped</b></div>
+                  <div class="an-row done"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span><b>Discolouration classified</b></div>
+                  <div class="an-row done"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span><b>Local humidity 68% · 84°F</b></div>
+                  <div class="an-row"><span class="ck"></span><b>Generating expert analysis…</b></div>
+                </div>
+                <div class="an-bar"><i></i></div>
+              </div>
+            </div>
+
+            <!-- 04 report -->
+            <div class="appui" data-screen>
+              <div class="rp">
+                <div class="rp-head">
+                  <div class="lv">Current risk level</div>
+                  <strong>High</strong>
+                  <p>Conditions actively favour growth. Recommend professional assessment.</p>
+                </div>
+                <div class="rp-body">
+                  <div class="rp-card">
+                    <h5>Current Conditions</h5>
+                    <div class="rp-cond">
+                      <div><b>84°F</b><span>Temperature</span></div>
+                      <div><b>68%</b><span>Humidity</span></div>
+                    </div>
+                  </div>
+                  <div class="rp-card">
+                    <h5>Expert Analysis</h5>
+                    <p>Sustained humidity above 60% combined with visible dark staining on a cool exterior wall is consistent with active microbial growth rather than surface soiling. Colonisation can begin within 24–48 hours in these conditions.</p>
+                  </div>
+                  <div class="rp-act"><i>Book a consultation</i><i class="o">Share report</i></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="device-glare"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. WHOLE HOUSE ============ -->
+<section class="sec dark" style="overflow:hidden">
+  <div class="wrap">
+    <div style="max-width:700px;margin-bottom:clamp(34px,4vw,58px)" data-rise>
+      <p class="eyebrow">Room by room</p>
+      <h2 class="h1">Mold doesn't stay where you found it.</h2>
+      <p class="lede" style="margin-top:20px">It follows moisture. Behind the kitchen units, up through the bathroom wall, into the bedroom ceiling. AccuMold works room by room so you see the whole picture, not one wall.</p>
+    </div>
+
+    <div class="house" data-house data-rise>
+      <video src="assets/video/dollhouse.mp4" poster="assets/video/dollhouse.jpg" muted loop playsinline data-inview></video>
+      <div class="house-grid"></div>
+      <div class="house-sweep"></div>
+      <div class="hot" data-x="0.28" data-y="0.18"><i></i><span>Bathroom ceiling · High</span></div>
+      <div class="hot" data-x="0.62" data-y="0.30"><i></i><span>En-suite wall · High</span></div>
+      <div class="hot g" data-x="0.20" data-y="0.52"><i></i><span>Bedroom · Low</span></div>
+      <div class="hot" data-x="0.78" data-y="0.58"><i></i><span>Kitchen run · Moderate</span></div>
+      <div class="hot g" data-x="0.42" data-y="0.80"><i></i><span>Living room · Low</span></div>
+    </div>
+
+    <div class="grid g-3" style="margin-top:clamp(30px,4vw,52px)">
+      <div data-rise data-d="1"><p class="mono" style="color:var(--blue-glow);margin:0 0 8px">Six inspection zones</p><p class="lede" style="font-size:.98rem">Cleaning, painting, walls, bathroom, kitchen and ventilation — the six areas the app checks in a whole-house inspection.</p></div>
+      <div data-rise data-d="2"><p class="mono" style="color:var(--blue-glow);margin:0 0 8px">Conditions, continuously</p><p class="lede" style="font-size:.98rem">Local temperature and humidity are pulled in automatically, so your risk level reflects today — not the day you installed the app.</p></div>
+      <div data-rise data-d="3"><p class="mono" style="color:var(--blue-glow);margin:0 0 8px">A history you keep</p><p class="lede" style="font-size:.98rem">Every scan is saved and dated. That record is what turns a complaint into a case.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. BUILT BY EXPERTS ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,4vw,72px)">
+      <div data-rise>
+        <p class="eyebrow">Built by inspectors</p>
+        <h2 class="h1">The AI learned from people who do this for a living.</h2>
+        <p class="lede" style="margin-top:22px">AccuMold was built by Moisture Master Pros — a working inspection and remediation company. The way the app reads a wall, the language in its reports and the six zones it checks all come from real field method, not a UX workshop.</p>
+        <div class="row" style="margin-top:30px">
+          <a class="link-x" href="about.html">Meet the team behind it <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div data-rise data-d="1" style="position:relative;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lift)">
+        <video id="vExp" src="assets/video/presenter.mp4" poster="assets/video/presenter.jpg" muted loop playsinline data-inview style="width:100%;aspect-ratio:16/10;object-fit:cover"></video>
+        <button class="badge" data-sound="#vExp" aria-pressed="false" style="position:absolute;right:16px;bottom:16px;background:rgba(4,10,26,.7);color:#fff;backdrop-filter:blur(8px)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>
+          <span>Sound off</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. REAL RESULTS ============ -->
+<section class="sec paper">
+  <div class="wrap">
+    <div class="grid" style="grid-template-columns:1fr 1.15fr;align-items:center;gap:clamp(28px,4vw,64px)">
+      <div data-rise>
+        <p class="eyebrow">Real results</p>
+        <h2 class="h1">Found in four minutes. Fixed in three days.</h2>
+        <p class="lede" style="margin-top:22px">Every photo on this site is from a real job. Drag the handle to see what a scan flags — and what it looks like once the work is done.</p>
+        <div class="row" style="margin-top:28px">
+          <span class="badge">Common room · water-damaged floor system</span>
+        </div>
+        <a class="link-x" style="margin-top:26px" href="evidence.html">See the full evidence file <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="ba" data-rise data-d="1">
+        <img class="bef" src="assets/img/detect-2-raw.jpg" alt="Water-damaged floor system before assessment">
+        <img class="aft" src="assets/img/detect-2-map.jpg" alt="The same room with AccuMold's detection overlay">
+        <span class="ba-lab l">Photo</span>
+        <span class="ba-lab r">Detected</span>
+        <div class="ba-handle"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. WHO IT'S FOR ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div style="max-width:720px;margin-bottom:clamp(34px,4vw,58px)" data-rise>
+      <p class="eyebrow">Who it's for</p>
+      <h2 class="h1">Three people. Three reasons. One scan.</h2>
+    </div>
+    <div class="grid g-3">
+      <a class="av" href="who-its-for.html#renter" data-rise data-d="1">
+        <img src="assets/img/mold-10.jpg" alt="Water staining spreading across a rented apartment ceiling">
+        <span class="av-tag">The renter</span>
+        <div>
+          <h3>Get proof,<br>not excuses.</h3>
+          <p>Something's wrong in your apartment and nobody's listening. Walk in with a dated report instead of a complaint.</p>
+          <span class="link-x">Renters <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="av" href="who-its-for.html#homeowner" data-rise data-d="2">
+        <img src="assets/img/family.jpg" alt="A family at home">
+        <span class="av-tag">The homeowner</span>
+        <div>
+          <h3>Know for sure,<br>before it grows.</h3>
+          <p>Post-storm, post-leak, or just being careful. Check the rooms your family sleeps in and stop wondering.</p>
+          <span class="link-x">Homeowners <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="av" href="who-its-for.html#stakeholder" data-rise data-d="3">
+        <img src="assets/img/property-row.jpg" alt="A row of rental properties">
+        <span class="av-tag">The stakeholder</span>
+        <div>
+          <h3>Screen a unit<br>before you sign.</h3>
+          <p>Buying, leasing or managing at scale. Get an answer on a property in minutes, not in a survey slot next week.</p>
+          <span class="link-x">Investors &amp; managers <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. THE MARKET ============ -->
+<section class="sec dark" style="position:relative;overflow:hidden">
+  <div class="rings" style="left:-14%;top:-10%"><i></i><i></i><i></i><i></i><b></b></div>
+  <div class="wrap" style="position:relative">
+    <div style="max-width:640px;margin-bottom:clamp(44px,6vw,86px)" data-rise>
+      <p class="eyebrow">Why it matters here</p>
+      <h2 class="h1">Florida and Texas are the two most mold-exposed large states in the country.</h2>
+    </div>
+    <div class="grid g-3">
+      <div class="stat" data-rise data-d="1">
+        <b data-count="76" data-suf="%">0%</b>
+        <span>Average humidity</span>
+        <small>Florida's year-round average. Mold begins colonising once humidity holds above 60%.</small>
+      </div>
+      <div class="stat" data-rise data-d="2">
+        <b>24&ndash;48</b>
+        <span>Hours to colonise</span>
+        <small>That's how fast growth can start once the conditions are right. Not weeks. Days.</small>
+      </div>
+      <div class="stat" data-rise data-d="3">
+        <b data-count="264000">0</b>
+        <span>Claims in one year</span>
+        <small>Mold-related insurance claims filed in Florida in 2022 alone.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. CONSULTATIONS ============ -->
+<section class="sec paper">
+  <div class="wrap">
+    <div class="c" style="max-width:640px;margin-inline:auto;margin-bottom:clamp(36px,4vw,60px)" data-rise>
+      <p class="eyebrow c">When you need more</p>
+      <h2 class="h1">The app is free. If it's serious, talk to a person.</h2>
+      <p class="lede" style="margin-top:20px">Every scan and every report costs nothing. When a report comes back high, you can book time with a live inspector who reads it with you.</p>
+    </div>
+    <div class="grid g-4" style="align-items:stretch">
+      <div class="card price" data-rise data-d="1">
+        <span class="badge g">Free forever</span>
+        <div class="amt">$0</div>
+        <div class="per">Scan &amp; report</div>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Unlimited instant AI reports</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Live humidity &amp; temperature</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Downloadable, shareable</li>
+        </ul>
+        <a class="btn btn-ghost" href="#download">Download free</a>
+      </div>
+      <div class="card price" data-rise data-d="2">
+        <span class="badge">30 minutes</span>
+        <div class="amt"><sup>$</sup>250</div>
+        <div class="per">Live session</div>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Live inspector, real answers</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Your scans reviewed with you</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Clear next step</li>
+        </ul>
+        <a class="btn btn-ghost" href="consultations.html">Book a session</a>
+      </div>
+      <div class="card price feat" data-rise data-d="3">
+        <span class="price-tag">Most booked</span>
+        <span class="badge">45 minutes</span>
+        <div class="amt"><sup>$</sup>375</div>
+        <div class="per">Deep dive</div>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Certified professional walkthrough</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Room-by-room review</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Written summary</li>
+        </ul>
+        <a class="btn" href="consultations.html">Book a deep dive</a>
+      </div>
+      <div class="card price" data-rise data-d="4">
+        <span class="badge">60 minutes</span>
+        <div class="amt"><sup>$</sup>500</div>
+        <div class="per">Full review</div>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Complete action plan</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Whole-property scope</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg>Total clarity</li>
+        </ul>
+        <a class="btn btn-ghost" href="consultations.html">Book a review</a>
+      </div>
+    </div>
+    <p class="c small" style="margin-top:32px" data-rise>After a consultation, your inspector can connect you with a trusted local partner for on-site work.</p>
+  </div>
+</section>
+
+<!-- ============ 11. MAINTENANCE ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="grid" style="grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,4vw,72px)">
+      <div data-rise>
+        <p class="eyebrow">Maintenance beats repairs</p>
+        <h2 class="h2">Small habits now beat costly repairs later.</h2>
+        <p class="lede" style="margin-top:20px">Mold loves the places you overlook — behind the faucet, under the sink, along the window reveal. Get the free room-by-room moisture checklist and go through your home in twenty minutes.</p>
+        <a class="link-x" style="margin-top:22px" href="resources.html">More prevention guides <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-rise data-d="1">
+        <h3 class="h3" style="margin-bottom:8px">The room-by-room checklist</h3>
+        <p class="small" style="margin:0 0 22px">Free. One email, no follow-up spam.</p>
+        <form data-capture>
+          <div class="field">
+            <input type="email" required placeholder="you@email.com" aria-label="Email address">
+            <button class="btn" type="submit">Send it</button>
+          </div>
+          <p class="form-note">We'll email the checklist. Nothing else.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. DOWNLOAD ============ -->
+<section class="sec cta-band" id="download">
+  <div class="glow"></div>
+  <div class="wrap c" style="position:relative">
+    <div data-rise>
+      <p class="eyebrow c" style="color:var(--blue-glow)">Stop guessing</p>
+      <h2 class="h-mega on-dark" style="margin-bottom:22px">Photo in.<br>Report out.</h2>
+      <p class="lede" style="max-width:36ch;margin-inline:auto;color:var(--tx-inv-2)">A free app that turns a phone photo into an instant mold risk report.</p>
+    </div>
+    <div class="stores" style="justify-content:center;margin-top:38px" data-rise data-d="1">
+      <a class="store" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.7ZM14.2 5.6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3Z"/></svg><div><span>Download on the</span><strong>App Store</strong></div></a>
+      <a class="store" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.5v16.4c0 .7.2 1.2.5 1.5l.1.1 9.2-9.2v-.2L3.6 2.3ZM16 15.3l-3-3v-.2l3-3 .1.1 3.6 2c1 .6 1 1.6 0 2.2l-3.7 1.9ZM15.9 15.4 12.8 12.3 3.6 21.5c.3.4.9.4 1.5.1l10.8-6.2M15.9 8.6 5.1 2.4c-.6-.4-1.2-.3-1.5.1l9.2 9.2 3.1-3.1Z"/></svg><div><span>Get it on</span><strong>Google Play</strong></div></a>
+    </div>
+    <p class="mono" style="color:var(--tx-3);margin-top:26px" data-rise data-d="2">Free to download · Free to scan · Free to report</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:20px">
+          <img src="assets/ui/logo-mark.png" alt="">
+          <img class="brand-word" src="assets/ui/logo-word.png" alt="AccuMold" style="filter:brightness(0) invert(1)">
+        </a>
+        <p style="color:var(--tx-inv-2);font-size:.95rem;max-width:32ch;margin:0 0 22px">A free app that turns a phone photo into an instant mold risk report.</p>
+        <div class="socials">
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.9 4.9 0 0 1-1-2.8h-3v12.2a2.6 2.6 0 1 1-1.8-2.5V9.5a5.7 5.7 0 1 0 4.9 5.6V9.1a8 8 0 0 0 4.6 1.5v-3a4.8 4.8 0 0 1-3.7-1.8Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="how-it-works.html">How it works</a>
+        <a href="app.html">The app</a>
+        <a href="evidence.html">Evidence</a>
+        <a href="consultations.html">Consultations</a>
+      </div>
+      <div>
+        <h4>Who it's for</h4>
+        <a href="who-its-for.html#renter">Renters</a>
+        <a href="who-its-for.html#homeowner">Homeowners</a>
+        <a href="who-its-for.html#stakeholder">Investors &amp; managers</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="resources.html">Prevention guides</a>
+        <a href="about.html#trust">Accreditations</a>
+        <a href="#download">Download</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© AccuMold. Built by Moisture Master Pros.</span>
+      <span class="mono">accumold.app</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/core.js?v=4"></script>
+<script src="js/scan.js?v=4"></script>
+</body>
+</html>

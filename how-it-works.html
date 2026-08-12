@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How AccuMold works — from shutter to report</title>
+<meta name="description" content="Inside AccuMold's detection: five questions, one photo, live humidity and temperature, and a risk level in plain English.">
+<link rel="icon" href="assets/ui/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/core.css?v=4">
+<link rel="stylesheet" href="css/views.css?v=4">
+</head>
+<body>
+
+<header class="nav" data-theme="dark">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="AccuMold home">
+      <img src="assets/ui/logo-mark.png" alt="">
+      <img class="brand-word" src="assets/ui/logo-word.png" alt="AccuMold">
+    </a>
+    <div class="hud" data-hud>
+      <span class="dot"></span>
+      <span>Austin, TX</span>
+      <span>RH <b data-rh>55%</b></span>
+      <span>TEMP <b data-temp>93&deg;F</b></span>
+    </div>
+    <button class="burger" aria-expanded="false" aria-label="Menu"><i></i><i></i><i></i></button>
+    <nav class="nav-links">
+      <a class="nav-link" href="how-it-works.html">How it works</a>
+      <a class="nav-link" href="app.html">The app</a>
+      <a class="nav-link" href="who-its-for.html">Who it's for</a>
+      <a class="nav-link" href="evidence.html">Evidence</a>
+      <a class="nav-link" href="consultations.html">Consultations</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="btn btn-sm nav-cta" href="index.html#download">Download free</a>
+    </nav>
+  </div>
+</header>
+
+<section class="phead">
+  <div class="rings"><i></i><i></i><i></i><i></i><b></b></div>
+  <div class="wrap" style="position:relative">
+    <p class="crumb"><a href="index.html">Home</a> &rsaquo; <span>How it works</span></p>
+    <p class="eyebrow">The technology</p>
+    <h1 class="h1">A phone camera, a weather feed,<br>and a model trained on real walls.</h1>
+    <p class="lede">AccuMold doesn't guess from a photo alone. It reads the surface, pulls the conditions where you are, and weighs both against how mold actually behaves. Here is exactly what happens between the shutter and the report.</p>
+    <div class="row" style="margin-top:32px"><a class="btn" href="index.html#download">Download free</a><a class="btn btn-ghost" href="#lab">Try the detection lab</a></div>
+  </div>
+</section>
+
+<!-- ===== THE PIPELINE ===== -->
+<section class="sec dark">
+  <div class="wrap">
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:start">
+      <div data-rise>
+        <p class="eyebrow">The pipeline</p>
+        <h2 class="h2">What happens in the six seconds after you tap the shutter.</h2>
+        <p class="lede" style="margin-top:20px">Nothing here is magic, and nothing here is a stock image classifier. Each stage narrows the answer until the app can say something useful in plain English.</p>
+        <div class="card" style="margin-top:34px">
+          <p class="mono" style="color:var(--blue-glow);margin:0 0 10px">Important</p>
+          <p style="margin:0;font-size:.95rem;color:var(--tx-inv-2)">An AccuMold report is a risk assessment, not a laboratory result. It tells you how likely a problem is and how urgently to act. Confirming species or spore counts is a job for a certified inspector &mdash; which is what the consultation is for.</p>
+        </div>
+      </div>
+
+      <div class="pipe" data-rise data-d="1">
+        <div class="pipe-step">
+          <span class="dot">01</span>
+          <h4>Five quick questions</h4>
+          <p>Where in the home, how long it has been there, whether there is a known leak, whether anyone is getting symptoms, and what the surface is. Context the photo can't give.</p>
+        </div>
+        <div class="pipe-step">
+          <span class="dot">02</span>
+          <h4>Surface capture</h4>
+          <p>One photo. The app checks framing and light before it accepts the shot, because a blurred, backlit picture produces a worthless answer.</p>
+        </div>
+        <div class="pipe-step">
+          <span class="dot">03</span>
+          <h4>Texture and discolouration mapping</h4>
+          <p>The image is broken into regions and each is scored on tone, saturation and edge structure. Growth reads differently from dirt, shadow and old paint &mdash; it spreads with soft, irregular boundaries rather than straight ones.</p>
+        </div>
+        <div class="pipe-step">
+          <span class="dot">04</span>
+          <h4>Conditions cross-reference</h4>
+          <p>Local temperature and relative humidity are pulled for your location and weighted against the visual score. The same stain means something very different at 45% humidity than it does at 68%.</p>
+        </div>
+        <div class="pipe-step">
+          <span class="dot">05</span>
+          <h4>Risk classification</h4>
+          <p>Low, moderate or high &mdash; using the same three-level language and the same colour coding as the app's dashboard, so it always means the same thing.</p>
+        </div>
+        <div class="pipe-step" style="padding-bottom:0">
+          <span class="dot">06</span>
+          <h4>Expert analysis, written out</h4>
+          <p>A short written explanation of <em>why</em> it landed where it did, and what to do next. No jargon you have to look up.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DETECTION LAB ===== -->
+<section class="sec" id="lab">
+  <div class="wrap">
+    <div style="max-width:720px;margin-bottom:clamp(30px,4vw,52px)" data-rise>
+      <p class="eyebrow">Detection lab</p>
+      <h2 class="h1">Move the lens. See what the scan sees.</h2>
+      <p class="lede" style="margin-top:20px">These are real inspection photographs from completed Moisture Master Pros jobs, with the findings that were actually recorded on them. Drag across the image to reveal the assessment layer.</p>
+    </div>
+
+    <div class="lab" data-lab data-rise data-d="1">
+      <div class="lab-stage" style="--lr:175px">
+        <img class="lab-raw" src="assets/img/detect-1-raw.jpg" alt="Common room floor before assessment">
+        <img class="lab-map" src="assets/img/detect-1-map.jpg" alt="The same room with inspection findings marked">
+        <div class="lab-dim"></div>
+        <div class="lab-tint"></div>
+        <div class="lab-scanline"></div>
+        <div class="lab-lens"></div>
+        <div class="lab-meta" data-lab-meta>Common room &middot; <b>floor framing</b> &middot; 3 findings</div>
+      </div>
+      <div class="lab-tabs">
+        <button class="lab-tab" aria-selected="true"
+          data-raw="assets/img/detect-1-raw.jpg" data-map="assets/img/detect-1-map.jpg"
+          data-meta="Common room &middot; <b>floor framing</b> &middot; 3 findings">Floor framing</button>
+        <button class="lab-tab" aria-selected="false"
+          data-raw="assets/img/detect-2-raw.jpg" data-map="assets/img/detect-2-map.jpg"
+          data-meta="Common room &middot; <b>flooring removal</b> &middot; 2 findings">Flooring removal</button>
+        <button class="lab-tab" aria-selected="false"
+          data-raw="assets/img/detect-3-raw.jpg" data-map="assets/img/detect-3-map.jpg"
+          data-meta="Subfloor &middot; <b>mold-like substance</b> &middot; 2 findings">Subfloor</button>
+        <button class="lab-tab" aria-selected="false"
+          data-raw="assets/img/detect-4-raw.jpg" data-map="assets/img/detect-4-map.jpg"
+          data-meta="Window / wall &middot; <b>thermal moisture pattern</b> &middot; 1 finding">Thermal pattern</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RISK SIMULATOR ===== -->
+<section class="sec dark" data-sim>
+  <div class="wrap">
+    <div style="max-width:700px;margin-bottom:clamp(30px,4vw,54px)" data-rise>
+      <p class="eyebrow">Try the model</p>
+      <h2 class="h1">Why the same wall can be fine in March and a problem in August.</h2>
+      <p class="lede" style="margin-top:20px">Mold needs moisture and warmth. Move the two sliders and watch the risk level move with them &mdash; this is the same relationship the app weighs every time you scan.</p>
+    </div>
+
+    <div class="sim" data-rise data-d="1">
+      <div>
+        <div class="sim-ctl">
+          <label>Relative humidity <b data-out-rh>55%</b></label>
+          <input type="range" min="25" max="90" value="55" step="1" data-sim-rh aria-label="Relative humidity">
+          <div class="sim-scale"><span>25%</span><span>60% threshold</span><span>90%</span></div>
+        </div>
+        <div class="sim-ctl">
+          <label>Temperature <b data-out-temp>78&deg;F</b></label>
+          <input type="range" min="45" max="100" value="78" step="1" data-sim-temp aria-label="Temperature">
+          <div class="sim-scale"><span>45&deg;F</span><span>77&ndash;86&deg;F optimal</span><span>100&deg;F</span></div>
+        </div>
+        <div class="sim-note" data-sim-note>
+          <strong>Above the 60% threshold.</strong> Once humidity holds here, colonisation can begin within 24&ndash;48 hours &mdash; not weeks.
+        </div>
+      </div>
+
+      <div class="sim-gauge">
+        <svg class="sim-ring" viewBox="0 0 220 200">
+          <circle cx="110" cy="110" r="86" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="14"
+                  stroke-linecap="round" stroke-dasharray="405 540" transform="rotate(135 110 110)"/>
+          <circle data-sim-arc cx="110" cy="110" r="86" fill="none" stroke="#30C06C" stroke-width="14"
+                  stroke-linecap="round" transform="rotate(135 110 110)"/>
+          <text data-sim-num class="sim-val" x="110" y="122" font-size="52" fill="#30C06C">0</text>
+          <text class="sim-val" x="110" y="150" font-size="12" fill="#7A8AA3" letter-spacing="2">RISK INDEX</text>
+        </svg>
+        <div class="sim-out">
+          <div class="lv" data-sim-level style="color:#30C06C">Low</div>
+          <p data-sim-copy></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY PHOTO ALONE ISN'T ENOUGH ===== -->
+<section class="sec paper">
+  <div class="wrap">
+    <div class="grid" style="grid-template-columns:1.1fr 1fr;gap:clamp(28px,4vw,64px);align-items:center">
+      <div data-rise>
+        <p class="eyebrow">Two ways in</p>
+        <h2 class="h2">Scan a surface. Or watch a room.</h2>
+        <p class="lede" style="margin-top:20px">Some problems announce themselves. Most don't. AccuMold works both ways, and the two feed each other.</p>
+        <div class="stack" style="margin-top:32px">
+          <div style="display:flex;gap:18px;align-items:flex-start">
+            <div class="tile" style="width:46px;height:46px;border-radius:14px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:21px;height:21px"><path d="M4 7h3l2-2h6l2 2h3v12H4Z"/><circle cx="12" cy="13" r="3.4"/></svg>
+            </div>
+            <div>
+              <h3 class="h3" style="font-size:1.1rem">Quick Mold Scan</h3>
+              <p class="small" style="margin:6px 0 0">You've seen something. Photograph it, answer five questions, get a risk level on that specific surface in seconds.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:18px;align-items:flex-start">
+            <div class="tile g" style="width:46px;height:46px;border-radius:14px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:21px;height:21px"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/></svg>
+            </div>
+            <div>
+              <h3 class="h3" style="font-size:1.1rem">Whole House Inspection</h3>
+              <p class="small" style="margin:6px 0 0">You haven't seen anything &mdash; and that's the point. Work through six zones room by room, with live conditions monitoring the whole property between scans.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ba" data-rise data-d="1" style="aspect-ratio:3/4">
+        <img class="bef" src="assets/img/detect-4-raw.jpg" alt="Thermal camera reading a window wall">
+        <img class="aft" src="assets/img/detect-4-map.jpg" alt="Thermal moisture pattern identified on the window wall system">
+        <span class="ba-lab l">Thermal frame</span>
+        <span class="ba-lab r">Pattern found</span>
+        <div class="ba-handle"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec">
+  <div class="wrap wrap-n">
+    <div data-rise style="margin-bottom:36px">
+      <p class="eyebrow">Straight answers</p>
+      <h2 class="h2">The questions people actually ask.</h2>
+    </div>
+    <div class="acc" data-rise data-d="1">
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">Is the report a lab test?<i></i></button>
+        <div class="acc-panel"><p>No. It's a risk assessment: how likely a problem is, and how urgently to deal with it. Identifying a species or counting spores needs physical sampling, which is what a certified inspector does. The app tells you whether you need one.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">How accurate can a phone photo be?<i></i></button>
+        <div class="acc-panel"><p>A photo on its own is weak evidence &mdash; which is exactly why AccuMold doesn't rely on one. The five questions supply the history, and the live humidity and temperature supply the conditions. Together they narrow the answer far more than any single image could.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">Does it work in a dark basement?<i></i></button>
+        <div class="acc-panel"><p>It works better with light. The app checks the shot before accepting it and will ask you to retake anything too dark or blurred, because a bad frame produces a bad answer and that helps nobody.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">Can I give the report to my landlord?<i></i></button>
+        <div class="acc-panel"><p>Yes &mdash; that's one of the main reasons people use it. Every report is dated, saved to your history and can be downloaded or shared. A dated record of the same wall over several weeks is far harder to dismiss than a phone call.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false">What does it cost?<i></i></button>
+        <div class="acc-panel"><p>Scanning and reporting are free, with no limit. You only pay if you choose to book time with a live inspector &mdash; $250 for 30 minutes, $375 for 45, or $500 for a full 60-minute review.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cta-band" id="download">
+  <div class="glow"></div>
+  <div class="wrap c" style="position:relative">
+    <div data-rise>
+      <p class="eyebrow c" style="color:var(--blue-glow)">Stop guessing</p>
+      <h2 class="h-mega on-dark" style="margin-bottom:22px">Photo in.<br>Report out.</h2>
+      <p class="lede" style="max-width:36ch;margin-inline:auto;color:var(--tx-inv-2)">A free app that turns a phone photo into an instant mold risk report.</p>
+    </div>
+    <div class="stores" style="justify-content:center;margin-top:38px" data-rise data-d="1">
+      <a class="store" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.7ZM14.2 5.6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3Z"/></svg><div><span>Download on the</span><strong>App Store</strong></div></a>
+      <a class="store" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.5v16.4c0 .7.2 1.2.5 1.5l.1.1 9.2-9.2v-.2L3.6 2.3ZM16 15.3l-3-3v-.2l3-3 .1.1 3.6 2c1 .6 1 1.6 0 2.2l-3.7 1.9ZM15.9 15.4 12.8 12.3 3.6 21.5c.3.4.9.4 1.5.1l10.8-6.2M15.9 8.6 5.1 2.4c-.6-.4-1.2-.3-1.5.1l9.2 9.2 3.1-3.1Z"/></svg><div><span>Get it on</span><strong>Google Play</strong></div></a>
+    </div>
+    <p class="mono" style="color:var(--tx-3);margin-top:26px" data-rise data-d="2">Free to download &middot; Free to scan &middot; Free to report</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:20px">
+          <img src="assets/ui/logo-mark.png" alt="">
+          <img class="brand-word" src="assets/ui/logo-word.png" alt="AccuMold" style="filter:brightness(0) invert(1)">
+        </a>
+        <p style="color:var(--tx-inv-2);font-size:.95rem;max-width:32ch;margin:0 0 22px">A free app that turns a phone photo into an instant mold risk report.</p>
+        <div class="socials">
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.9 4.9 0 0 1-1-2.8h-3v12.2a2.6 2.6 0 1 1-1.8-2.5V9.5a5.7 5.7 0 1 0 4.9 5.6V9.1a8 8 0 0 0 4.6 1.5v-3a4.8 4.8 0 0 1-3.7-1.8Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="how-it-works.html">How it works</a>
+        <a href="app.html">The app</a>
+        <a href="evidence.html">Evidence</a>
+        <a href="consultations.html">Consultations</a>
+      </div>
+      <div>
+        <h4>Who it's for</h4>
+        <a href="who-its-for.html#renter">Renters</a>
+        <a href="who-its-for.html#homeowner">Homeowners</a>
+        <a href="who-its-for.html#stakeholder">Investors &amp; managers</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="resources.html">Prevention guides</a>
+        <a href="about.html#trust">Accreditations</a>
+        <a href="index.html#download">Download</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; AccuMold. Built by Moisture Master Pros.</span>
+      <span class="mono">accumold.app</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/core.js?v=4"></script>
+<script src="js/scan.js?v=4"></script>
+</body>
+</html>
