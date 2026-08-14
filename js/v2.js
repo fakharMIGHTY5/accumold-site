@@ -29,6 +29,7 @@
     const outY = $('[data-out-y]', hero);
     const outLv = $('[data-out-lv]', hero);
     const outRh = $('[data-out-rh]', hero);
+    const label = $('[data-lens-label]', hero);
 
     // Hotspots live in normalised space and stay clear of the headline.
     const HOT = tags.map((t) => ({
@@ -139,12 +140,12 @@
           const nx = px + ((i / (N - 1)) - 0.5) * 2 * lrx * half;
           const o = (j * N + i) * 4;
 
-          // circular falloff, soft at the rim
+          // square falloff — the app frames detections with a box, not a circle
           const ux = (i / (N - 1) - 0.5) * 2 * half;
           const uy = (j / (N - 1) - 0.5) * 2 * half;
-          const rr = Math.sqrt(ux * ux + uy * uy);
+          const rr = Math.max(Math.abs(ux), Math.abs(uy));
           if (rr > 1) { obuf[o + 3] = 0; continue; }
-          const edge = 1 - clamp((rr - 0.82) / 0.18, 0, 1);
+          const edge = 1 - clamp((rr - 0.9) / 0.1, 0, 1);
 
           const f = fieldAt(nx, ny, ar, t);
 
@@ -163,9 +164,9 @@
           const heat = clamp((f - 0.78) / 0.45, 0, 1);
           const a = (line * 0.95 + grid + 0.035) * edge;
 
-          obuf[o]     = 24 + (229 - 24) * heat;
-          obuf[o + 1] = 84 + (72 - 84) * heat;
-          obuf[o + 2] = 216 + (77 - 216) * heat;
+          obuf[o]     = 30 + (229 - 30) * heat;
+          obuf[o + 1] = 111 + (72 - 111) * heat;
+          obuf[o + 2] = 184 + (77 - 184) * heat;
           obuf[o + 3] = clamp(a, 0, 1) * 255;
         }
       }
@@ -185,6 +186,10 @@
       if (outLv) {
         outLv.textContent = hit >= 0 ? 'Detected' : 'Clear';
         outLv.dataset.lv = hit >= 0 ? 'found' : 'clear';
+      }
+      if (label) {
+        label.textContent = hit >= 0 ? 'Mold detected' : 'Analyzing with AccuMold AI\u2026';
+        label.dataset.hit = hit >= 0 ? '1' : '0';
       }
     }
     size();

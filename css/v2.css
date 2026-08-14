@@ -160,24 +160,34 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .hero h1 em{ font-style:normal; color:var(--blue); }
 .hero .t1{ margin:0 auto 38px; max-width:30ch; }
 
-/* the lens follows the pointer; DOM so the type stays crisp */
+/* The hero reticle is the app's detection frame, not an invented lens:
+   square bounding box, corner brackets, circular target, green centre dot. */
 .lens{
   position:absolute; z-index:1; left:50%; top:50%; width:var(--d,300px); height:var(--d,300px);
-  transform:translate(-50%,-50%); border-radius:50%; pointer-events:none;
-  border:1px solid rgba(24,84,216,.75);
-  box-shadow:0 0 0 6px rgba(24,84,216,.05), 0 0 60px rgba(24,84,216,.16);
+  transform:translate(-50%,-50%); pointer-events:none;
+  border:1.5px solid rgba(30,111,184,.9);
+  box-shadow:0 0 0 1px rgba(255,255,255,.7), 0 0 60px rgba(30,111,184,.14);
   transition:opacity .5s;
 }
-.lens::before,.lens::after{ content:""; position:absolute; background:rgba(24,84,216,.55); }
-.lens::before{ left:50%; top:-14px; bottom:-14px; width:1px; transform:translateX(-50%); }
-.lens::after{ top:50%; left:-14px; right:-14px; height:1px; transform:translateY(-50%); }
-.lens b{
-  position:absolute; width:14px; height:14px; border:1.5px solid var(--blue);
+.lens b{ position:absolute; width:18px; height:18px; border:2.5px solid #1E6FB8; }
+.lens b:nth-child(1){ top:-2px; left:-2px;  border-right:0; border-bottom:0; }
+.lens b:nth-child(2){ top:-2px; right:-2px; border-left:0;  border-bottom:0; }
+.lens b:nth-child(3){ bottom:-2px; left:-2px;  border-right:0; border-top:0; }
+.lens b:nth-child(4){ bottom:-2px; right:-2px; border-left:0; border-top:0; }
+.lens::before{                       /* circular target */
+  content:""; position:absolute; left:50%; top:50%; width:46%; aspect-ratio:1;
+  transform:translate(-50%,-50%); border:1.5px solid rgba(30,111,184,.7); border-radius:50%;
 }
-.lens b:nth-child(1){ top:8%;  left:8%;  border-right:0; border-bottom:0; }
-.lens b:nth-child(2){ top:8%;  right:8%; border-left:0;  border-bottom:0; }
-.lens b:nth-child(3){ bottom:8%; left:8%; border-right:0; border-top:0; }
-.lens b:nth-child(4){ bottom:8%; right:8%; border-left:0; border-top:0; }
+.lens::after{                        /* centre dot */
+  content:""; position:absolute; left:50%; top:50%; width:6px; height:6px; border-radius:50%;
+  background:#22B473; transform:translate(-50%,-50%); box-shadow:0 0 0 3px rgba(34,180,115,.25);
+}
+.lens-label{
+  position:absolute; left:50%; top:-30px; transform:translateX(-50%);
+  font-family:var(--fm); font-size:.54rem; letter-spacing:.1em; text-transform:uppercase;
+  color:#1E6FB8; white-space:nowrap;
+}
+.lens-label[data-hit="1"]{ color:#fff; background:#E5484D; padding:4px 10px; border-radius:6px; }
 
 /* readout under the lens */
 .readout{
@@ -606,3 +616,9 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .tiers:has(.tier.light){ background:var(--line); border-block:1px solid var(--line); }
 .tier.light .lb{ color:var(--ink-3); }
 .tier.light p{ color:var(--ink-2); }
+
+/* ---------- approvals ---------- */
+.approved{ margin-top:clamp(46px,7vh,84px); padding-top:clamp(30px,4vh,46px); border-top:1px solid var(--line); }
+.approved .num{ display:block; margin-bottom:22px; }
+.marks-l{ display:flex; align-items:center; justify-content:center; gap:clamp(28px,5vw,64px); flex-wrap:wrap; }
+.marks-l img{ height:44px; width:auto; opacity:.9; }

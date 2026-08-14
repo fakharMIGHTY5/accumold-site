@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=19">
+<link rel="stylesheet" href="css/v2.css?v=23">
 </head>
 <body>
 
@@ -34,7 +34,7 @@
 <section class="panel hero" id="top">
   <div class="hero-field" data-field><canvas></canvas></div>
 
-  <div class="lens"><b></b><b></b><b></b><b></b></div>
+  <div class="lens"><b></b><b></b><b></b><b></b><span class="lens-label" data-lens-label>Analyzing with AccuMold AI…</span></div>
 
   <div class="tag" data-x="0.15" data-y="0.28" data-r="0.12">
     <span>Moisture · 91%</span><i style="--w:120px;--h:96px"></i>
@@ -313,21 +313,32 @@
   </div>
 </section>
 
-<!-- ============ 6 · TALK TO A PRO ============ -->
+<!-- ============ FIND A PRO ============ -->
 <section class="panel" id="pro">
-  <div class="inner">
-    <div class="mid" data-r>
-      <p class="kicker">When you need more</p>
-      <h2 class="d2 narrow">The app is free. The expertise is the product.</h2>
+  <div class="inner mid">
+    <div data-r>
+      <p class="kicker">When the scan says act</p>
+      <h2 class="d2 narrow">A verified pro, within 10 miles.</h2>
+      <p class="t1 narrow-w" style="margin:26px auto 0">The app matches you with certified local professionals when remediation is needed &mdash; or puts a certified inspector on a live call with you first.</p>
     </div>
+
     <div class="tiers" style="margin-top:clamp(44px,7vh,80px)" data-r data-d="1">
       <div class="tier light"><div class="lb">Scan &amp; report</div><div class="amt">$0</div><p>Unlimited. Forever.</p></div>
       <div class="tier light"><div class="lb">30 minutes</div><div class="amt"><sup>$</sup>250</div><p>Live inspector, real answers.</p></div>
       <div class="tier light"><div class="lb">45 minutes</div><div class="amt"><sup>$</sup>375</div><p>Certified walkthrough.</p></div>
       <div class="tier light"><div class="lb">60 minutes</div><div class="amt"><sup>$</sup>500</div><p>Complete action plan.</p></div>
     </div>
+
     <div class="row mid" style="margin-top:clamp(34px,5vh,54px)" data-r data-d="2">
       <a class="b" href="consultations.html">Book a consultation</a>
+    </div>
+
+    <div class="approved" data-r data-d="3">
+      <span class="num">Approved &amp; accredited</span>
+      <div class="marks-l">
+        <img src="assets/img/trust-iaqa.png" alt="Indoor Air Quality Association">
+        <img src="assets/img/trust-bbb.png" alt="BBB Accredited Business">
+      </div>
     </div>
   </div>
 </section>
@@ -380,6 +391,6 @@
   </div>
 </footer>
 
-<script src="js/v2.js?v=19"></script>
+<script src="js/v2.js?v=23"></script>
 </body>
 </html>
