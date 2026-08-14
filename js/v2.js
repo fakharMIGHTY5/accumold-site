@@ -337,11 +337,13 @@
     const CAPS = [
       ['Spot it.', 'Your dashboard shows the risk where you are before you scan anything. Tap Quick Mold Scan.'],
       ['Pick your scan.', 'AccuMold\'s own AI analysis, or send it straight to a certified expert for review.'],
-      ['Answer five questions.', 'Texture, spread, location. Your own observations combined with the AI — under fifteen seconds.'],
+      ['Texture.', 'Fuzzy and powdery reads very differently from flat and smooth. Tap what you can see.'],
+      ['Spread.', 'Clustered and patchy suggests growth. A single isolated mark usually does not.'],
       ['Frame it properly.', 'Eight to twelve inches out, surface filling the frame, held steady. Good input, good answer.'],
       ['Take the photo.', 'Flash on for surface detail. One shot of the area you just described.'],
       ['Let it read.', 'AccuMold locks onto the area and analyses the surface against the conditions where you are.'],
-      ['Get the report.', 'A clear detection result, the reasoning written out, and a certified expert one tap away.']
+      ['Get the report.', 'A clear detection result, the reasoning written out, and a certified expert one tap away.'],
+      ['Find a pro.', 'Verified local professionals, filtered by distance. Call them or open their site from the app.']
     ];
     let i = 0, timers = [];
 
@@ -355,8 +357,8 @@
       if (cap) cap.innerHTML = '<h3>' + CAPS[n][0] + '</h3><p>' + CAPS[n][1] + '</p>';
 
       // the analysing step runs itself, then hands over to the report
-      if (n === 5) {
-        timers.push(setTimeout(() => show(6), 2600));
+      if (n === 6) {
+        timers.push(setTimeout(() => show(7), 2600));
       }
     }
 
@@ -364,6 +366,18 @@
     $$('[data-go]', root).forEach((el) => {
       el.addEventListener('click', () => show(parseInt(el.dataset.go, 10)));
       el.style.cursor = 'pointer';
+    });
+
+    // Answering marks your choice, then moves on — so it reads as a question
+    // being answered rather than a button that jumps.
+    $$('[data-pick]', root).forEach((el) => {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => {
+        $$('[data-pick]', el.parentElement).forEach((o) => o.classList.remove('sel'));
+        el.classList.add('sel');
+        clear();
+        timers.push(setTimeout(() => show(parseInt(el.dataset.next, 10)), 420));
+      });
     });
 
     show(0);

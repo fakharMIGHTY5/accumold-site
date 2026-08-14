@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=25">
+<link rel="stylesheet" href="css/v2.css?v=27">
 </head>
 <body>
 
@@ -124,11 +124,26 @@
                 <div class="a-prog"><i></i></div>
                 <p class="a-step">1 of 5</p>
                 <p class="a-q">What does the surface texture look like?</p>
-                <div class="a-opt sel" data-go="3">Fuzzy / Powdery</div>
-                <div class="a-opt" data-go="3">Flat / Smooth</div>
+                <div class="a-opt" data-pick data-next="3">Fuzzy / Powdery</div>
+                <div class="a-opt" data-pick data-next="3">Flat / Smooth</div>
                 <p style="margin:9% 0 0;font-size:.46rem;color:#6B7280;line-height:1.5;text-align:center">
                   Five quick questions about what you can see. It takes under
                   15 seconds and sharpens the analysis.</p>
+              </div>
+            </div>
+
+            <!-- 3 · pre-check question two -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <div class="a-prog"><i style="width:40%"></i></div>
+                <p class="a-step">2 of 5</p>
+                <p class="a-q">How does the mark appear to spread?</p>
+                <div class="a-opt" data-pick data-next="4">Clustered spots / Patchy</div>
+                <div class="a-opt" data-pick data-next="4">Single mark / Isolated</div>
+                <p style="margin:9% 0 0;font-size:.46rem;color:#6B7280;line-height:1.5;text-align:center">
+                  Your answers are weighed alongside the photo, so the analysis
+                  is not working from an image alone.</p>
               </div>
             </div>
 
@@ -147,8 +162,8 @@
                     <li><span class="ck g"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Camera held steady to prevent blur</li>
                   </ul>
                 </div>
-                <div class="a-btn" data-go="4">&#128247;&nbsp; Take Photo</div>
-                <div class="a-btn o" data-go="4">&#128444;&nbsp; Choose from Library</div>
+                <div class="a-btn" data-go="5">&#128247;&nbsp; Take Photo</div>
+                <div class="a-btn o" data-go="5">&#128444;&nbsp; Choose from Library</div>
               </div>
             </div>
 
@@ -159,7 +174,7 @@
                 <p class="a-tip">Be 8&ndash;12 inches away. Zoom in so the suspicious spot fills the screen &mdash; 8 inches is about the blade of a kitchen knife.</p>
                 <div class="a-shot">
                   <div class="fl"><span class="i">&#9889;</span>Flash On</div>
-                  <div class="a-ring" data-go="5"></div>
+                  <div class="a-ring" data-go="6"></div>
                   <div class="lib"><span class="i">&#128443;</span>Library</div>
                 </div>
               </div>
@@ -211,8 +226,45 @@
                     <h6>Expert Review</h6>
                     <p style="margin:0 0 4%;font-size:.48rem;color:#6B7280">&#11088; 4.9 &middot; 2,481 reviews &middot; 24-hour response</p>
                     <div class="a-btn g">Start Expert Review</div>
-                    <div class="a-btn o" data-go="0">Find Mold Pros Near You</div>
+                    <div class="a-btn o" data-go="8">Find Mold Pros Near You</div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8 · find mold pros near you -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll">
+                <div class="a-hd" style="padding:2.5% 7% 4%"><h4 style="font-size:.8rem">Mold Professionals Near You</h4></div>
+                <div class="a-pad">
+                  <div class="a-card">
+                    <p style="margin:0 0 4%;font-size:.5rem;font-weight:700;color:#1A1D21">Max Distance</p>
+                    <div class="a-chips">
+                      <span>10 miles</span><span class="on">25 miles</span><span>50 miles</span>
+                    </div>
+                    <div class="a-seg" style="margin-top:5%">
+                      <span class="on">Verified</span><span>All</span>
+                    </div>
+                  </div>
+                  <p style="margin:0 0 4%;font-size:.46rem;color:#6B7280">1 verified professional within 25 miles</p>
+                  <div class="a-card">
+                    <div class="a-pro">
+                      <div class="a-pro-mark">MMP</div>
+                      <div>
+                        <b>Moisture Master Pros</b>
+                        <span>General Contractor</span>
+                        <span class="star">&#11088; 4.8 &middot; Verified</span>
+                      </div>
+                    </div>
+                    <p style="margin:4% 0 5%;font-size:.46rem;color:#6B7280;line-height:1.5">
+                      100 Monument Rd, Ste 207<br>Bala Cynwyd, PA 19004</p>
+                    <div class="a-row2">
+                      <div class="a-btn g">&#128222;&nbsp; Call</div>
+                      <div class="a-btn o">&#127760;&nbsp; Website</div>
+                    </div>
+                  </div>
+                  <div class="a-btn o" data-go="0" style="margin-top:4%">Back to dashboard</div>
                 </div>
               </div>
             </div>
@@ -225,8 +277,8 @@
     <div class="demo-ui">
       <div class="cap"></div>
       <div class="track">
-        <button>Home</button><button>Type</button><button>Pre-check</button>
-        <button>Guides</button><button>Camera</button><button>Analyse</button><button>Report</button>
+        <button>Home</button><button>Type</button><button>Q1</button><button>Q2</button>
+        <button>Guides</button><button>Camera</button><button>Analyse</button><button>Report</button><button>Pros</button>
       </div>
     </div>
   </div>
@@ -300,6 +352,6 @@
   </div>
 </footer>
 
-<script src="js/v2.js?v=25"></script>
+<script src="js/v2.js?v=27"></script>
 </body>
 </html>

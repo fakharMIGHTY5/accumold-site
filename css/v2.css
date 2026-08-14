@@ -117,7 +117,11 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .nav[data-on="blue"] .links a:hover{ color:#fff; }
 .nav[data-on="blue"] .brand img{ filter:brightness(0) invert(1); }
 .nav[data-on="blue"] .burger i{ background:#fff; }
+/* `.links a` out-specifies `.b`, so the CTA label has to be set here or it
+   inherits the muted nav-link colour and disappears into the blue pill. */
 .nav .b{ height:42px; padding:0 22px; font-size:.88rem; }
+.nav .links a.b{ color:#fff; font-weight:600; }
+.nav .links a.b:hover{ color:#fff; }
 .nav[data-on="blue"] .links a.b{ background:#fff; color:var(--blue); }
 .nav[data-on="blue"] .links a.b:hover{ background:#fff; color:var(--blue-deep); }
 
@@ -682,3 +686,29 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   position:absolute; left:0; right:0; height:1.5px; background:rgba(30,111,184,.85);
   box-shadow:0 0 10px rgba(30,111,184,.5); animation:amSweep 2.8s ease-in-out infinite;
 }
+
+/* ---------- find-a-pro screen ---------- */
+.a-chips{ display:flex; gap:4%; }
+.a-chips span{
+  flex:1; text-align:center; font-size:.46rem; padding:3.5% 2%; border-radius:7px;
+  background:#EEF2F7; color:#6B7280;
+}
+.a-chips span.on{ background:#1E6FB8; color:#fff; font-weight:700; }
+.a-seg{ display:flex; gap:4%; }
+.a-seg span{
+  flex:1; text-align:center; font-size:.48rem; padding:3.5% 2%; border-radius:7px;
+  background:#EEF2F7; color:#6B7280; font-weight:600;
+}
+.a-seg span.on{ background:#1E6FB8; color:#fff; }
+.a-pro{ display:flex; gap:4%; align-items:center; }
+.a-pro-mark{
+  width:14%; aspect-ratio:1; border-radius:9px; background:#1E6FB8; color:#fff;
+  display:grid; place-items:center; font-size:.42rem; font-weight:800; letter-spacing:-.02em; flex:none;
+}
+.a-pro b{ display:block; font-size:.58rem; font-weight:800; color:#1A1D21; letter-spacing:-.01em; }
+.a-pro span{ display:block; font-size:.44rem; color:#6B7280; }
+.a-pro .star{ color:#B07407; margin-top:2px; }
+
+/* side-by-side actions inside the phone */
+.a-row2{ display:flex; gap:4%; }
+.a-row2 .a-btn{ flex:1; margin-top:0; font-size:.54rem; padding:5% 2%; }
