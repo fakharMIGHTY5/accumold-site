@@ -136,10 +136,12 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 
 /* ---------- HERO SCANNER ---------- */
-.hero{ background:var(--white); position:sticky; top:0; z-index:0; }
-.hero + *{ position:relative; z-index:1; box-shadow:0 -30px 60px -30px rgba(8,16,40,.22); }
-.panel:not(.hero){ position:relative; z-index:1; background:var(--white); }
+/* The hero scrolls away like any other panel. Pinning it made it show
+   through everything below, which is the opposite of a clean break. */
+.hero{ background:var(--white); }
+.panel{ background:var(--white); }
 .panel.blue{ background:var(--blue); }
+.hero + *{ box-shadow:0 -1px 0 var(--line); }
 .hero-cue{
   position:absolute; z-index:4; left:50%; bottom:clamp(74px,10vh,104px); transform:translateX(-50%);
   width:22px; height:36px; border:1.5px solid var(--line); border-radius:100px;

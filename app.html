@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=16">
+<link rel="stylesheet" href="css/v2.css?v=17">
 </head>
 <body>
 
@@ -39,18 +39,99 @@
   </div>
 </section>
 
-<section class="panel" data-steps tabindex="-1">
-  <div class="inner steps">
-    <div class="steps-figure">
-      <div class="ghost" aria-hidden="true">1</div>
-      <div class="phone">
-        <i class="btn-l"></i><i class="btn-r"></i>
-        <div class="phone-s"><img class="on" src="assets/app/dashboard.png" alt="Dashboard"><img src="assets/app/inspection.png" alt="Home Inspection"><img src="assets/app/assistant.png" alt="AccuMold Assistant"><img src="assets/app/login.png" alt="Your account"></div>
+<section class="panel" id="scan" data-demo>
+  <div class="inner">
+    <div class="mid" data-r style="margin-bottom:clamp(22px,3.4vh,40px)">
+      <p class="kicker">The scan</p>
+      <h2 class="d3">Run one yourself.</h2>
+    </div>
+
+    <div style="display:flex;justify-content:center">
+      <div class="iphone">
+        <i class="rail v1"></i><i class="rail v2"></i><i class="rail v3"></i><i class="rail pw"></i>
+        <div class="screen">
+          <div class="island"></div>
+          <div class="demo">
+
+            <!-- 0 · ready -->
+            <div class="view on">
+              <div class="ap-head"><h4>AccuMold</h4><p>Austin, TX</p></div>
+              <div class="ap-body">
+                <div class="ap-row">
+                  <div class="ap-stat"><div class="ic">&#128737;&#65039;</div><b>Low</b><span>Mold risk</span></div>
+                  <div class="ap-stat"><div class="ic">&#128167;</div><b>55%</b><span>Humidity</span></div>
+                  <div class="ap-stat"><div class="ic">&#127777;&#65039;</div><b>93&deg;F</b><span>Today's high</span></div>
+                </div>
+                <p class="ap-h5">Quick actions</p>
+                <div class="ap-cta" data-go="1">&#128247;&nbsp; Quick Mold Scan</div>
+                <p class="ap-note">Tap to start a scan</p>
+                <p class="ap-h5">Recent scans</p>
+                <div class="ap-empty"><div class="ic">&#128247;</div><span>No scans yet</span></div>
+              </div>
+            </div>
+
+            <!-- 1 · aim -->
+            <div class="view">
+              <div class="vf2">
+                <img src="assets/img/mold-12.jpg" alt="">
+                <p class="hint">Point at the area</p>
+                <div class="brackets"><span></span><span></span><span></span><span></span></div>
+                <div class="shutter" data-go="2"></div>
+              </div>
+            </div>
+
+            <!-- 2 · analysing -->
+            <div class="view">
+              <div class="an2">
+                <div class="an2-img"><img src="assets/img/mold-12.jpg" alt=""><i></i></div>
+                <div class="an2-list">
+                  <div><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Surface mapped</div>
+                  <div><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Discolouration classified</div>
+                  <div><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Conditions checked</div>
+                </div>
+                <div class="an2-bar"><i></i></div>
+              </div>
+            </div>
+
+            <!-- 3 · report -->
+            <div class="view">
+              <div class="rp2">
+                <div class="rp2-head" data-lv="mod">
+                  <div class="lb">Severity</div>
+                  <b>Moderate</b>
+                  <p>Surface staining consistent with early growth. Worth acting on now.</p>
+                </div>
+                <div class="rp2-body">
+                  <div class="rp2-card">
+                    <h5>Conditions</h5>
+                    <div class="rp2-cond">
+                      <div><b>84&deg;F</b><span>Temperature</span></div>
+                      <div><b>64%</b><span>Humidity</span></div>
+                    </div>
+                  </div>
+                  <div class="rp2-card">
+                    <h5>What this means</h5>
+                    <p>Humidity is sitting above 60%, which is where growth begins within 24&ndash;48 hours. Dry the area, improve airflow, and re-scan in two days.</p>
+                  </div>
+                  <div class="rp2-acts">
+                    <div class="ap-cta g">Save report</div>
+                    <div class="ap-cta o" data-go="0">Scan again</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
-    <div class="steps-copy"><div class="step on"><h3>Dashboard</h3><p>Your current mold risk, humidity and temperature the moment you open it &mdash; before you scan anything.</p></div><div class="step"><h3>Home Inspection</h3><p>Six zones: cleaning, painting, walls, bathroom, kitchen, ventilation. One at a time, or the whole house in a single pass.</p></div><div class="step"><h3>AccuMold Assistant</h3><p>An advisor that already knows your scan history and your family's health conditions, so the answer is about your home.</p></div><div class="step"><h3>Your account</h3><p>Email, Google or Apple. Your reports follow you &mdash; which matters when you need to show six weeks of the same damp patch.</p></div></div>
-    <p class="num" style="margin:18px 0 0">Drag the phone, or pick a screen</p>
-    <div class="dots"><button aria-label="Dashboard" aria-current="true"></button><button aria-label="Home Inspection"></button><button aria-label="AccuMold Assistant"></button><button aria-label="Your account"></button></div>
+
+    <div class="demo-ui">
+      <div class="cap"></div>
+      <div class="track">
+        <button>Spot</button><button>Scan</button><button>Analyse</button><button>Report</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -121,6 +202,6 @@
   </div>
 </footer>
 
-<script src="js/v2.js?v=16"></script>
+<script src="js/v2.js?v=17"></script>
 </body>
 </html>
