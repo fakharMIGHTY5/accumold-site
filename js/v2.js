@@ -329,10 +329,13 @@
     const bar = $('.an2-bar i', root);
     const rows = $$('.an2-list div', root);
     const CAPS = [
-      ['Spot it.', 'Something looks off — a patch on the ceiling, a stain behind the sink. Open AccuMold and tap Quick Mold Scan.'],
-      ['Scan it.', 'Point at the area and take one photo. AccuMold reads the surface with AI-powered scanning.'],
-      ['Read it.', 'Severity, conditions and what it actually means — in plain English, in seconds.'],
-      ['Act on it.', 'Save the report, send it on, or book a certified specialist without leaving the app.']
+      ['Spot it.', 'Your dashboard shows the risk where you are before you scan anything. Tap Quick Mold Scan.'],
+      ['Pick your scan.', 'AccuMold\'s own AI analysis, or send it straight to a certified expert for review.'],
+      ['Answer five questions.', 'Texture, spread, location. Your own observations combined with the AI — under fifteen seconds.'],
+      ['Frame it properly.', 'Eight to twelve inches out, surface filling the frame, held steady. Good input, good answer.'],
+      ['Take the photo.', 'Flash on for surface detail. One shot of the area you just described.'],
+      ['Let it read.', 'AccuMold locks onto the area and analyses the surface against the conditions where you are.'],
+      ['Get the report.', 'A clear detection result, the reasoning written out, and a certified expert one tap away.']
     ];
     let i = 0, timers = [];
 
@@ -346,14 +349,8 @@
       if (cap) cap.innerHTML = '<h3>' + CAPS[n][0] + '</h3><p>' + CAPS[n][1] + '</p>';
 
       // the analysing step runs itself, then hands over to the report
-      if (n === 2) {
-        rows.forEach((r) => r.classList.remove('done'));
-        if (bar) bar.style.width = '4%';
-        rows.forEach((r, k) => timers.push(setTimeout(() => {
-          r.classList.add('done');
-          if (bar) bar.style.width = (18 + (k + 1) * 26) + '%';
-        }, 480 + k * 620)));
-        timers.push(setTimeout(() => show(3), 480 + rows.length * 620 + 500));
+      if (n === 5) {
+        timers.push(setTimeout(() => show(6), 2600));
       }
     }
 
