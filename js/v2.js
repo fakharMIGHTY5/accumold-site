@@ -313,3 +313,59 @@
   }, { rootMargin: '0px 0px -10% 0px', threshold: 0.06 });
   $$('[data-r]').forEach((el) => io.observe(el));
 })();
+
+/* ============================================================
+   The scan demo — the phone is something you use, not a slideshow
+   ============================================================ */
+(function () {
+  'use strict';
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+  $$('[data-demo]').forEach((root) => {
+    const views = $$('.view', root);
+    const tabs = $$('.track button', root);
+    const cap = $('.cap', root);
+    const bar = $('.an2-bar i', root);
+    const rows = $$('.an2-list div', root);
+    const CAPS = [
+      ['Spot it.', 'Something looks off — a patch on the ceiling, a stain behind the sink. Open AccuMold and tap Quick Mold Scan.'],
+      ['Scan it.', 'Point at the area and take one photo. AccuMold reads the surface with AI-powered scanning.'],
+      ['Read it.', 'Severity, conditions and what it actually means — in plain English, in seconds.'],
+      ['Act on it.', 'Save the report, send it on, or book a certified specialist without leaving the app.']
+    ];
+    let i = 0, timers = [];
+
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+
+    function show(n) {
+      clear();
+      i = n;
+      views.forEach((v, k) => v.classList.toggle('on', k === n));
+      tabs.forEach((t, k) => t.setAttribute('aria-current', String(k === n)));
+      if (cap) cap.innerHTML = '<h3>' + CAPS[n][0] + '</h3><p>' + CAPS[n][1] + '</p>';
+
+      // the analysing step runs itself, then hands over to the report
+      if (n === 2) {
+        rows.forEach((r) => r.classList.remove('done'));
+        if (bar) bar.style.width = '4%';
+        rows.forEach((r, k) => timers.push(setTimeout(() => {
+          r.classList.add('done');
+          if (bar) bar.style.width = (18 + (k + 1) * 26) + '%';
+        }, 480 + k * 620)));
+        timers.push(setTimeout(() => show(3), 480 + rows.length * 620 + 500));
+      }
+    }
+
+    tabs.forEach((t, n) => t.addEventListener('click', () => show(n)));
+    $$('[data-go]', root).forEach((el) => {
+      el.addEventListener('click', () => show(parseInt(el.dataset.go, 10)));
+      el.style.cursor = 'pointer';
+    });
+
+    show(0);
+    // pause the auto hand-off if the section scrolls away mid-scan
+    new IntersectionObserver((e) => { if (!e[0].isIntersecting) clear(); },
+      { threshold: 0.2 }).observe(root);
+  });
+})();
