@@ -278,6 +278,7 @@
         if (r.top <= probe && r.bottom > probe) { on = 'blue'; break; }
       }
       nav.dataset.on = on;
+      nav.classList.toggle('scrolled', scrollY > 8);
     };
     const q = () => { if (queued) return; queued = true; requestAnimationFrame(() => { queued = false; check(); }); };
     addEventListener('scroll', q, { passive: true });
