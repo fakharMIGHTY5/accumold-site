@@ -5,10 +5,10 @@
    ============================================================ */
 
 :root{
-  --blue:      #1854D8;   /* the social electric blue — the brand */
-  --blue-deep: #0F3AA8;
-  --blue-lift: #2F6BF2;
-  --blue-pale: #EAF0FE;
+  --blue:      #0572E9;   /* the brand blue */
+  --blue-deep: #0459B8;
+  --blue-lift: #2E8CF5;
+  --blue-pale: #E4F0FE;
   --white:     #FFFFFF;
   --ink:       #0A1020;
   --ink-2:     #55627A;
@@ -175,18 +175,18 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .lens{
   position:absolute; z-index:1; left:50%; top:50%; width:var(--d,300px); height:var(--d,300px);
   transform:translate(-50%,-50%); pointer-events:none;
-  border:1.5px solid rgba(30,111,184,.9);
+  border:1.5px solid rgba(5,114,233,.9);
   box-shadow:0 0 0 1px rgba(255,255,255,.7), 0 0 60px rgba(30,111,184,.14);
   transition:opacity .5s;
 }
-.lens b{ position:absolute; width:18px; height:18px; border:2.5px solid #1E6FB8; }
+.lens b{ position:absolute; width:18px; height:18px; border:2.5px solid #0572E9; }
 .lens b:nth-child(1){ top:-2px; left:-2px;  border-right:0; border-bottom:0; }
 .lens b:nth-child(2){ top:-2px; right:-2px; border-left:0;  border-bottom:0; }
 .lens b:nth-child(3){ bottom:-2px; left:-2px;  border-right:0; border-top:0; }
 .lens b:nth-child(4){ bottom:-2px; right:-2px; border-left:0; border-top:0; }
 .lens::before{                       /* circular target */
   content:""; position:absolute; left:50%; top:50%; width:46%; aspect-ratio:1;
-  transform:translate(-50%,-50%); border:1.5px solid rgba(30,111,184,.7); border-radius:50%;
+  transform:translate(-50%,-50%); border:1.5px solid rgba(5,114,233,.7); border-radius:50%;
 }
 .lens::after{                        /* centre dot */
   content:""; position:absolute; left:50%; top:50%; width:6px; height:6px; border-radius:50%;
@@ -195,7 +195,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .lens-label{
   position:absolute; left:50%; top:-30px; transform:translateX(-50%);
   font-family:var(--fm); font-size:.54rem; letter-spacing:.1em; text-transform:uppercase;
-  color:#1E6FB8; white-space:nowrap;
+  color:#0572E9; white-space:nowrap;
 }
 .lens-label[data-hit="1"]{ color:#fff; background:#E5484D; padding:4px 10px; border-radius:6px; }
 
@@ -216,7 +216,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
    something here". Scanning it is what turns it into a finding. */
 .tag{ position:absolute; z-index:3; transform:translate(-50%,-50%); pointer-events:none; }
 .tag::before,.tag::after{
-  content:""; position:absolute; left:50%; top:50%; background:rgba(24,84,216,.45);
+  content:""; position:absolute; left:50%; top:50%; background:rgba(5,114,233,.45);
   transition:background .35s var(--ease);
 }
 .tag::before{ width:13px; height:1px; transform:translate(-50%,-50%); }
@@ -401,7 +401,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 .form textarea{ resize:vertical; min-height:110px; }
 .form :is(input,select,textarea):focus{
-  outline:none; border-color:var(--blue); box-shadow:0 0 0 4px rgba(24,84,216,.12);
+  outline:none; border-color:var(--blue); box-shadow:0 0 0 4px rgba(5,114,233,.12);
 }
 .form .check{
   flex-direction:row; align-items:center; gap:11px; text-transform:none;
@@ -679,12 +679,12 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 /* hero reticle borrows the same arm and sweep */
 .lens .arm{
   position:absolute; left:50%; top:50%; width:23%; height:1.5px;
-  background:linear-gradient(90deg,#1E6FB8,rgba(30,111,184,.1));
+  background:linear-gradient(90deg,#0572E9,rgba(5,114,233,.1));
   transform-origin:0 50%; animation:amArm 3.4s linear infinite;
 }
 .lens .sweep{
-  position:absolute; left:0; right:0; height:1.5px; background:rgba(30,111,184,.85);
-  box-shadow:0 0 10px rgba(30,111,184,.5); animation:amSweep 2.8s ease-in-out infinite;
+  position:absolute; left:0; right:0; height:1.5px; background:rgba(5,114,233,.85);
+  box-shadow:0 0 10px rgba(5,114,233,.5); animation:amSweep 2.8s ease-in-out infinite;
 }
 
 /* ---------- find-a-pro screen ---------- */

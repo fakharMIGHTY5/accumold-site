@@ -31,31 +31,112 @@
     const outRh = $('[data-out-rh]', hero);
     const label = $('[data-lens-label]', hero);
 
-    // Hotspots live in normalised space and stay clear of the headline.
+    const BLUE = '5,114,233';
+
+    // Colonies sit at fixed points and stay clear of the headline.
     const HOT = tags.map((t) => ({
       x: parseFloat(t.dataset.x), y: parseFloat(t.dataset.y),
       r: parseFloat(t.dataset.r || '0.13'), el: t
     }));
 
-    // A couple of drifting sources keep the field alive.
-    const DRIFT = [
-      { x: 0.35, y: 0.62, a: 0.55, sx: 0.00007, sy: -0.00005 },
-      { x: 0.68, y: 0.45, a: 0.45, sx: -0.00005, sy: 0.00008 }
-    ];
+    // Spores: a wireframe sphere with knobbed spikes, the way mold is drawn
+    // under a microscope. Each colony gets a handful at different sizes.
+    function makeSpore(cx, cy, scale) {
+      const spikes = [];
+      const n = 15 + Math.floor(Math.random() * 5);
+      for (let i = 0; i < n; i++) {                       // fibonacci sphere
+        const y = 1 - (i / (n - 1)) * 2;
+        const rad = Math.sqrt(Math.max(0, 1 - y * y));
+        const th = i * 2.399963;
+        spikes.push([Math.cos(th) * rad, y, Math.sin(th) * rad]);
+      }
+      return {
+        cx, cy, scale, spikes,
+        rot: Math.random() * 6.283,
+        spin: (Math.random() * 0.5 + 0.25) * (Math.random() < 0.5 ? -1 : 1),
+        tilt: Math.random() * 0.7 - 0.35,
+        dx: (Math.random() - 0.5) * 0.004,
+        dy: (Math.random() - 0.5) * 0.004,
+        ph: Math.random() * 6.283
+      };
+    }
 
-    // The page is white. The field only exists inside the lens — which is the
-    // whole point of the product, so it may as well be the whole mechanic.
-    const N = 150;                    // lens buffer resolution
-    const oc = document.createElement('canvas'); oc.width = N; oc.height = N;
-    const octx = oc.getContext('2d');
-    const oimg = octx.createImageData(N, N);
-    const obuf = oimg.data;
+    const COLONIES = HOT.map((h) => {
+      const list = [makeSpore(h.x, h.y, 1)];
+      for (let i = 0; i < 9; i++) {
+        list.push(makeSpore(
+          h.x + (Math.random() - 0.5) * 0.20,
+          h.y + (Math.random() - 0.5) * 0.26,
+          0.20 + Math.random() * 0.34));
+      }
+      return list;
+    });
+
+    function project(p, rot, tilt) {
+      const cr = Math.cos(rot), sr = Math.sin(rot);
+      let x = p[0] * cr - p[2] * sr;
+      let z = p[0] * sr + p[2] * cr;
+      const ct = Math.cos(tilt), st = Math.sin(tilt);
+      const y = p[1] * ct - z * st;
+      z = p[1] * st + z * ct;
+      return [x, y, z];
+    }
+
+    // one spore, drawn as latitude/longitude wireframe plus knobbed spikes
+    function drawSpore(s, R, t, alpha) {
+      const cx = s.px, cy = s.py;
+      const rot = s.rot + t * s.spin;
+      const LAT = 6, LON = 10, SEG = 44;
+
+      ctx.lineWidth = Math.max(0.5, R * 0.013);
+      for (let i = 1; i < LAT; i++) {
+        const phi = (Math.PI * i) / LAT;
+        ctx.beginPath();
+        for (let k = 0; k <= SEG; k++) {
+          const th = (k / SEG) * 6.283185;
+          const p = project([Math.sin(phi) * Math.cos(th), Math.cos(phi), Math.sin(phi) * Math.sin(th)], rot, s.tilt);
+          const X = cx + p[0] * R, Y = cy + p[1] * R;
+          k ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y);
+        }
+        ctx.strokeStyle = 'rgba(' + BLUE + ',' + (alpha * 0.6) + ')';
+        ctx.stroke();
+      }
+      for (let i = 0; i < LON; i++) {
+        const lam = (Math.PI * i) / LON;
+        ctx.beginPath();
+        for (let k = 0; k <= SEG; k++) {
+          const th = (k / SEG) * 6.283185;
+          const p = project([Math.sin(th) * Math.cos(lam), Math.cos(th), Math.sin(th) * Math.sin(lam)], rot, s.tilt);
+          const X = cx + p[0] * R, Y = cy + p[1] * R;
+          k ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y);
+        }
+        ctx.strokeStyle = 'rgba(' + BLUE + ',' + (alpha * 0.44) + ')';
+        ctx.stroke();
+      }
+
+      // spikes with a rounded knob on the end
+      const grow = 1 + Math.sin(t * 1.4 + s.ph) * 0.03;
+      s.spikes.forEach((sp) => {
+        const a = project(sp, rot, s.tilt);
+        const depth = (a[2] + 1) / 2;                 // 0 back, 1 front
+        const al = alpha * (0.4 + depth * 0.6);
+        const x0 = cx + a[0] * R * 0.94, y0 = cy + a[1] * R * 0.94;
+        const L = R * 1.42 * grow;
+        const x1 = cx + a[0] * L, y1 = cy + a[1] * L;
+        ctx.strokeStyle = 'rgba(' + BLUE + ',' + (al * 0.75) + ')';
+        ctx.lineWidth = Math.max(0.6, R * 0.05 * (0.6 + depth * 0.4));
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+        const kr = R * 0.15 * (0.7 + depth * 0.5);
+        ctx.beginPath(); ctx.arc(x1, y1, kr, 0, 6.283185);
+        ctx.strokeStyle = 'rgba(' + BLUE + ',' + al + ')';
+        ctx.lineWidth = Math.max(0.5, R * 0.02);
+        ctx.stroke();
+      });
+    }
 
     let W = 0, H = 0, dpr = 1;
-    let px = 0.5, py = 0.5;           // lens position, normalised
-    let tx = 0.5, ty = 0.42;          // target
-    let lensR = 0.17;                 // as a share of the smaller edge
-    let t0 = 0, visible = true, hasPointer = false;
+    let px = 0.5, py = 0.5, tx = 0.5, ty = 0.42;
+    let lensR = 0.17, visible = true, hasPointer = false;
 
     new IntersectionObserver((e) => { visible = e[0].isIntersecting; }, { threshold: 0 }).observe(root);
 
@@ -77,29 +158,11 @@
     });
     root.addEventListener('pointerleave', () => { hasPointer = false; });
 
-    // Moisture at a point: a few fixed sources plus slow background drift.
-    function fieldAt(nx, ny, ar, t) {
-      let f = 0;
-      for (let k = 0; k < HOT.length; k++) {
-        const s = HOT[k];
-        const dx = (nx - s.x) * ar, dy = ny - s.y;
-        f += 0.95 * Math.exp(-(dx * dx + dy * dy) / 0.012);
-      }
-      for (let k = 0; k < DRIFT.length; k++) {
-        const s = DRIFT[k];
-        const dx = (nx - s.x) * ar, dy = ny - s.y;
-        f += s.a * Math.exp(-(dx * dx + dy * dy) / 0.045);
-      }
-      return f + 0.115 * Math.sin(nx * 8.0 + t * 0.5) * Math.cos(ny * 6.5 - t * 0.38)
-               + 0.055 * Math.sin(nx * 17.0 - t * 0.31) * Math.sin(ny * 13.0 + t * 0.22);
-    }
-
     function frame(now) {
       requestAnimationFrame(frame);
       if (!visible) return;
       const t = now * 0.001;
 
-      // idle: the lens wanders the wall on its own
       if (!hasPointer && !reduced) {
         tx = 0.5 + Math.cos(t * 0.30) * 0.35;
         ty = 0.47 + Math.sin(t * 0.44) * 0.27;
@@ -107,77 +170,40 @@
       px = lerp(px, tx, reduced ? 1 : 0.15);
       py = lerp(py, ty, reduced ? 1 : 0.15);
 
-      // drifting sources
-      DRIFT.forEach((s) => {
-        s.x += s.sx * (now - t0 || 16); s.y += s.sy * (now - t0 || 16);
-        if (s.x < 0.15 || s.x > 0.85) s.sx *= -1;
-        if (s.y < 0.15 || s.y > 0.85) s.sy *= -1;
-      });
-      t0 = now;
-
       const ar = W / H;
-      const lrx = (Math.min(W, H) * lensR) / W;
-      const lry = (Math.min(W, H) * lensR) / H;
+      const half = Math.min(W, H) * lensR;
 
-      // which hotspot is the lens sitting on?
       let hit = -1;
       HOT.forEach((s, i) => {
         const dx = (px - s.x) * ar, dy = py - s.y;
-        if (Math.sqrt(dx * dx + dy * dy) < s.r) hit = i;
-        s.el.classList.toggle('on', Math.sqrt(dx * dx + dy * dy) < s.r);
+        const on = Math.sqrt(dx * dx + dy * dy) < s.r;
+        if (on) hit = i;
+        s.el.classList.toggle('on', on);
         s.el.style.left = s.x * 100 + '%';
         s.el.style.top = s.y * 100 + '%';
       });
 
-      // ---- render, but only what the lens is over ----
-      const K = 26;            // contour interval
-      const e = 0.0016;        // sample step for the gradient
-      const half = 1.06;       // buffer covers slightly more than the circle
-
-      for (let j = 0; j < N; j++) {
-        const ny = py + ((j / (N - 1)) - 0.5) * 2 * lry * half;
-        for (let i = 0; i < N; i++) {
-          const nx = px + ((i / (N - 1)) - 0.5) * 2 * lrx * half;
-          const o = (j * N + i) * 4;
-
-          // square falloff — the app frames detections with a box, not a circle
-          const ux = (i / (N - 1) - 0.5) * 2 * half;
-          const uy = (j / (N - 1) - 0.5) * 2 * half;
-          const rr = Math.max(Math.abs(ux), Math.abs(uy));
-          if (rr > 1) { obuf[o + 3] = 0; continue; }
-          const edge = 1 - clamp((rr - 0.9) / 0.1, 0, 1);
-
-          const f = fieldAt(nx, ny, ar, t);
-
-          // Normalise by the gradient so every contour is the same width,
-          // instead of smearing across the flat parts of the field.
-          const gx = (fieldAt(nx + e, ny, ar, t) - f) / e;
-          const gy = (fieldAt(nx, ny + e, ar, t) - f) / e;
-          const g = Math.max(Math.sqrt(gx * gx + gy * gy), 0.02);
-          const u = f * K;
-          const spatial = (Math.abs(u - Math.round(u)) / K) / g;
-          const line = 1 - clamp(spatial / 0.0022, 0, 1);
-
-          // a fine measurement grid under the contours
-          const grid = ((nx * 110) % 1 < 0.035 || (ny * 74) % 1 < 0.035) ? 0.16 : 0;
-
-          const heat = clamp((f - 0.78) / 0.45, 0, 1);
-          const a = (line * 0.95 + grid + 0.035) * edge;
-
-          obuf[o]     = 30 + (229 - 30) * heat;
-          obuf[o + 1] = 111 + (72 - 111) * heat;
-          obuf[o + 2] = 184 + (77 - 184) * heat;
-          obuf[o + 3] = clamp(a, 0, 1) * 255;
-        }
-      }
-      octx.putImageData(oimg, 0, 0);
-
       ctx.clearRect(0, 0, W, H);
-      const dw = Math.min(W, H) * lensR * 2 * half;
-      ctx.imageSmoothingEnabled = true;
-      ctx.drawImage(oc, px * W - dw / 2, py * H - dw / 2, dw, dw);
 
-      // ---- lens + readout ----
+      // Nothing exists until the scanner is over it.
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(px * W - half, py * H - half, half * 2, half * 2);
+      ctx.clip();
+
+      COLONIES.forEach((colony) => {
+        colony.forEach((s) => {
+          s.cx += s.dx * 0.0016; s.cy += s.dy * 0.0016;
+          s.px = s.cx * W; s.py = s.cy * H;
+          const R = half * 0.56 * s.scale;
+          // fade in near the edge of the frame so they arrive, not pop
+          const d = Math.max(Math.abs(s.px - px * W), Math.abs(s.py - py * H)) / half;
+          const a = 1 - clamp((d - 0.55) / 0.5, 0, 1);
+          if (a > 0.01) drawSpore(s, R, t, a);
+        });
+      });
+      ctx.restore();
+
       lens.style.left = px * 100 + '%';
       lens.style.top = py * 100 + '%';
       if (outX) outX.textContent = (px * 100).toFixed(0).padStart(2, '0');
@@ -188,7 +214,7 @@
         outLv.dataset.lv = hit >= 0 ? 'found' : 'clear';
       }
       if (label) {
-        label.textContent = hit >= 0 ? 'Mold detected' : 'Analyzing with AccuMold AI\u2026';
+        label.textContent = hit >= 0 ? 'Mold detected' : 'Analyzing with AccuMold AI…';
         label.dataset.hit = hit >= 0 ? '1' : '0';
       }
     }
