@@ -3,266 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The AccuMold app — dashboard, inspection, assistant</title>
-<meta name="description" content="Five screens: your live mold risk, a six-zone home inspection, an AI advisor that knows your home, and reports you can keep and share.">
+<title>The AccuMold app</title>
+<meta name="description" content="Four screens: your live mold risk, a six-zone home inspection, an AI advisor that knows your home, and reports you keep.">
 <link rel="icon" href="assets/ui/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/core.css?v=4">
-<link rel="stylesheet" href="css/views.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/v2.css?v=12">
 </head>
 <body>
 
-<header class="nav" data-theme="dark">
+<header class="nav" data-on="white">
   <div class="nav-in">
-    <a class="brand" href="index.html" aria-label="AccuMold home">
+    <a class="brand" href="index.html" aria-label="AccuMold">
       <img src="assets/ui/logo-mark.png" alt="">
-      <img class="brand-word" src="assets/ui/logo-word.png" alt="AccuMold">
+      <img class="word" src="assets/ui/logo-word.png" alt="AccuMold">
     </a>
-    <div class="hud" data-hud>
-      <span class="dot"></span>
-      <span>Austin, TX</span>
-      <span>RH <b data-rh>55%</b></span>
-      <span>TEMP <b data-temp>93&deg;F</b></span>
-    </div>
     <button class="burger" aria-expanded="false" aria-label="Menu"><i></i><i></i><i></i></button>
-    <nav class="nav-links">
-      <a class="nav-link" href="how-it-works.html">How it works</a>
-      <a class="nav-link" href="app.html">The app</a>
-      <a class="nav-link" href="who-its-for.html">Who it's for</a>
-      <a class="nav-link" href="evidence.html">Evidence</a>
-      <a class="nav-link" href="consultations.html">Consultations</a>
-      <a class="nav-link" href="about.html">About</a>
-      <a class="btn btn-sm nav-cta" href="index.html#download">Download free</a>
+    <nav class="links">
+      <a href="index.html#how">How it works</a>
+      <a href="app.html">The app</a>
+      <a href="consultations.html">Consultations</a>
+      <a href="about.html">About</a>
+      <a class="b" href="index.html#get">Download free</a>
     </nav>
   </div>
 </header>
 
-<section class="phead">
-  <div class="rings"><i></i><i></i><i></i><i></i><b></b></div>
-  <div class="wrap" style="position:relative">
-    <p class="crumb"><a href="index.html">Home</a> &rsaquo; <span>The app</span></p>
-    <p class="eyebrow">The product</p>
-    <h1 class="h1">Everything the app does,<br>and nothing it doesn't.</h1>
-    <p class="lede">Five screens. One job: tell you what's happening in your home, in language you don't need a professional to translate.</p>
-    <div class="row" style="margin-top:32px"><a class="btn" href="index.html#download">Download free</a><a class="btn btn-ghost" href="how-it-works.html">See the technology</a></div>
+<section class="panel panel-auto" style="min-height:72svh">
+  <div class="inner mid">
+    <p class="kicker" data-r>The app</p>
+    <h1 class="d1" data-r data-d="1" style="font-size:clamp(2.6rem,7.4vw,6.4rem)">Four screens.<br>One job.</h1>
+    <p class="t1 narrow-w" data-r data-d="2" style="margin:30px auto 0">Tell you what's happening in your home, in language you don't need a professional to translate.</p>
+    <div class="row mid" style="margin-top:38px" data-r data-d="3"><a class="b" href="index.html#get">Download free</a></div>
   </div>
 </section>
 
-<!-- ===== APP TOUR ===== -->
-<section class="sec dark">
-  <div class="wrap">
-    <div class="tour" data-tour>
-      <ul class="tour-list" data-rise>
-        <li class="tour-item" aria-selected="true">
-          <h4><span class="n">01</span> Dashboard</h4>
-          <p>Your current mold risk, humidity and temperature the moment you open it &mdash; before you scan anything. Quick Mold Scan, Find Mold Pros and Expert Reviews are one tap away.</p>
-        </li>
-        <li class="tour-item" aria-selected="false">
-          <h4><span class="n">02</span> Home Inspection</h4>
-          <p>Six zones &mdash; cleaning, painting, walls, bathroom, kitchen, ventilation. Work through them one at a time or run a whole-house inspection in a single pass.</p>
-        </li>
-        <li class="tour-item" aria-selected="false">
-          <h4><span class="n">03</span> AccuMold Assistant</h4>
-          <p>An advisor that already knows your home's scan history and your family's health conditions, so you can ask a real question and get a specific answer.</p>
-        </li>
-        <li class="tour-item" aria-selected="false">
-          <h4><span class="n">04</span> Sign in</h4>
-          <p>Email, Google or Apple. Your scan history follows you, which matters when you need to show six weeks of the same damp patch.</p>
-        </li>
-      </ul>
-
-      <div class="device" data-rise data-d="1">
-        <div class="device-screen">
-          <div class="tour-screens">
-            <img class="on" src="assets/app/dashboard.png" alt="AccuMold dashboard showing mold risk, humidity and temperature">
-            <img src="assets/app/inspection.png" alt="Home inspection screen with six inspection zones">
-            <img src="assets/app/assistant.png" alt="AccuMold Assistant chat screen">
-            <img src="assets/app/login.png" alt="AccuMold sign-in screen">
-          </div>
-        </div>
-        <div class="device-glare"></div>
-      </div>
-
-      <div data-rise data-d="2" class="hide-sm">
-        <p class="eyebrow">Designed to be read</p>
-        <h2 class="h3" style="margin-bottom:14px">Three numbers, one colour, no jargon.</h2>
-        <p class="lede" style="font-size:1rem">The dashboard answers the only question that matters &mdash; is my home OK right now &mdash; with a single word and a single colour. Green means safe. It never means anything else.</p>
-        <div class="stack-sm" style="margin-top:28px">
-          <div class="row"><span class="badge g">Low</span><span class="small" style="color:var(--tx-inv-2)">Conditions not favourable</span></div>
-          <div class="row"><span class="badge a">Moderate</span><span class="small" style="color:var(--tx-inv-2)">Approaching threshold</span></div>
-          <div class="row"><span class="badge r">High</span><span class="small" style="color:var(--tx-inv-2)">Act now</span></div>
-        </div>
+<section class="panel" data-steps tabindex="-1">
+  <div class="inner steps">
+    <div class="steps-figure">
+      <div class="ghost" aria-hidden="true">1</div>
+      <div class="phone">
+        <i class="btn-l"></i><i class="btn-r"></i>
+        <div class="phone-s"><img class="on" src="assets/app/dashboard.png" alt="Dashboard"><img src="assets/app/inspection.png" alt="Home Inspection"><img src="assets/app/assistant.png" alt="AccuMold Assistant"><img src="assets/app/login.png" alt="Your account"></div>
       </div>
     </div>
+    <div class="steps-copy"><div class="step on"><h3>Dashboard</h3><p>Your current mold risk, humidity and temperature the moment you open it &mdash; before you scan anything.</p></div><div class="step"><h3>Home Inspection</h3><p>Six zones: cleaning, painting, walls, bathroom, kitchen, ventilation. One at a time, or the whole house in a single pass.</p></div><div class="step"><h3>AccuMold Assistant</h3><p>An advisor that already knows your scan history and your family's health conditions, so the answer is about your home.</p></div><div class="step"><h3>Your account</h3><p>Email, Google or Apple. Your reports follow you &mdash; which matters when you need to show six weeks of the same damp patch.</p></div></div>
+    <p class="num" style="margin:18px 0 0">Drag the phone, or pick a screen</p>
+    <div class="dots"><button aria-label="Dashboard" aria-current="true"></button><button aria-label="Home Inspection"></button><button aria-label="AccuMold Assistant"></button><button aria-label="Your account"></button></div>
   </div>
 </section>
 
-<!-- ===== FEATURE GRID ===== -->
-<section class="sec">
-  <div class="wrap">
-    <div style="max-width:640px;margin-bottom:clamp(34px,4vw,56px)" data-rise>
-      <p class="eyebrow">What's inside</p>
-      <h2 class="h1">Built like an instrument, not a brochure.</h2>
+<section class="panel blue">
+  <div class="inner">
+    <div class="mid" data-r>
+      <p class="kicker">What a report says</p>
+      <h2 class="d2 narrow">Three numbers, one colour, no jargon.</h2>
     </div>
-    <div class="grid g-3">
-      <article class="card card-hov" data-rise data-d="1">
-        <div class="tile" style="margin-bottom:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h3l2-2h6l2 2h3v12H4Z"/><circle cx="12" cy="13" r="3.4"/></svg></div>
-        <h3 class="h3">Quick Mold Scan</h3>
-        <p>One photo, five questions, an instant risk level on that surface. The fastest path from &ldquo;what is that&rdquo; to a real answer.</p>
-      </article>
-      <article class="card card-hov" data-rise data-d="2">
-        <div class="tile g" style="margin-bottom:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/></svg></div>
-        <h3 class="h3">Whole House Inspection</h3>
-        <p>Six zones, room by room, saved as one record. The version you run before you buy, lease or sign anything.</p>
-      </article>
-      <article class="card card-hov" data-rise data-d="3">
-        <div class="tile a" style="margin-bottom:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/><circle cx="12" cy="12" r="5"/></svg></div>
-        <h3 class="h3">Live conditions</h3>
-        <p>Temperature and humidity for your location, refreshed continuously. Your risk level reflects today, not the day you installed it.</p>
-      </article>
-      <article class="card card-hov" data-rise data-d="1">
-        <div class="tile v" style="margin-bottom:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 12h8M12 8v8"/></svg></div>
-        <h3 class="h3">AccuMold Assistant</h3>
-        <p>Ask about prevention, health risks or your own home. It has your scan history and your family's conditions, so the answer is about you.</p>
-      </article>
-      <article class="card card-hov" data-rise data-d="2">
-        <div class="tile" style="margin-bottom:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
-        <h3 class="h3">Reports you keep</h3>
-        <p>Every scan dated and stored. Download it, email it, send it to a landlord or an insurer. The record is the leverage.</p>
-      </article>
-      <article class="card card-hov" data-rise data-d="3">
-        <div class="tile r" style="margin-bottom:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg></div>
-        <h3 class="h3">Find Mold Pros</h3>
-        <p>When a report comes back high, book a live inspector without leaving the app &mdash; and get connected to a trusted local partner for the work itself.</p>
-      </article>
-    </div>
+    <ul class="lines" style="margin-top:clamp(46px,8vh,90px)">
+      <li data-r data-d="1"><span class="n">Low</span> Conditions are not favourable. Keep an eye on it.</li>
+      <li data-r data-d="2"><span class="n">Moderate</span> You're near the threshold. Dry it out, re-scan in 48 hours.</li>
+      <li data-r data-d="3"><span class="n">High</span> Conditions actively favour growth. Get it looked at.</li>
+    </ul>
+    <p class="t1 narrow-w mid" data-r data-d="4" style="margin:clamp(38px,6vh,64px) auto 0">
+      Every report also explains <em>why</em> it landed there, in a short written analysis you can download, keep and send on.
+    </p>
   </div>
 </section>
 
-<!-- ===== THE REPORT ===== -->
-<section class="sec paper">
-  <div class="wrap">
-    <div class="grid" style="grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center">
-      <div data-rise>
-        <p class="eyebrow">The report</p>
-        <h2 class="h1">Written like a person explaining it, not a system logging it.</h2>
-        <p class="lede" style="margin-top:20px">Every report gives you the risk level, the conditions it was based on, and a paragraph of expert analysis explaining the reasoning. That paragraph is the difference between knowing something is wrong and being able to say why.</p>
-        <div class="card" style="margin-top:30px;background:#fff">
-          <p class="mono" style="color:var(--tx-3);margin:0 0 12px">Sample &mdash; expert analysis</p>
-          <p style="margin:0;font-size:.95rem;color:var(--tx-2);line-height:1.65">&ldquo;The current conditions of 93&deg;F temperature and 55% humidity indicate a very low risk level for mold growth and indoor air quality issues. At this temperature and humidity, the environment is not conducive to mold proliferation. However, it is important to maintain vigilance as changes in conditions could alter the risk level.&rdquo;</p>
-        </div>
-      </div>
-      <div data-rise data-d="1" style="display:flex;justify-content:center">
-        <div class="device" style="max-width:290px">
-          <div class="device-screen">
-            <div class="rp" style="opacity:1">
-              <div class="rp-head" style="background:var(--green)">
-                <div class="lv">Current risk level</div>
-                <strong>Low</strong>
-                <p>Current conditions are not favourable for mold growth. Continue monitoring and maintaining good ventilation.</p>
-              </div>
-              <div class="rp-body">
-                <div class="rp-card">
-                  <h5>Current Conditions</h5>
-                  <div class="rp-cond">
-                    <div><b>93&deg;F</b><span>Temperature</span></div>
-                    <div><b>55%</b><span>Humidity</span></div>
-                  </div>
-                </div>
-                <div class="rp-card">
-                  <h5>Expert Analysis</h5>
-                  <p>At this temperature and humidity the environment is not conducive to mold proliferation, because mold typically requires higher humidity levels to thrive. Indoor air quality is generally stable, with a reduced chance of mold-induced health issues or musty odours.</p>
-                </div>
-                <div class="rp-act"><i>Save report</i><i class="o">Share</i></div>
-              </div>
-            </div>
-          </div>
-          <div class="device-glare"></div>
-        </div>
-      </div>
+<section class="panel">
+  <div class="inner two">
+    <div data-r>
+      <p class="kicker">Two ways in</p>
+      <h2 class="d2">Scan a surface.<br>Or watch a room.</h2>
+      <p class="t1 narrow-w" style="margin-top:26px">Some problems announce themselves. Most don't. A Quick Mold Scan answers a specific wall in seconds. A Whole House Inspection works through all six zones and keeps monitoring the conditions between scans.</p>
+      <div class="row" style="margin-top:34px"><a class="b" href="index.html#get">Get the app</a></div>
     </div>
+    <div class="figure" data-r data-d="1"><img src="assets/brand/post-scan-secure.jpg" alt="Scan your way in to a secure home"></div>
   </div>
 </section>
 
-<!-- ===== IN THE WILD ===== -->
-<section class="sec dark">
-  <div class="wrap">
-    <div class="grid" style="grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,64px);align-items:center">
-      <div data-rise data-d="1" style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-dev);max-width:340px;margin-inline:auto">
-        <video src="assets/video/spokesperson.mp4" poster="assets/video/spokesperson.jpg" muted loop playsinline data-inview style="width:100%;display:block"></video>
-      </div>
-      <div data-rise>
-        <p class="eyebrow">In the wild</p>
-        <h2 class="h2">&ldquo;Five quick questions, take a photo, and you get a full report back.&rdquo;</h2>
-        <p class="lede" style="margin-top:20px">Download it, keep it, send it to your landlord &mdash; or book a consultation with a specialist right there in the app.</p>
-        <a class="link-x" style="margin-top:26px" href="who-its-for.html#renter">See how renters use it <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg></a>
-      </div>
+<section class="panel blue" id="get">
+  <div class="inner mid">
+    <div data-r>
+      <p class="kicker">Stop guessing</p>
+      <h2 class="d2 narrow">Find it before it finds you.</h2>
+      <p class="t1" style="max-width:34ch;margin:28px auto 44px">Free to download. Free to scan. Free to report.</p>
     </div>
-  </div>
-</section>
-
-<section class="sec cta-band" id="download">
-  <div class="glow"></div>
-  <div class="wrap c" style="position:relative">
-    <div data-rise>
-      <p class="eyebrow c" style="color:var(--blue-glow)">Stop guessing</p>
-      <h2 class="h-mega on-dark" style="margin-bottom:22px">Photo in.<br>Report out.</h2>
-      <p class="lede" style="max-width:36ch;margin-inline:auto;color:var(--tx-inv-2)">A free app that turns a phone photo into an instant mold risk report.</p>
-    </div>
-    <div class="stores" style="justify-content:center;margin-top:38px" data-rise data-d="1">
-      <a class="store" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.7ZM14.2 5.6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3Z"/></svg><div><span>Download on the</span><strong>App Store</strong></div></a>
-      <a class="store" href="#"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.5v16.4c0 .7.2 1.2.5 1.5l.1.1 9.2-9.2v-.2L3.6 2.3ZM16 15.3l-3-3v-.2l3-3 .1.1 3.6 2c1 .6 1 1.6 0 2.2l-3.7 1.9ZM15.9 15.4 12.8 12.3 3.6 21.5c.3.4.9.4 1.5.1l10.8-6.2M15.9 8.6 5.1 2.4c-.6-.4-1.2-.3-1.5.1l9.2 9.2 3.1-3.1Z"/></svg><div><span>Get it on</span><strong>Google Play</strong></div></a>
-    </div>
-    <p class="mono" style="color:var(--tx-3);margin-top:26px" data-rise data-d="2">Free to download &middot; Free to scan &middot; Free to report</p>
+    <div class="stores" data-r data-d="1"><a class="store" href="https://apps.apple.com/us/app/accumold-ai-mold-detector/id6756345105" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.7ZM14.2 5.6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3Z"/></svg><div><span>Download on the</span><strong>App Store</strong></div></a><a class="store" href="https://play.google.com/store/apps/details?id=com.accumold.ai" target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.5v16.4c0 .7.2 1.2.5 1.5l.1.1 9.2-9.2v-.2L3.6 2.3ZM16 15.3l-3-3v-.2l3-3 .1.1 3.6 2c1 .6 1 1.6 0 2.2l-3.7 1.9ZM15.9 15.4 12.8 12.3 3.6 21.5c.3.4.9.4 1.5.1l10.8-6.2M15.9 8.6 5.1 2.4c-.6-.4-1.2-.3-1.5.1l9.2 9.2 3.1-3.1Z"/></svg><div><span>Get it on</span><strong>Google Play</strong></div></a></div>
   </div>
 </section>
 
 <footer class="foot">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <a class="brand" href="index.html" style="margin-bottom:20px">
-          <img src="assets/ui/logo-mark.png" alt="">
-          <img class="brand-word" src="assets/ui/logo-word.png" alt="AccuMold" style="filter:brightness(0) invert(1)">
-        </a>
-        <p style="color:var(--tx-inv-2);font-size:.95rem;max-width:32ch;margin:0 0 22px">A free app that turns a phone photo into an instant mold risk report.</p>
-        <div class="socials">
-          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.9 4.9 0 0 1-1-2.8h-3v12.2a2.6 2.6 0 1 1-1.8-2.5V9.5a5.7 5.7 0 1 0 4.9 5.6V9.1a8 8 0 0 0 4.6 1.5v-3a4.8 4.8 0 0 1-3.7-1.8Z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
-        </div>
-      </div>
-      <div>
-        <h4>Product</h4>
-        <a href="how-it-works.html">How it works</a>
+  <div class="foot-in">
+    <div class="foot-top">
+      <a class="brand" href="index.html">
+        <img src="assets/ui/logo-mark.png" alt="" style="filter:brightness(0) invert(1)">
+        <img class="word" src="assets/ui/logo-word.png" alt="AccuMold" style="filter:brightness(0) invert(1)">
+      </a>
+      <nav class="foot-nav">
+        <a href="index.html#how">How it works</a>
         <a href="app.html">The app</a>
-        <a href="evidence.html">Evidence</a>
         <a href="consultations.html">Consultations</a>
-      </div>
-      <div>
-        <h4>Who it's for</h4>
-        <a href="who-its-for.html#renter">Renters</a>
-        <a href="who-its-for.html#homeowner">Homeowners</a>
-        <a href="who-its-for.html#stakeholder">Investors &amp; managers</a>
-      </div>
-      <div>
-        <h4>Company</h4>
         <a href="about.html">About</a>
-        <a href="resources.html">Prevention guides</a>
-        <a href="about.html#trust">Accreditations</a>
-        <a href="index.html#download">Download</a>
+        <a href="index.html#get">Download</a>
+      </nav>
+      <div class="socials">
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.9 4.9 0 0 1-1-2.8h-3v12.2a2.6 2.6 0 1 1-1.8-2.5V9.5a5.7 5.7 0 1 0 4.9 5.6V9.1a8 8 0 0 0 4.6 1.5v-3a4.8 4.8 0 0 1-3.7-1.8Z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></a>
       </div>
     </div>
     <div class="foot-base">
-      <span>&copy; AccuMold. Built by Moisture Master Pros.</span>
-      <span class="mono">accumold.app</span>
+      <span>&copy; AccuMold &middot; Built by Moisture Master Pros</span>
+      <span>accumold.app</span>
     </div>
   </div>
 </footer>
 
-<script src="js/core.js?v=4"></script>
-<script src="js/scan.js?v=4"></script>
+<script src="js/v2.js?v=12"></script>
 </body>
 </html>

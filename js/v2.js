@@ -199,25 +199,44 @@
     const shots = $$('.phone-s img', root);
     const ghost = $('.ghost', root);
     const dots = $$('.dots button', root);
-    let i = 0, timer = null;
+    const figure = $('.steps-figure', root);
+    const n = steps.length;
+    let i = 0, timer = null, touched = false;
 
-    const go = (n) => {
-      i = n;
-      steps.forEach((s, k) => s.classList.toggle('on', k === n));
-      shots.forEach((s, k) => s.classList.toggle('on', k === n));
-      dots.forEach((d, k) => d.setAttribute('aria-current', String(k === n)));
-      if (ghost) ghost.textContent = String(n + 1);
+    const go = (k) => {
+      i = (k + n) % n;
+      steps.forEach((s, m) => s.classList.toggle('on', m === i));
+      shots.forEach((s, m) => s.classList.toggle('on', m === i));
+      dots.forEach((d, m) => d.setAttribute('aria-current', String(m === i)));
+      if (ghost) ghost.textContent = String(i + 1);
     };
-    const play = () => { if (!reduced) timer = setInterval(() => go((i + 1) % steps.length), 4600); };
-    const reset = () => { clearInterval(timer); play(); };
+    const play = () => { clearInterval(timer); if (!reduced && !touched) timer = setInterval(() => go(i + 1), 4600); };
+    const stop = () => { touched = true; clearInterval(timer); };
 
-    dots.forEach((d, n) => d.addEventListener('click', () => { go(n); reset(); }));
+    dots.forEach((d, k) => d.addEventListener('click', () => { stop(); go(k); }));
+
+    // Drag or swipe the phone to move between steps.
+    if (figure) {
+      figure.classList.add('drag');
+      let x0 = null;
+      figure.addEventListener('pointerdown', (e) => { x0 = e.clientX; figure.setPointerCapture(e.pointerId); });
+      figure.addEventListener('pointerup', (e) => {
+        if (x0 === null) return;
+        const dx = e.clientX - x0; x0 = null;
+        if (Math.abs(dx) > 34) { stop(); go(i + (dx < 0 ? 1 : -1)); }
+      });
+      figure.addEventListener('pointercancel', () => { x0 = null; });
+    }
+
+    // Arrow keys once the section has been interacted with or focused.
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { stop(); go(i + 1); }
+      if (e.key === 'ArrowLeft') { stop(); go(i - 1); }
+    });
+
     go(0);
-
-    // only run while it is actually on screen
-    new IntersectionObserver((e) => {
-      if (e[0].isIntersecting) play(); else clearInterval(timer);
-    }, { threshold: 0.3 }).observe(root);
+    new IntersectionObserver((e) => { if (e[0].isIntersecting) play(); else clearInterval(timer); },
+      { threshold: 0.3 }).observe(root);
   });
 
   /* =========================================================
@@ -260,6 +279,31 @@
     addEventListener('resize', q);
     check();
   }
+
+  /* =========================================================
+     3b. Accordions and the consultation form
+     ========================================================= */
+  $$('.acc-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      const panel = btn.nextElementSibling;
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.style.maxHeight = open ? '0px' : panel.scrollHeight + 'px';
+    });
+  });
+
+  // No endpoint is wired yet — this only confirms to the person filling it in.
+  $$('form[data-capture]').forEach((f) => {
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const note = $('.form-note', f);
+      $$('label, .b', f).forEach((el) => { el.style.display = 'none'; });
+      note.innerHTML = '<strong style="color:var(--blue)">Request received.</strong> We\'ll come back with times shortly.';
+      note.style.fontSize = '1rem';
+      note.style.letterSpacing = 'normal';
+      note.style.textTransform = 'none';
+    });
+  });
 
   /* =========================================================
      4. Reveals

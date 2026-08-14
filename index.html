@@ -8,8 +8,8 @@
 <link rel="icon" href="assets/ui/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=9">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/v2.css?v=12">
 </head>
 <body>
 
@@ -22,9 +22,9 @@
     <button class="burger" aria-expanded="false" aria-label="Menu"><i></i><i></i><i></i></button>
     <nav class="links">
       <a href="#how">How it works</a>
-      <a href="#app">The app</a>
-      <a href="#who">Who it's for</a>
-      <a href="#pro">Talk to a pro</a>
+      <a href="app.html">The app</a>
+      <a href="consultations.html">Consultations</a>
+      <a href="about.html">About</a>
       <a class="b" href="#get">Download free</a>
     </nav>
   </div>
@@ -82,7 +82,7 @@
 </section>
 
 <!-- ============ 3 · HOW IT WORKS ============ -->
-<section class="panel" id="how" data-steps>
+<section class="panel" id="how" data-steps tabindex="-1">
   <div class="inner steps">
     <div class="mid" data-r style="margin-bottom:clamp(20px,3vh,38px)">
       <p class="kicker">How it works</p>
@@ -92,6 +92,7 @@
     <div class="steps-figure">
       <div class="ghost" aria-hidden="true">1</div>
       <div class="phone">
+        <i class="btn-l"></i><i class="btn-r"></i>
         <div class="phone-s">
           <img class="on" src="assets/app/dashboard.png" alt="The AccuMold dashboard">
           <img src="assets/app/inspection.png" alt="Choosing a room to inspect">
@@ -108,6 +109,7 @@
       <div class="step"><h3>Act on it.</h3><p>Keep the report. Send it to your landlord. Or book a certified inspector inside the app.</p></div>
     </div>
 
+    <p class="num" style="margin:18px 0 0">Drag the phone, or pick a step</p>
     <div class="dots">
       <button aria-label="Step 1" aria-current="true"></button>
       <button aria-label="Step 2"></button>
@@ -162,26 +164,29 @@
       <div class="tier"><div class="lb">45 minutes</div><div class="amt"><sup>$</sup>375</div><p>Certified walkthrough.</p></div>
       <div class="tier"><div class="lb">60 minutes</div><div class="amt"><sup>$</sup>500</div><p>Complete action plan.</p></div>
     </div>
+    <div class="row mid" style="margin-top:clamp(34px,5vh,54px)" data-r data-d="2">
+      <a class="b" href="consultations.html">Book a consultation</a>
+    </div>
   </div>
 </section>
 
 <!-- ============ 7 · DOWNLOAD ============ -->
-<section class="panel" id="get">
+<section class="panel blue" id="get">
   <div class="inner mid">
     <div data-r>
       <p class="kicker">Stop guessing</p>
-      <h2 class="d1">Photo in.<br><span style="color:var(--blue)">Report out.</span></h2>
-      <p class="t1" style="max-width:32ch;margin:30px auto 44px">Free to download. Free to scan. Free to report.</p>
+      <h2 class="d2 narrow">Find it before it finds you.</h2>
+      <p class="t1" style="max-width:34ch;margin:28px auto 44px">Free to download. Free to scan. Free to report.</p>
     </div>
     <div class="stores" data-r data-d="1">
       <a class="store" href="https://apps.apple.com/us/app/accumold-ai-mold-detector/id6756345105" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.7ZM14.2 5.6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3Z"/></svg>
         <div><span>Download on the</span><strong>App Store</strong></div>
       </a>
-      <span class="store soon">
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.accumold.ai" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.5v16.4c0 .7.2 1.2.5 1.5l.1.1 9.2-9.2v-.2L3.6 2.3ZM16 15.3l-3-3v-.2l3-3 .1.1 3.6 2c1 .6 1 1.6 0 2.2l-3.7 1.9ZM15.9 15.4 12.8 12.3 3.6 21.5c.3.4.9.4 1.5.1l10.8-6.2M15.9 8.6 5.1 2.4c-.6-.4-1.2-.3-1.5.1l9.2 9.2 3.1-3.1Z"/></svg>
-        <div><span>Coming soon to</span><strong>Google Play</strong></div>
-      </span>
+        <div><span>Get it on</span><strong>Google Play</strong></div>
+      </a>
     </div>
   </div>
 </section>
@@ -195,9 +200,9 @@
       </a>
       <nav class="foot-nav">
         <a href="#how">How it works</a>
-        <a href="#app">The app</a>
-        <a href="#who">Who it's for</a>
-        <a href="#pro">Talk to a pro</a>
+        <a href="app.html">The app</a>
+        <a href="consultations.html">Consultations</a>
+        <a href="about.html">About</a>
         <a href="#get">Download</a>
       </nav>
       <div class="socials">
@@ -213,6 +218,6 @@
   </div>
 </footer>
 
-<script src="js/v2.js?v=9"></script>
+<script src="js/v2.js?v=12"></script>
 </body>
 </html>
