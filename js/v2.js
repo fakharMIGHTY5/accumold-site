@@ -357,6 +357,35 @@
   });
 
   /* =========================================================
+     3c. Count-up stats
+     ========================================================= */
+  const cio = new IntersectionObserver((es) => {
+    es.forEach((en) => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      cio.unobserve(el);
+      const end = parseFloat(el.dataset.count);
+      const pre = el.dataset.pre || '';
+      const suf = el.dataset.suf || '';
+      const final = () => { el.textContent = pre + end.toLocaleString() + suf; };
+      if (reduced) { final(); return; }
+      // the real figure ships in the markup, so counting starts from zero here
+      el.textContent = pre + '0' + suf;
+      const dur = 1500, t0 = performance.now();
+      // rAF stops while the tab is hidden, which would strand a partial number
+      const settle = setTimeout(final, dur + 120);
+      (function tick(now) {
+        const p = clamp((now - t0) / dur, 0, 1);
+        const v = end * (1 - Math.pow(1 - p, 3));
+        el.textContent = pre + Math.round(v).toLocaleString() + suf;
+        if (p < 1) requestAnimationFrame(tick);
+        else { clearTimeout(settle); final(); }
+      })(t0);
+    });
+  }, { threshold: 0.4 });
+  $$('[data-count]').forEach((el) => cio.observe(el));
+
+  /* =========================================================
      4. Reveals
      ========================================================= */
   const io = new IntersectionObserver((es) => {
