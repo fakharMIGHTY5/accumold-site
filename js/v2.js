@@ -360,6 +360,30 @@
     const cap = $('.cap', root);
     const bar = $('.an2-bar i', root);
     const rows = $$('.an2-list div', root);
+    // Some controls in the demo are live and some are only there for
+    // fidelity, so the live one has to be pointed at.
+    const stage = $('.demo', root);
+    let hint = null;
+    if (stage) {
+      hint = document.createElement('div');
+      hint.className = 'tap-hint';
+      hint.innerHTML = '<b>Tap</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>';
+      stage.appendChild(hint);
+    }
+    function placeHint() {
+      if (!hint) return;
+      const view = $('.view.on', root);
+      const target = view && view.querySelector('[data-go],[data-pick]');
+      if (!target) { hint.style.opacity = '0'; return; }
+      const sr = stage.getBoundingClientRect();
+      const tr = target.getBoundingClientRect();
+      if (!tr.width) { hint.style.opacity = '0'; return; }
+      // sits above the control, so it can never cover a neighbouring one
+      hint.style.opacity = '1';
+      hint.style.left = (tr.left + tr.width / 2 - sr.left) + 'px';
+      hint.style.top = (tr.top - sr.top - 4) + 'px';
+    }
+
     const CAPS = [
       ['Spot it.', 'Your dashboard shows the risk where you are before you scan anything. Tap Quick Mold Scan.'],
       ['Pick your scan.', 'AccuMold\'s own AI analysis, or send it straight to a certified expert for review.'],
@@ -381,6 +405,7 @@
       views.forEach((v, k) => v.classList.toggle('on', k === n));
       tabs.forEach((t, k) => t.setAttribute('aria-current', String(k === n)));
       if (cap) cap.innerHTML = '<h3>' + CAPS[n][0] + '</h3><p>' + CAPS[n][1] + '</p>';
+      requestAnimationFrame(placeHint);
 
       // the analysing step runs itself, then hands over to the report
       if (n === 6) {
@@ -407,6 +432,7 @@
     });
 
     show(0);
+    addEventListener('resize', placeHint);
     // pause the auto hand-off if the section scrolls away mid-scan
     new IntersectionObserver((e) => { if (!e[0].isIntersecting) clear(); },
       { threshold: 0.2 }).observe(root);
