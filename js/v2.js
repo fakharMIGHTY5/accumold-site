@@ -313,6 +313,25 @@
   }
 
   /* =========================================================
+     3a. Who it's for — pick a person
+     ========================================================= */
+  $$('[data-who]').forEach((root) => {
+    const picks = $$('.who-pick button', root);
+    const cards = $$('.who-card', root);
+    let i = 0, timer = null, touched = false;
+    const go = (n) => {
+      i = n;
+      picks.forEach((p, k) => p.setAttribute('aria-current', String(k === n)));
+      cards.forEach((c, k) => c.classList.toggle('on', k === n));
+    };
+    const play = () => { clearInterval(timer); if (!reduced && !touched) timer = setInterval(() => go((i + 1) % cards.length), 5200); };
+    picks.forEach((p, n) => p.addEventListener('click', () => { touched = true; clearInterval(timer); go(n); }));
+    go(0);
+    new IntersectionObserver((e) => { if (e[0].isIntersecting) play(); else clearInterval(timer); },
+      { threshold: 0.3 }).observe(root);
+  });
+
+  /* =========================================================
      3b. Accordions and the consultation form
      ========================================================= */
   $$('.acc-btn').forEach((btn) => {

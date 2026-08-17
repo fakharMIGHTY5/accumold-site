@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=32">
+<link rel="stylesheet" href="css/v2.css?v=34">
 </head>
 <body>
 
@@ -73,11 +73,31 @@
       <p class="kicker">The problem</p>
       <h2 class="d2 narrow">Mold doesn't start where you look first.</h2>
     </div>
-    <ul class="lines" style="margin-top:clamp(46px,8vh,90px)">
-      <li data-r data-d="1"><span class="n">01</span> Faucets, drains and damp surfaces hold the moisture it loves.</li>
-      <li data-r data-d="2"><span class="n">02</span> Growth can begin within 24&ndash;48 hours of the conditions being right.</li>
-      <li data-r data-d="3"><span class="n">03</span> By the time you can see it, it has been there a while.</li>
-    </ul>
+
+    <div class="clock" data-r data-d="1">
+      <div class="clock-fig">
+        <span class="clock-n">24<em>&ndash;</em>48</span>
+        <span class="clock-u">hours</span>
+      </div>
+      <p class="clock-say">
+        That's all it takes for growth to begin, once moisture and
+        the right conditions meet. Not weeks. Days.
+      </p>
+    </div>
+
+    <div class="spots" data-r data-d="2">
+      <p class="spots-t">Where it actually begins</p>
+      <div class="spots-row">
+        <span>Under the sink</span>
+        <span>Around faucets</span>
+        <span>Drains</span>
+        <span>Damp surfaces</span>
+        <span>Behind the washing machine</span>
+        <span>Window reveals</span>
+        <span>Behind furniture on cold walls</span>
+      </div>
+      <p class="spots-f">What you can't see can still matter.</p>
+    </div>
   </div>
 </section>
 
@@ -346,17 +366,36 @@
 </section>
 
 <!-- ============ WHO IT'S FOR ============ -->
-<section class="panel" id="who">
+<section class="panel" id="who" data-who>
   <div class="inner mid">
     <div data-r>
       <p class="kicker">Who it's for</p>
-      <h2 class="d2 narrow">Three people. One answer.</h2>
+      <h2 class="d3">Same scan. Three reasons to run it.</h2>
     </div>
-    <ul class="lines" style="--line-inv:var(--line);margin-top:clamp(44px,7vh,84px);text-align:left">
-      <li data-r data-d="1"><span class="n">Renters</span> Get proof, not excuses.</li>
-      <li data-r data-d="2"><span class="n">Homeowners</span> Know for sure, before it becomes a bigger problem.</li>
-      <li data-r data-d="3"><span class="n">Buyers &amp; managers</span> Screen a unit before you sign for it.</li>
-    </ul>
+
+    <div class="who-pick" data-r data-d="1">
+      <button aria-current="true">Renters</button>
+      <button>Homeowners</button>
+      <button>Buyers &amp; managers</button>
+    </div>
+
+    <div class="who-stage" data-r data-d="2">
+      <div class="who-card on">
+        <p class="who-q">&ldquo;They keep telling me it's condensation.&rdquo;</p>
+        <h3 class="d2">Get proof,<br>not excuses.</h3>
+        <p class="t1 narrow-w">A dated report every time you scan &mdash; something you can send to a landlord or a letting agent instead of making a phone call that leaves no record.</p>
+      </div>
+      <div class="who-card">
+        <p class="who-q">&ldquo;There's a child sleeping in that room.&rdquo;</p>
+        <h3 class="d2">Know for sure,<br>before it grows.</h3>
+        <p class="t1 narrow-w">Post-storm, post-leak, or just being careful. Check the rooms your family actually sleeps in and stop wondering about the rest.</p>
+      </div>
+      <div class="who-card">
+        <p class="who-q">&ldquo;I'm looking at four units this week.&rdquo;</p>
+        <h3 class="d2">Screen a unit<br>before you sign.</h3>
+        <p class="t1 narrow-w">A remediation you didn't price into the offer is the difference between a good deal and a bad one. Walk the rooms, scan as you go.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -453,6 +492,6 @@
   </div>
 </footer>
 
-<script src="js/v2.js?v=32"></script>
+<script src="js/v2.js?v=34"></script>
 </body>
 </html>
