@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=47">
+<link rel="stylesheet" href="css/v2.css?v=51">
 </head>
 <body>
 
@@ -329,18 +329,40 @@
 
 
 <!-- ============ WHAT A REPORT SAYS ============ -->
-<section class="panel blue" id="report">
+<section class="panel blue" id="report" data-sim>
   <div class="inner">
     <div class="mid" data-r>
       <p class="kicker">What a report says</p>
       <h2 class="d2 narrow">Three numbers, one colour, no jargon.</h2>
     </div>
-    <ul class="lines" style="margin-top:clamp(46px,8vh,90px)">
-      <li data-r data-d="1"><span class="n">Low</span> Conditions are not favourable. Keep an eye on it.</li>
-      <li data-r data-d="2"><span class="n">Moderate</span> You&rsquo;re near the threshold. Dry it out, re-scan in 48 hours.</li>
-      <li data-r data-d="3"><span class="n">High</span> Conditions actively favour growth. Get it looked at.</li>
-    </ul>
-    <p class="t1 narrow-w mid" data-r data-d="4" style="margin:clamp(38px,6vh,64px) auto 0">
+
+    <div class="sim" data-r data-d="1">
+      <div class="sim-c">
+        <label class="sim-f">
+          <span class="num">Relative humidity <b data-out="rh">66%</b></span>
+          <input type="range" min="35" max="90" step="1" value="66" data-rh aria-label="Relative humidity">
+        </label>
+        <label class="sim-f">
+          <span class="num">Hours it has stayed damp <b data-out="hr">30</b></span>
+          <input type="range" min="0" max="72" step="1" value="30" data-hr aria-label="Hours damp">
+        </label>
+        <p class="sim-note num">Move either one. This is the 60% threshold and the 24&ndash;48 hour rule drawn out &mdash; an illustration, not a diagnosis.</p>
+      </div>
+
+      <div class="sim-v" aria-live="polite">
+        <span class="num">Risk level</span>
+        <b data-verdict>Moderate</b>
+        <p data-txt>You&rsquo;re near the threshold. Dry it out, re-scan in 48 hours.</p>
+      </div>
+    </div>
+
+    <ol class="scale" data-r data-d="2">
+      <li data-step="low"><span class="num">Low</span>Conditions are not favourable. Keep an eye on it.</li>
+      <li data-step="moderate"><span class="num">Moderate</span>You&rsquo;re near the threshold. Dry it out, re-scan in 48 hours.</li>
+      <li data-step="high"><span class="num">High</span>Conditions actively favour growth. Get it looked at.</li>
+    </ol>
+
+    <p class="t1 narrow-w mid" data-r data-d="3" style="margin:clamp(34px,5vh,54px) auto 0">
       Every report also explains <em>why</em> it landed there, in a short written analysis you can download, keep and send on.
     </p>
   </div>
@@ -497,6 +519,6 @@
   </div>
 </footer>
 
-<script src="js/v2.js?v=47"></script>
+<script src="js/v2.js?v=51"></script>
 </body>
 </html>

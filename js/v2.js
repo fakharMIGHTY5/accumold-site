@@ -332,7 +332,69 @@
   });
 
   /* =========================================================
-     3b. Accordions and the consultation form
+     3b. Conditions simulator
+     Two handles, and the same rule the app applies: mold needs sustained
+     moisture, 60% relative humidity is the threshold it turns on, and growth
+     starts somewhere in the 24–48 hours after that.
+     ========================================================= */
+  $$('[data-sim]').forEach((root) => {
+    const rh = $('[data-rh]', root);
+    const hr = $('[data-hr]', root);
+    const outRh = $('[data-out="rh"]', root);
+    const outHr = $('[data-out="hr"]', root);
+    const lvEl = $('[data-verdict]', root);
+    const txtEl = $('[data-txt]', root);
+    const steps = $$('.scale li', root);
+
+    const level = (h, t) => {
+      // below the threshold nothing gets going, however long it sits — unless
+      // it is sitting right underneath it for days
+      if (h < 60) return (h >= 55 && t >= 48) ? 'moderate' : 'low';
+      if (t >= 48) return 'high';
+      if (h >= 70 && t >= 24) return 'high';
+      return 'moderate';
+    };
+
+    // The card says why it landed there; the scale below says what to do about
+    // it. Repeating the same sentence in both was the obvious thing and the
+    // wrong one.
+    const reason = (h, t) => {
+      const air = h + '% relative humidity, ' +
+        (h < 60 ? 'under the 60% threshold' : 'over the 60% threshold');
+      const time = t === 0 ? 'and the surface is dry'
+        : t < 24 ? 'held for ' + t + ' hours, short of the 24-hour mark'
+        : t < 48 ? 'held for ' + t + ' hours, inside the 24–48 hour window'
+        : 'held for ' + t + ' hours, well past 48';
+      return air + ', ' + time + '.';
+    };
+
+    const paint = () => {
+      const h = +rh.value;
+      const t = +hr.value;
+      outRh.textContent = h + '%';
+      outHr.textContent = t;
+      const lv = level(h, t);
+      lvEl.textContent = lv[0].toUpperCase() + lv.slice(1);
+      txtEl.textContent = reason(h, t);
+      steps.forEach((s) => s.classList.toggle('on', s.dataset.step === lv));
+    };
+
+    [rh, hr].forEach((el) => el.addEventListener('input', paint));
+    // clicking a level moves the handles to a set of conditions that produce it
+    steps.forEach((s) => {
+      s.style.cursor = 'pointer';
+      s.addEventListener('click', () => {
+        const preset = { low: [45, 12], moderate: [64, 20], high: [76, 36] }[s.dataset.step];
+        rh.value = preset[0];
+        hr.value = preset[1];
+        paint();
+      });
+    });
+    paint();
+  });
+
+  /* =========================================================
+     3c. Accordions and the consultation form
      ========================================================= */
   $$('.acc-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -357,7 +419,7 @@
   });
 
   /* =========================================================
-     3c. Count-up stats
+     3d. Count-up stats
      ========================================================= */
   const cio = new IntersectionObserver((es) => {
     es.forEach((en) => {
