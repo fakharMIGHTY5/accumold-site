@@ -384,6 +384,8 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .plan .blurb{ margin:0 0 20px; font-size:.92rem; line-height:1.5; color:var(--ink-2); }
 .plan:is(:hover,:focus-within) .blurb{ color:rgba(255,255,255,.78); }
 .plan ul{ list-style:none; margin:0 0 26px; padding:0; flex:1; }
+/* the blurbs run to different lengths, so the buttons align on the floor */
+.plan .b{ margin-top:auto; }
 .plan li{ display:flex; gap:11px; padding:7px 0; font-size:.92rem; line-height:1.45; color:var(--ink-2); }
 .plan li svg{ color:var(--blue); transition:color .3s var(--ease); }
 .plan:is(:hover,:focus-within) li{ color:rgba(255,255,255,.86); }
@@ -424,53 +426,10 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .form .check input{ width:19px; height:19px; accent-color:var(--blue); }
 .form .b{ align-self:flex-start; margin-top:6px; }
 .form-note{ margin:0; }
-
-/* ---------- Consultations hero ----------
-   Left-aligned and compact on purpose: every other hero on the site is a
-   centred type wall, and this page's job is to get you to the prices. */
-.c-hero{ padding-block:clamp(70px,12vh,140px) clamp(50px,7vh,90px); }
-.c-hero-in{ display:grid; grid-template-columns:1.35fr 1fr; gap:clamp(34px,5vw,80px); align-items:center; }
-@media(max-width:900px){ .c-hero-in{ grid-template-columns:1fr; gap:clamp(34px,5vh,52px); } }
-.c-facts{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
-.c-facts li{
-  padding:16px 0 16px 26px; border-bottom:1px solid var(--line); position:relative;
-  font-size:.98rem; color:var(--ink-2);
-}
-.c-facts li::before{
-  content:""; position:absolute; left:0; top:24px;
-  width:7px; height:7px; border-radius:50%; background:var(--blue);
-}
-
-/* ---------- Flow ----------
-   Four stages on one rail. It reads as a sequence, which the four stacked
-   one-liners it replaced never did. */
-.flow{
-  position:relative; list-style:none; margin:0; padding:0;
-  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(20px,2.6vw,40px);
-}
-.flow::before{ content:""; position:absolute; top:6px; left:0; right:0; height:1px; background:var(--line-inv); }
-.flow li{ position:relative; padding-top:clamp(34px,4vh,46px); }
-.flow li::before{
-  content:""; position:absolute; top:0; left:0; width:13px; height:13px;
-  border-radius:50%; background:#fff;
-}
-.flow .st{
-  display:block; margin-bottom:16px;
-  font-family:var(--fm); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
-  color:rgba(255,255,255,.55);
-}
-/* One sentence per stage. The sentence is the content, so it carries the
-   display face rather than sitting under a heading that repeats it. */
-.flow p{
-  margin:0; font-family:var(--fd); font-weight:650;
-  font-size:clamp(1.15rem,1.6vw,1.42rem); line-height:1.2; letter-spacing:-.028em;
-}
-@media(max-width:900px){
-  .flow{ grid-template-columns:1fr; gap:0; }
-  .flow::before{ top:6px; bottom:6px; left:6px; right:auto; width:1px; height:auto; }
-  .flow li{ padding:0 0 clamp(30px,4vh,44px) 34px; }
-  .flow li:last-child{ padding-bottom:0; }
-}
+/* on a blue field the inputs keep their white fill; only the labels around
+   them need lifting off the muted ink greys */
+.blue .form label{ color:rgba(255,255,255,.7); }
+.blue .form :is(input,textarea):focus{ box-shadow:0 0 0 4px rgba(255,255,255,.28); border-color:#fff; }
 
 /* ---------- Accordion ---------- */
 .acc{ border-top:1px solid var(--line); }
