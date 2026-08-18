@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=39">
+<link rel="stylesheet" href="css/v2.css?v=42">
 </head>
 <body>
 
@@ -30,17 +30,26 @@
   </div>
 </header>
 
-<section class="panel panel-auto" style="min-height:72svh">
-  <div class="inner mid">
-    <p class="kicker" data-r>Consultations</p>
-    <h1 class="d1" data-r data-d="1" style="font-size:clamp(2.7rem,8vw,7rem)">Some answers<br>need a human.</h1>
-    <p class="t1 narrow-w" data-r data-d="2" style="margin:30px auto 0">The scan is free, unlimited and honest. When it comes back high &mdash; or when the decision behind it is expensive &mdash; you can put a certified inspector on the other end of it, live, looking at the same wall you are.</p>
-    <div class="row mid" style="margin-top:38px" data-r data-d="3"><a class="b" href="#book">Request a session</a><a class="b b-ghost" href="#what">What happens</a></div>
-    <p class="num" data-r data-d="4" style="margin-top:34px">Live video &nbsp;&middot;&nbsp; Certified inspector &nbsp;&middot;&nbsp; Your scans read before the call</p>
+<section class="panel panel-auto c-hero">
+  <div class="inner">
+    <div class="c-hero-in">
+      <div>
+        <p class="kicker" data-r>Consultations</p>
+        <h1 class="d2" data-r data-d="1">Some answers need a human.</h1>
+        <p class="t1" data-r data-d="2" style="margin:26px 0 0;max-width:44ch">Scanning stays free. When the result is high, or the decision behind it is expensive, you can put a certified inspector on the other end of it.</p>
+        <div class="row" style="margin-top:34px" data-r data-d="3"><a class="b" href="#book">Request a session</a><a class="b b-ghost" href="#what">What happens</a></div>
+      </div>
+      <ul class="c-facts" data-r data-d="2">
+        <li>Live video, one to one</li>
+        <li>A certified inspector, every time</li>
+        <li>Your scans read before you speak</li>
+        <li>No payment until the slot is confirmed</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<section class="panel panel-auto">
+<section class="panel panel-auto" style="padding-top:0">
   <div class="inner">
     <div class="plans">
       <div class="plan" data-r data-d="1">
@@ -84,24 +93,20 @@
     </div>
     <ol class="flow" style="margin-top:clamp(48px,8vh,86px)">
       <li data-r data-d="1">
-        <span class="st">01 &middot; Before</span>
-        <h3>Your scans go across with the booking</h3>
-        <p>The inspector reads them before you speak, so the session starts at the problem rather than at the beginning.</p>
+        <span class="st">Before</span>
+        <p>You book, and your scans go across with it.</p>
       </li>
       <li data-r data-d="2">
-        <span class="st">02 &middot; During</span>
-        <h3>You walk the room with your camera</h3>
-        <p>They tell you what they are looking at and why &mdash; the stain, the seal around the window, the wall the shower backs onto.</p>
+        <span class="st">During</span>
+        <p>You walk the room on video. They tell you what they see.</p>
       </li>
       <li data-r data-d="3">
-        <span class="st">03 &middot; The verdict</span>
-        <h3>Plain English, including &ldquo;this is fine&rdquo;</h3>
-        <p>Most of the time that is the answer, and you get it straight. Nobody is paid more for finding something.</p>
+        <span class="st">The verdict</span>
+        <p>Plain English. Usually &ldquo;this is fine.&rdquo;</p>
       </li>
       <li data-r data-d="4">
-        <span class="st">04 &middot; After</span>
-        <h3>A scope, and a route to the work</h3>
-        <p>If it does need doing: a written summary you can hand to anyone, and an introduction to a trusted local partner.</p>
+        <span class="st">After</span>
+        <p>A written summary, and a route to the work.</p>
       </li>
     </ol>
   </div>
@@ -122,21 +127,9 @@
           <label>Name<input type="text" name="name" required placeholder="Your name"></label>
           <label>Email<input type="email" name="email" required placeholder="you@email.com"></label>
         </div>
-        <div class="f-row">
-          <label>Phone <span class="opt">optional</span><input type="tel" name="phone" placeholder="(555) 000 0000"></label>
-          <label>Property<select name="property">
-            <option>I rent it</option><option>I own it</option><option>I'm buying it</option><option>I manage it</option>
-          </select></label>
-        </div>
-        <label>Which session<select name="tier">
-          <option>30 minutes &mdash; $250</option>
-          <option selected>45 minutes &mdash; $375</option>
-          <option>60 minutes &mdash; $500</option>
-          <option>Not sure yet</option>
-        </select></label>
-        <label>What are you seeing?<textarea name="detail" rows="4" placeholder="A dark patch on the bathroom ceiling that keeps coming back&hellip;"></textarea></label>
-        <label class="check"><input type="checkbox" name="scanned"> I've already run a scan in the app</label>
-        <button class="b" type="submit">Request times</button>
+        <label>Phone <span class="opt">optional</span><input type="tel" name="phone" placeholder="(555) 000 0000"></label>
+        <label>Message<textarea name="detail" rows="4" placeholder="A dark patch on the bathroom ceiling that keeps coming back&hellip;"></textarea></label>
+        <button class="b" type="submit">Send</button>
         <p class="form-note num">We reply with times, not a sales call.</p>
       </form>
     </div>
@@ -196,6 +189,6 @@
   </div>
 </footer>
 
-<script src="js/v2.js?v=39"></script>
+<script src="js/v2.js?v=42"></script>
 </body>
 </html>
