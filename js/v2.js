@@ -332,7 +332,54 @@
   });
 
   /* =========================================================
-     3b. Accordions and the consultation form
+     3b. About: video and reviews
+     ========================================================= */
+  $$('[data-video]').forEach((root) => {
+    const vid = $('video', root);
+    const btn = $('.vbtn', root);
+    // controls stay off until it is playing, so the poster is just a poster
+    btn.addEventListener('click', () => { vid.controls = true; vid.play(); });
+    vid.addEventListener('play', () => root.classList.add('playing'));
+    // give the poster and the big button back once it finishes
+    vid.addEventListener('ended', () => root.classList.remove('playing'));
+  });
+
+  $$('[data-revs]').forEach((root) => {
+    const revs = $$('.rev', root);
+    const dots = $('.rev-dots', root);
+    if (revs.length < 2) return;
+
+    let i = 0, timer = null;
+    revs.forEach((_, n) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('role', 'tab');
+      d.setAttribute('aria-label', 'Review ' + (n + 1));
+      d.addEventListener('click', () => { show(n); hold(); });
+      dots.appendChild(d);
+    });
+    const marks = Array.from(dots.children);
+
+    function show(n) {
+      i = (n + revs.length) % revs.length;
+      revs.forEach((r, k) => r.classList.toggle('on', k === i));
+      marks.forEach((d, k) => d.setAttribute('aria-selected', String(k === i)));
+    }
+    // any deliberate interaction stops the carousel moving under the reader
+    function hold() { clearInterval(timer); timer = null; }
+    function run() { if (!timer && !reduced) timer = setInterval(() => show(i + 1), 7000); }
+
+    $('[data-prev]', root).addEventListener('click', () => { show(i - 1); hold(); });
+    $('[data-next]', root).addEventListener('click', () => { show(i + 1); hold(); });
+    root.addEventListener('pointerenter', hold);
+
+    show(0);
+    new IntersectionObserver((e) => { e[0].isIntersecting ? run() : hold(); },
+      { threshold: 0.25 }).observe(root);
+  });
+
+  /* =========================================================
+     3c. Accordions and the consultation form
      ========================================================= */
   $$('.acc-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -357,7 +404,7 @@
   });
 
   /* =========================================================
-     3c. Count-up stats
+     3d. Count-up stats
      ========================================================= */
   const cio = new IntersectionObserver((es) => {
     es.forEach((en) => {
