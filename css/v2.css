@@ -367,21 +367,35 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .plan{
   display:flex; flex-direction:column; padding:clamp(24px,2.4vw,34px);
   border:1px solid var(--line); border-radius:20px; background:var(--white);
+  transition:background .3s var(--ease), border-color .3s var(--ease),
+             transform .3s var(--ease), box-shadow .3s var(--ease);
 }
-.plan.feat{ background:var(--blue); border-color:var(--blue); color:#fff; }
+/* Blue is the hover state, not a permanent "recommended" badge — nothing
+   should be shouting while the page is at rest. :focus-within keeps the
+   card reachable when you tab into its button. */
+.plan:hover,.plan:focus-within{
+  background:var(--blue); border-color:var(--blue); color:#fff;
+  transform:translateY(-4px); box-shadow:0 20px 44px -24px rgba(5,114,233,.6);
+}
 .plan .lb{ font-family:var(--fm); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); }
-.plan.feat .lb{ color:rgba(255,255,255,.66); }
+.plan:is(:hover,:focus-within) .lb{ color:rgba(255,255,255,.66); }
 .plan .amt{ font-family:var(--fd); font-size:clamp(2.2rem,3.4vw,2.9rem); font-weight:800; letter-spacing:-.045em; line-height:1; margin:16px 0 10px; }
 .plan .amt sup{ font-size:.4em; top:-.85em; font-weight:600; }
 .plan .blurb{ margin:0 0 20px; font-size:.92rem; line-height:1.5; color:var(--ink-2); }
-.plan.feat .blurb{ color:rgba(255,255,255,.78); }
+.plan:is(:hover,:focus-within) .blurb{ color:rgba(255,255,255,.78); }
 .plan ul{ list-style:none; margin:0 0 26px; padding:0; flex:1; }
 .plan li{ display:flex; gap:11px; padding:7px 0; font-size:.92rem; line-height:1.45; color:var(--ink-2); }
-.plan li svg{ color:var(--blue); }
-.plan.feat li{ color:rgba(255,255,255,.86); }
-.plan.feat li svg{ color:#fff; }
+.plan li svg{ color:var(--blue); transition:color .3s var(--ease); }
+.plan:is(:hover,:focus-within) li{ color:rgba(255,255,255,.86); }
+.plan:is(:hover,:focus-within) li svg{ color:#fff; }
 .plan .b{ height:48px; font-size:.94rem; width:100%; }
-.plan.feat .b{ background:#fff; color:var(--blue); }
+/* The button has to invert with the card, and it has to keep that inversion
+   when the pointer lands on the button itself — otherwise `.b-ghost:hover`
+   wins and paints blue text onto the blue card. */
+.plan:is(:hover,:focus-within) .b-ghost,
+.plan:is(:hover,:focus-within) .b-ghost:hover{
+  background:#fff; color:var(--blue); box-shadow:inset 0 0 0 1.5px #fff;
+}
 
 /* ---------- Form ---------- */
 .form{ display:flex; flex-direction:column; gap:16px; }
@@ -403,6 +417,48 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .form :is(input,select,textarea):focus{
   outline:none; border-color:var(--blue); box-shadow:0 0 0 4px rgba(5,114,233,.12);
 }
+/* ---------- Select ----------
+   A native <select> draws its popup in system chrome — grey, square and
+   nothing like the rest of the page. The real select stays in the DOM so the
+   form still submits and still works with JS off; it's moved out of sight and
+   mirrored by the markup below, which v2.js builds. */
+.sel{ position:relative; }
+.sel select{
+  position:absolute; width:1px; height:1px; padding:0; border:0;
+  opacity:0; pointer-events:none; clip-path:inset(50%);
+}
+.sel-btn{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px;
+  font-family:var(--f); font-size:1rem; font-weight:400; line-height:1.5;
+  letter-spacing:normal; text-transform:none; color:var(--ink); text-align:left;
+  padding:15px 18px; border:1px solid var(--line); border-radius:12px; background:var(--white);
+  transition:border-color .25s, box-shadow .25s;
+}
+.sel-btn:hover{ border-color:var(--ink-3); }
+.sel-btn svg{ flex:none; color:var(--ink-3); transition:transform .3s var(--ease), color .25s; }
+.sel.open .sel-btn{ border-color:var(--blue); box-shadow:0 0 0 4px rgba(5,114,233,.12); }
+.sel.open .sel-btn svg{ transform:rotate(180deg); color:var(--blue); }
+.sel-list{
+  position:absolute; z-index:40; top:calc(100% + 8px); left:0; right:0;
+  margin:0; padding:6px; list-style:none;
+  background:var(--white); border:1px solid var(--line); border-radius:14px;
+  box-shadow:0 26px 54px -26px rgba(10,16,32,.42);
+  opacity:0; visibility:hidden; transform:translateY(-8px);
+  transition:opacity .22s var(--ease), transform .22s var(--ease), visibility .22s;
+}
+.sel.open .sel-list{ opacity:1; visibility:visible; transform:none; }
+.sel-list li{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:11px 14px; border-radius:9px; cursor:pointer;
+  font-family:var(--f); font-size:.98rem; font-weight:400;
+  letter-spacing:normal; text-transform:none; color:var(--ink-2);
+  transition:background .18s, color .18s;
+}
+.sel-list li:hover,.sel-list li.act{ background:var(--blue-pale); color:var(--ink); }
+.sel-list li[aria-selected="true"]{ color:var(--blue); font-weight:600; }
+.sel-list li svg{ flex:none; opacity:0; color:var(--blue); }
+.sel-list li[aria-selected="true"] svg{ opacity:1; }
+
 .form .check{
   flex-direction:row; align-items:center; gap:11px; text-transform:none;
   letter-spacing:normal; font-family:var(--f); font-size:.94rem; color:var(--ink-2);
@@ -410,6 +466,36 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .form .check input{ width:19px; height:19px; accent-color:var(--blue); }
 .form .b{ align-self:flex-start; margin-top:6px; }
 .form-note{ margin:0; }
+
+/* ---------- Flow ----------
+   Four stages on one rail. It reads as a sequence, which the four stacked
+   one-liners it replaced never did. */
+.flow{
+  position:relative; list-style:none; margin:0; padding:0;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(20px,2.6vw,40px);
+}
+.flow::before{ content:""; position:absolute; top:6px; left:0; right:0; height:1px; background:var(--line-inv); }
+.flow li{ position:relative; padding-top:clamp(34px,4vh,46px); }
+.flow li::before{
+  content:""; position:absolute; top:0; left:0; width:13px; height:13px;
+  border-radius:50%; background:#fff;
+}
+.flow .st{
+  display:block; margin-bottom:14px;
+  font-family:var(--fm); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.flow h3{
+  margin:0 0 12px; font-family:var(--fd); font-weight:700;
+  font-size:clamp(1.15rem,1.7vw,1.5rem); line-height:1.14; letter-spacing:-.03em;
+}
+.flow p{ margin:0; font-size:.95rem; line-height:1.6; color:rgba(255,255,255,.7); }
+@media(max-width:900px){
+  .flow{ grid-template-columns:1fr; gap:0; }
+  .flow::before{ top:6px; bottom:6px; left:6px; right:auto; width:1px; height:auto; }
+  .flow li{ padding:0 0 clamp(30px,4vh,44px) 34px; }
+  .flow li:last-child{ padding-bottom:0; }
+}
 
 /* ---------- Accordion ---------- */
 .acc{ border-top:1px solid var(--line); }

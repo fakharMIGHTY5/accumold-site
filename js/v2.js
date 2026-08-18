@@ -332,7 +332,112 @@
   });
 
   /* =========================================================
-     3b. Accordions and the consultation form
+     3b. Selects
+     A native <select> hands its popup to the OS, so on macOS the menu came
+     back grey and square with none of the page in it. The real <select> is
+     kept and kept authoritative — it still holds the value the form submits,
+     and without JS it is simply a working select. Everything below mirrors it.
+     ========================================================= */
+  const CHEV = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+  const TICK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>';
+
+  $$('.form select').forEach((sel) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'sel';
+    sel.parentNode.insertBefore(wrap, sel);
+    wrap.appendChild(sel);
+    sel.tabIndex = -1;
+    sel.setAttribute('aria-hidden', 'true');
+
+    const opts = Array.from(sel.options);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'sel-btn';
+    btn.setAttribute('aria-haspopup', 'listbox');
+    btn.setAttribute('aria-expanded', 'false');
+    // the visible label lives in the <label> as a bare text node
+    const owner = sel.closest('label');
+    const name = owner ? (owner.childNodes[0].textContent || '').trim() : '';
+    if (name) btn.setAttribute('aria-label', name);
+    btn.innerHTML = '<span></span>' + CHEV;
+
+    const list = document.createElement('ul');
+    list.className = 'sel-list';
+    list.setAttribute('role', 'listbox');
+    opts.forEach((o, i) => {
+      const li = document.createElement('li');
+      li.setAttribute('role', 'option');
+      li.dataset.i = i;
+      li.innerHTML = '<span>' + o.textContent + '</span>' + TICK;
+      list.appendChild(li);
+    });
+
+    wrap.append(btn, list);
+    const items = Array.from(list.children);
+    const label = btn.firstElementChild;
+    let active = sel.selectedIndex;
+
+    const paint = () => {
+      label.textContent = opts[sel.selectedIndex].textContent;
+      items.forEach((li, i) => {
+        li.setAttribute('aria-selected', String(i === sel.selectedIndex));
+        li.classList.toggle('act', i === active);
+      });
+    };
+    const open = () => {
+      close.all();
+      wrap.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      active = sel.selectedIndex;
+      paint();
+    };
+    const close = () => {
+      wrap.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
+    close.all = () => $$('.sel.open').forEach((s) => {
+      s.classList.remove('open');
+      $('.sel-btn', s).setAttribute('aria-expanded', 'false');
+    });
+    const choose = (i) => {
+      sel.selectedIndex = i;
+      sel.dispatchEvent(new Event('change', { bubbles: true }));
+      paint();
+      close();
+      btn.focus();
+    };
+
+    btn.addEventListener('click', () => (wrap.classList.contains('open') ? close() : open()));
+    items.forEach((li, i) => {
+      li.addEventListener('click', () => choose(i));
+      li.addEventListener('mousemove', () => { active = i; paint(); });
+    });
+
+    btn.addEventListener('keydown', (e) => {
+      const isOpen = wrap.classList.contains('open');
+      const k = e.key;
+      if (k === 'Escape') { close(); return; }
+      if (k === 'ArrowDown' || k === 'ArrowUp' || k === 'Home' || k === 'End') {
+        e.preventDefault();
+        if (!isOpen) { open(); return; }
+        if (k === 'Home') active = 0;
+        else if (k === 'End') active = opts.length - 1;
+        else active = Math.min(opts.length - 1, Math.max(0, active + (k === 'ArrowDown' ? 1 : -1)));
+        paint();
+        return;
+      }
+      if (k === 'Enter' || k === ' ') {
+        e.preventDefault();
+        isOpen ? choose(active) : open();
+      }
+    });
+
+    document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) close(); });
+    paint();
+  });
+
+  /* =========================================================
+     3c. Accordions and the consultation form
      ========================================================= */
   $$('.acc-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -357,7 +462,7 @@
   });
 
   /* =========================================================
-     3c. Count-up stats
+     3d. Count-up stats
      ========================================================= */
   const cio = new IntersectionObserver((es) => {
     es.forEach((en) => {
