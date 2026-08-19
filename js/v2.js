@@ -332,7 +332,7 @@
   });
 
   /* =========================================================
-     3b. About: video and reviews
+     3b. About: video
      ========================================================= */
   $$('[data-video]').forEach((root) => {
     const vid = $('video', root);
@@ -344,42 +344,55 @@
     vid.addEventListener('ended', () => root.classList.remove('playing'));
   });
 
-  $$('[data-revs]').forEach((root) => {
-    const revs = $$('.rev', root);
-    const dots = $('.rev-dots', root);
-    if (revs.length < 2) return;
+  /* =========================================================
+     3c. About: the vision, walked by the scrollbar
+     .v-stage is tall and .v-stick pins inside it, so the distance you scroll
+     past the stage maps onto the four steps. Plain scroll maths rather than
+     an observer per step — it gives an exact position, not a threshold.
+     ========================================================= */
+  $$('[data-vision]').forEach((root) => {
+    const stage = $('.v-stage', root);
+    const steps = $$('.v-steps li', root);
+    const fill = $('.v-rail i', root);
+    const count = $('[data-v-count]', root);
+    const small = matchMedia('(max-width:900px)');
+    let queued = false, last = -1;
 
-    let i = 0, timer = null;
-    revs.forEach((_, n) => {
-      const d = document.createElement('button');
-      d.type = 'button';
-      d.setAttribute('role', 'tab');
-      d.setAttribute('aria-label', 'Review ' + (n + 1));
-      d.addEventListener('click', () => { show(n); hold(); });
-      dots.appendChild(d);
-    });
-    const marks = Array.from(dots.children);
-
-    function show(n) {
-      i = (n + revs.length) % revs.length;
-      revs.forEach((r, k) => r.classList.toggle('on', k === i));
-      marks.forEach((d, k) => d.setAttribute('aria-selected', String(k === i)));
+    function update() {
+      if (small.matches) {                       // stage collapsed, all steps open
+        steps.forEach((s) => s.classList.add('on'));
+        return;
+      }
+      const r = stage.getBoundingClientRect();
+      const travel = r.height - innerHeight;     // how far it stays pinned
+      const p = travel > 0 ? clamp(-r.top / travel, 0, 1) : 0;
+      // nudge so the last step lands before the stage lets go
+      const i = clamp(Math.floor(p * steps.length * 1.04), 0, steps.length - 1);
+      fill.style.width = (p * 100) + '%';
+      if (i === last) return;
+      last = i;
+      steps.forEach((s, n) => s.classList.toggle('on', n === i));
+      count.innerHTML = '0' + (i + 1) + ' \u2014 0' + steps.length;
     }
-    // any deliberate interaction stops the carousel moving under the reader
-    function hold() { clearInterval(timer); timer = null; }
-    function run() { if (!timer && !reduced) timer = setInterval(() => show(i + 1), 7000); }
 
-    $('[data-prev]', root).addEventListener('click', () => { show(i - 1); hold(); });
-    $('[data-next]', root).addEventListener('click', () => { show(i + 1); hold(); });
-    root.addEventListener('pointerenter', hold);
-
-    show(0);
-    new IntersectionObserver((e) => { e[0].isIntersecting ? run() : hold(); },
-      { threshold: 0.25 }).observe(root);
+    // rAF batches the layout read while the tab is visible; a hidden tab never
+    // fires one, so fall through and run it, or the section is still showing
+    // step one when you come back to it
+    const q = () => {
+      if (queued) return;
+      queued = true;
+      const run = () => { queued = false; update(); };
+      document.hidden ? run() : requestAnimationFrame(run);
+    };
+    addEventListener('scroll', q, { passive: true });
+    addEventListener('resize', q);
+    addEventListener('visibilitychange', () => { last = -1; q(); });
+    small.addEventListener('change', () => { last = -1; update(); });
+    update();
   });
 
   /* =========================================================
-     3c. Accordions and the consultation form
+     3d. Accordions and the consultation form
      ========================================================= */
   $$('.acc-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -404,7 +417,7 @@
   });
 
   /* =========================================================
-     3d. Count-up stats
+     3e. Count-up stats
      ========================================================= */
   const cio = new IntersectionObserver((es) => {
     es.forEach((en) => {
