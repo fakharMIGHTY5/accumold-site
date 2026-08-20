@@ -382,31 +382,19 @@
       update();
     }
 
-    function target() {
-      if (!travel) return 0;
+    function update() {
+      if (!travel) return;
       const r = stage.getBoundingClientRect();
-      return clamp(-(r.top - 74) / travel, 0, 1);
-    }
-
-    function paint(p) {
+      const p = clamp(-(r.top - 74) / travel, 0, 1);
       row.style.transform = 'translate3d(' + (-p * travel) + 'px,0,0)';
       if (rail) rail.style.width = (p * 100) + '%';
     }
 
-    function update() { if (travel) paint(target()); }
-
-    let cur = 0, raf = 0;
-    function glide() {
-      const t = target();
-      cur = lerp(cur, t, 0.14);
-      if (Math.abs(t - cur) < 0.0004) { cur = t; raf = 0; paint(cur); return; }
-      paint(cur);
-      raf = requestAnimationFrame(glide);
-    }
     const q = () => {
-      if (!travel) return;
-      if (document.hidden) { cur = target(); paint(cur); return; }
-      if (!raf) raf = requestAnimationFrame(glide);
+      if (queued) return;
+      queued = true;
+      const run = () => { queued = false; update(); };
+      document.hidden ? run() : requestAnimationFrame(run);
     };
     addEventListener('scroll', q, { passive: true });
     addEventListener('resize', measure);
@@ -430,14 +418,34 @@
     const START = 34;                                   // vw, the resting frame
     let queued = false, on = false;
 
-    // Sound only. The film already goes full bleed as you scroll, which is the
-    // 'full' that matters here — throwing the browser into fullscreen on top of
-    // that took people out of the page instead of further into it.
-    sound.addEventListener('click', () => {
-      vid.muted = !vid.muted;
+    const label = () => {
       sound.textContent = vid.muted ? 'Sound off' : 'Sound on';
       sound.setAttribute('aria-pressed', String(!vid.muted));
+    };
+
+    // Sound comes on by itself once the film reaches full size, and goes again
+    // when it shrinks back. Browsers only allow unmuted playback after the
+    // visitor has interacted with the page, and scrolling does not count — so
+    // if it is refused the video goes back to muted rather than being left
+    // paused and silent, and the button is still there to do it by hand.
+    let manual = false;
+    function autoSound(full) {
+      if (manual) { if (!full) manual = false; return; }   // hands off until they leave
+      if (full === !vid.muted) return;
+      if (full) {
+        vid.muted = false;
+        vid.play().catch(() => { vid.muted = true; label(); });
+      } else {
+        vid.muted = true;
+      }
+      label();
+    }
+
+    sound.addEventListener('click', () => {
+      manual = true;                                       // their choice wins
+      vid.muted = !vid.muted;
       if (!vid.muted) vid.play().catch(() => {});
+      label();
     });
 
     function layout() {
@@ -447,37 +455,24 @@
       update();
     }
 
-    // Target comes from scroll, but the panel eases toward it rather than
-    // tracking the scrollbar tooth for tooth. That easing is the difference
-    // between 'welded to my trackpad' and smooth.
-    function target() {
-      if (small.matches || reduced) return 0;
+    function update() {
+      if (small.matches || reduced) return;
       const r = stage.getBoundingClientRect();
       const travel = r.height - stick.offsetHeight;
       const p = travel > 0 ? clamp(-r.top / travel, 0, 1) : 0;
-      return clamp(p / 0.7, 0, 1);          // open over 70%, hold full bleed after
-    }
-
-    function paint(o) {
+      // open over the first 70% so it holds full bleed for a moment
+      const o = clamp(p / 0.7, 0, 1);
       frame.style.setProperty('--p', o.toFixed(4));
       frame.style.setProperty('--w', (START + (100 - START) * o).toFixed(2) + 'vw');
       stick.style.setProperty('--p', o.toFixed(4));
+      autoSound(o >= 0.985);                 // full size, so let it speak
     }
 
-    function update() { if (!small.matches && !reduced) paint(target()); }
-
-    let cur = 0, raf = 0;
-    function glide() {
-      const t = target();
-      cur = lerp(cur, t, 0.14);
-      if (Math.abs(t - cur) < 0.0005) { cur = t; raf = 0; paint(cur); return; }
-      paint(cur);
-      raf = requestAnimationFrame(glide);
-    }
     const q = () => {
-      if (small.matches || reduced) return;
-      if (document.hidden) { cur = target(); paint(cur); return; }   // rAF is dead when hidden
-      if (!raf) raf = requestAnimationFrame(glide);
+      if (queued) return;
+      queued = true;
+      const run = () => { queued = false; update(); };
+      document.hidden ? run() : requestAnimationFrame(run);
     };
     addEventListener('scroll', q, { passive: true });
     addEventListener('resize', layout);
