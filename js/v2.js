@@ -404,7 +404,70 @@
   });
 
   /* =========================================================
-     3d. About: the vision, walked by the scrollbar
+     3d. The film, opened by the scrollbar
+     One custom property drives the whole panel — width, radius, bracket
+     offset, sweep and label opacity all read var(--p) in CSS. The video only
+     downloads once the panel is close, and only plays while it is on screen.
+     ========================================================= */
+  $$('[data-reel]').forEach((stage) => {
+    const stick = $('.reel-stick', stage);
+    const frame = $('.reel-frame', stage);
+    const vid = $('video', stage);
+    const sound = $('[data-sound]', stage);
+    const small = matchMedia('(max-width:900px)');
+    const START = 34;                                   // vw, the resting frame
+    let queued = false, on = false;
+
+    sound.addEventListener('click', () => {
+      vid.muted = !vid.muted;
+      sound.textContent = vid.muted ? 'Sound off' : 'Sound on';
+      sound.setAttribute('aria-pressed', String(!vid.muted));
+      if (!vid.muted) vid.play().catch(() => {});
+    });
+
+    function layout() {
+      if (small.matches || reduced) { stage.style.height = ''; return; }
+      // enough travel to open it, plus a beat of full bleed before it lets go
+      stage.style.height = Math.round(window.innerHeight * 2.1) + 'px';
+      update();
+    }
+
+    function update() {
+      if (small.matches || reduced) return;
+      const r = stage.getBoundingClientRect();
+      const travel = r.height - stick.offsetHeight;
+      const p = travel > 0 ? clamp(-r.top / travel, 0, 1) : 0;
+      // open over the first 70% so it holds full bleed for a moment
+      const o = clamp(p / 0.7, 0, 1);
+      frame.style.setProperty('--p', o.toFixed(4));
+      frame.style.setProperty('--w', (START + (100 - START) * o).toFixed(2) + 'vw');
+      stick.style.setProperty('--p', o.toFixed(4));
+    }
+
+    const q = () => {
+      if (queued) return;
+      queued = true;
+      const run = () => { queued = false; update(); };
+      document.hidden ? run() : requestAnimationFrame(run);
+    };
+    addEventListener('scroll', q, { passive: true });
+    addEventListener('resize', layout);
+    small.addEventListener('change', layout);
+
+    // fetch it only when it is nearly in view, then play only while it is
+    new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (e.isIntersecting) {
+          if (!on) { on = true; vid.preload = 'auto'; vid.play().catch(() => {}); }
+        } else if (on) { vid.pause(); }
+      });
+    }, { rootMargin: '200px' }).observe(stage);
+
+    layout();
+  });
+
+  /* =========================================================
+     3e. About: the vision, walked by the scrollbar
      .v-stage is tall and .v-stick pins inside it, so the distance you scroll
      past the stage maps onto the four steps. Plain scroll maths rather than
      an observer per step — it gives an exact position, not a threshold.
@@ -451,7 +514,7 @@
   });
 
   /* =========================================================
-     3e. Accordions and the consultation form
+     3f. Accordions and the consultation form
      ========================================================= */
   $$('.acc-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -476,7 +539,7 @@
   });
 
   /* =========================================================
-     3f. Count-up stats
+     3g. Count-up stats
      ========================================================= */
   const cio = new IntersectionObserver((es) => {
     es.forEach((en) => {

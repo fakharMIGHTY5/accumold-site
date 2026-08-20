@@ -619,6 +619,70 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   .v-steps p{ max-height:none; opacity:1; }
 }
 
+/* ---------- The film ----------
+   Not a video in a box. It starts as a small framed capture inside the site's
+   own reticle and opens to full bleed as you scroll, brackets pulling apart
+   and fading as it goes. The sweep runs over it until it is open. */
+.reel{ background:var(--white); }
+.reel-stage{ position:relative; }
+.reel-stick{
+  position:sticky; top:0; height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:clamp(18px,3vh,30px);
+}
+.reel-kick, .reel-cue{
+  opacity:calc(1 - var(--p,0) * 2.2);          /* gone well before full bleed */
+}
+.reel-frame{
+  position:relative;
+  width:var(--w, 34vw);
+  aspect-ratio:16/9;
+  border-radius:calc(20px * (1 - var(--p,0)));
+  overflow:hidden; background:var(--ink);
+  box-shadow:0 30px 80px -40px rgba(10,16,32,calc(.55 * (1 - var(--p,0))));
+}
+.reel-frame video{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* a viewfinder over the film, inset so the frame's own clipping cannot eat it */
+.reel-frame b{
+  position:absolute; width:22px; height:22px; border:2px solid rgba(255,255,255,.92);
+  opacity:calc(1 - var(--p,0) * 1.8); pointer-events:none; z-index:2;
+  --o:calc(16px + 18px * var(--p,0));
+}
+.reel-frame b:nth-of-type(1){ top:var(--o); left:var(--o); border-right:0; border-bottom:0 }
+.reel-frame b:nth-of-type(2){ top:var(--o); right:var(--o); border-left:0; border-bottom:0 }
+.reel-frame b:nth-of-type(3){ bottom:var(--o); right:var(--o); border-left:0; border-top:0 }
+.reel-frame b:nth-of-type(4){ bottom:var(--o); left:var(--o); border-right:0; border-top:0 }
+
+.reel-sweep{
+  position:absolute; left:0; right:0; top:0; height:2px; z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(5,114,233,.9),transparent);
+  opacity:calc(1 - var(--p,0) * 2);
+  animation:reelSweep 2.6s ease-in-out infinite;
+}
+@keyframes reelSweep{ 0%,100%{ top:0 } 50%{ top:calc(100% - 2px) } }
+
+.reel-tag{
+  position:absolute; left:clamp(14px,1.6vw,22px); bottom:clamp(12px,1.4vw,18px); z-index:3;
+  color:rgba(255,255,255,.9); text-shadow:0 1px 12px rgba(0,0,0,.6);
+}
+.reel-sound{
+  position:absolute; right:clamp(14px,1.6vw,22px); bottom:clamp(12px,1.4vw,18px); z-index:3;
+  padding:9px 16px; border-radius:100px; color:#fff;
+  background:rgba(10,16,32,.5); backdrop-filter:blur(6px);
+  transition:background .25s;
+}
+.reel-sound:hover{ background:rgba(10,16,32,.75); }
+
+/* Without the scroll driver this is simply a film at a sensible size. */
+@media(max-width:900px), (prefers-reduced-motion:reduce){
+  .reel-stage{ height:auto !important; }
+  .reel-stick{ position:static; height:auto; padding:clamp(70px,11vh,120px) var(--gut); }
+  .reel-frame{ width:100% !important; border-radius:18px; }
+  .reel-frame b, .reel-sweep, .reel-cue{ display:none; }
+  .reel-kick{ opacity:1; }
+}
+
 /* ---------- Accordion ---------- */
 .acc{ border-top:1px solid var(--line); }
 .acc-item{ border-bottom:1px solid var(--line); }
