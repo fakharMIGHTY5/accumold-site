@@ -382,19 +382,31 @@
       update();
     }
 
-    function update() {
-      if (!travel) return;
+    function target() {
+      if (!travel) return 0;
       const r = stage.getBoundingClientRect();
-      const p = clamp(-(r.top - 74) / travel, 0, 1);
+      return clamp(-(r.top - 74) / travel, 0, 1);
+    }
+
+    function paint(p) {
       row.style.transform = 'translate3d(' + (-p * travel) + 'px,0,0)';
       if (rail) rail.style.width = (p * 100) + '%';
     }
 
+    function update() { if (travel) paint(target()); }
+
+    let cur = 0, raf = 0;
+    function glide() {
+      const t = target();
+      cur = lerp(cur, t, 0.14);
+      if (Math.abs(t - cur) < 0.0004) { cur = t; raf = 0; paint(cur); return; }
+      paint(cur);
+      raf = requestAnimationFrame(glide);
+    }
     const q = () => {
-      if (queued) return;
-      queued = true;
-      const run = () => { queued = false; update(); };
-      document.hidden ? run() : requestAnimationFrame(run);
+      if (!travel) return;
+      if (document.hidden) { cur = target(); paint(cur); return; }
+      if (!raf) raf = requestAnimationFrame(glide);
     };
     addEventListener('scroll', q, { passive: true });
     addEventListener('resize', measure);
@@ -418,62 +430,15 @@
     const START = 34;                                   // vw, the resting frame
     let queued = false, on = false;
 
-    // Turning the sound on means someone wants to watch it properly, so it goes
-    // fullscreen with real controls. The click is the user gesture fullscreen
-    // needs. Where fullscreen is unavailable or refused this still just unmutes.
-    const label = () => {
+    // Sound only. The film already goes full bleed as you scroll, which is the
+    // 'full' that matters here — throwing the browser into fullscreen on top of
+    // that took people out of the page instead of further into it.
+    sound.addEventListener('click', () => {
+      vid.muted = !vid.muted;
       sound.textContent = vid.muted ? 'Sound off' : 'Sound on';
       sound.setAttribute('aria-pressed', String(!vid.muted));
-    };
-
-    function goFull() {
-      const el = vid;
-      const req = el.requestFullscreen || el.webkitRequestFullscreen
-        || el.webkitEnterFullscreen || el.msRequestFullscreen;
-      if (!req) return false;
-      try {
-        const p = req.call(el);
-        if (p && typeof p.catch === 'function') p.catch(() => { vid.controls = false; });
-        return true;
-      } catch (e) { return false; }
-    }
-
-    function exitFull() {
-      const ex = document.exitFullscreen || document.webkitExitFullscreen;
-      if (!ex) return;
-      try {
-        const p = ex.call(document);
-        if (p && typeof p.catch === 'function') p.catch(() => {});
-      } catch (e) {}
-    }
-
-    sound.addEventListener('click', () => {
-      if (vid.muted) {
-        vid.muted = false;
-        vid.controls = true;
-        vid.play().catch(() => {});
-        if (!goFull()) vid.controls = false;   // no fullscreen, no stray controls
-      } else {
-        vid.muted = true;
-        vid.controls = false;
-        if (document.fullscreenElement || document.webkitFullscreenElement) exitFull();
-      }
-      label();
+      if (!vid.muted) vid.play().catch(() => {});
     });
-
-    // Leaving fullscreen by any route — Escape, the browser chrome, iOS's own
-    // control — puts it back to a silent loop rather than playing on unseen.
-    const onFsChange = () => {
-      const el = document.fullscreenElement || document.webkitFullscreenElement;
-      if (el !== vid) {
-        vid.muted = true;
-        vid.controls = false;
-        label();
-      }
-    };
-    document.addEventListener('fullscreenchange', onFsChange);
-    document.addEventListener('webkitfullscreenchange', onFsChange);
-    vid.addEventListener('webkitendfullscreen', onFsChange);   // iOS Safari
 
     function layout() {
       if (small.matches || reduced) { stage.style.height = ''; return; }
@@ -482,23 +447,37 @@
       update();
     }
 
-    function update() {
-      if (small.matches || reduced) return;
+    // Target comes from scroll, but the panel eases toward it rather than
+    // tracking the scrollbar tooth for tooth. That easing is the difference
+    // between 'welded to my trackpad' and smooth.
+    function target() {
+      if (small.matches || reduced) return 0;
       const r = stage.getBoundingClientRect();
       const travel = r.height - stick.offsetHeight;
       const p = travel > 0 ? clamp(-r.top / travel, 0, 1) : 0;
-      // open over the first 70% so it holds full bleed for a moment
-      const o = clamp(p / 0.7, 0, 1);
+      return clamp(p / 0.7, 0, 1);          // open over 70%, hold full bleed after
+    }
+
+    function paint(o) {
       frame.style.setProperty('--p', o.toFixed(4));
       frame.style.setProperty('--w', (START + (100 - START) * o).toFixed(2) + 'vw');
       stick.style.setProperty('--p', o.toFixed(4));
     }
 
+    function update() { if (!small.matches && !reduced) paint(target()); }
+
+    let cur = 0, raf = 0;
+    function glide() {
+      const t = target();
+      cur = lerp(cur, t, 0.14);
+      if (Math.abs(t - cur) < 0.0005) { cur = t; raf = 0; paint(cur); return; }
+      paint(cur);
+      raf = requestAnimationFrame(glide);
+    }
     const q = () => {
-      if (queued) return;
-      queued = true;
-      const run = () => { queued = false; update(); };
-      document.hidden ? run() : requestAnimationFrame(run);
+      if (small.matches || reduced) return;
+      if (document.hidden) { cur = target(); paint(cur); return; }   // rAF is dead when hidden
+      if (!raf) raf = requestAnimationFrame(glide);
     };
     addEventListener('scroll', q, { passive: true });
     addEventListener('resize', layout);
