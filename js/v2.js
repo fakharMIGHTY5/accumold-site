@@ -345,7 +345,66 @@
   });
 
   /* =========================================================
-     3c. About: the vision, walked by the scrollbar
+     3c. Prices, walked sideways by the scrollbar
+     The stage is tall, the row pins inside it, and vertical scroll becomes
+     horizontal travel. Height comes from the row's real overflow, so where
+     the cards already fit this switches itself off entirely.
+     ========================================================= */
+  $$('[data-hscroll]').forEach((stage) => {
+    const stick = $('.plans-stick', stage);
+    const row = $('.plans', stage);
+    const rail = $('.ph-rail i', stage.parentElement);
+    const small = matchMedia('(max-width:900px)');
+    let travel = 0, queued = false;
+
+    if (reduced) return;                       // CSS leaves it a plain swipe
+    document.documentElement.classList.add('hs');
+
+    function measure() {
+      if (!small.matches) {
+        stage.style.height = '';
+        stick.style.position = '';
+        stick.style.height = '';
+        row.style.transform = '';
+        travel = 0;
+        return;
+      }
+      row.style.transform = '';
+      travel = Math.max(0, row.scrollWidth - stick.clientWidth);
+      if (!travel) { stage.style.height = ''; return; }
+      const vh = window.innerHeight - 74;       // clear the fixed nav
+      stick.style.position = 'sticky';
+      stick.style.top = '74px';
+      stick.style.height = vh + 'px';
+      stick.style.display = 'flex';
+      stick.style.alignItems = 'center';
+      stage.style.height = (vh + travel) + 'px';
+      update();
+    }
+
+    function update() {
+      if (!travel) return;
+      const r = stage.getBoundingClientRect();
+      const p = clamp(-(r.top - 74) / travel, 0, 1);
+      row.style.transform = 'translate3d(' + (-p * travel) + 'px,0,0)';
+      if (rail) rail.style.width = (p * 100) + '%';
+    }
+
+    const q = () => {
+      if (queued) return;
+      queued = true;
+      const run = () => { queued = false; update(); };
+      document.hidden ? run() : requestAnimationFrame(run);
+    };
+    addEventListener('scroll', q, { passive: true });
+    addEventListener('resize', measure);
+    small.addEventListener('change', measure);
+    addEventListener('load', measure);
+    measure();
+  });
+
+  /* =========================================================
+     3d. About: the vision, walked by the scrollbar
      .v-stage is tall and .v-stick pins inside it, so the distance you scroll
      past the stage maps onto the four steps. Plain scroll maths rather than
      an observer per step — it gives an exact position, not a threshold.
@@ -392,7 +451,7 @@
   });
 
   /* =========================================================
-     3d. Accordions and the consultation form
+     3e. Accordions and the consultation form
      ========================================================= */
   $$('.acc-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -417,7 +476,7 @@
   });
 
   /* =========================================================
-     3e. Count-up stats
+     3f. Count-up stats
      ========================================================= */
   const cio = new IntersectionObserver((es) => {
     es.forEach((en) => {

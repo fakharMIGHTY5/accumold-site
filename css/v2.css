@@ -368,16 +368,42 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 /* ---------- Plans ---------- */
 .plans{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,1.6vw,22px); align-items:stretch; }
 @media(max-width:1000px){ .plans{ grid-template-columns:1fr 1fr; } }
-.plans-hint{ display:none; text-align:center; margin-top:20px; }
-@media(max-width:600px){
+/* ---------- Prices, driven by the scrollbar ----------
+   Below 900px the row is wider than the screen. Rather than a separate swipe
+   gesture, the stage is made tall, the row pins inside it, and scrolling down
+   walks the cards sideways. When they run out the page carries on down. JS
+   sets the stage height from the real overflow, so this is inert wherever the
+   row already fits — desktop included. */
+/* .panel sets overflow:hidden, which kills position:sticky inside it: the
+   panel becomes the sticky element's scroll container and never scrolls. This
+   section has no bleeding decoration to clip. */
+.panel-flow{ overflow:visible; }
+.plans-hint{ display:none; text-align:center; margin-top:22px; }
+.plans-hint .ph-rail{
+  display:block; width:120px; height:2px; margin:0 auto 12px;
+  background:var(--line); border-radius:2px; overflow:hidden;
+}
+.plans-hint .ph-rail i{ display:block; height:100%; width:0; background:var(--blue); }
+
+@media(max-width:900px){
+  .plans-stick{ overflow:hidden; }
   .plans{
-    display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
-    padding-inline:var(--gut); margin-inline:calc(var(--gut) * -1);
-    scrollbar-width:none; -webkit-overflow-scrolling:touch;
+    display:flex; gap:14px; width:max-content; align-items:stretch;
+    will-change:transform;
   }
-  .plans::-webkit-scrollbar{ display:none }
-  .plan{ flex:0 0 78%; scroll-snap-align:center; }
+  .plan{ flex:0 0 min(300px,76vw); }
   .plans-hint{ display:block; }
+}
+/* no JS, or motion turned down: it stays a plain swipe rather than a stuck page */
+@media(max-width:900px){
+  html:not(.hs) .plans{ width:auto; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+  html:not(.hs) .plans::-webkit-scrollbar{ display:none }
+  html:not(.hs) .plan{ scroll-snap-align:center; }
+}
+@media(prefers-reduced-motion:reduce){
+  .plans-stage{ height:auto !important; }
+  .plans-stick{ position:static !important; height:auto !important; }
+  .plans{ transform:none !important; overflow-x:auto; }
 }
 .plan{
   display:flex; flex-direction:column; padding:clamp(24px,2.4vw,34px);

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=80">
+<link rel="stylesheet" href="css/v2.css?v=82">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -87,14 +87,16 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </header>
 
-<section class="panel panel-auto" style="padding-bottom:clamp(60px,8vh,100px)">
+<section class="panel panel-auto panel-flow" style="padding-bottom:clamp(60px,8vh,100px)">
   <div class="inner">
     <div class="mid" data-r style="margin-bottom:clamp(40px,6vh,70px)">
       <p class="kicker">Consultations</p>
       <h1 class="d2">Talk to a certified inspector.</h1>
     </div>
 
-    <div class="plans">
+    <div class="plans-stage" data-hscroll>
+      <div class="plans-stick">
+        <div class="plans">
       <div class="plan" data-r data-d="1">
         <div class="lb">Scan &amp; report</div>
         <div class="amt">$0</div>
@@ -123,8 +125,10 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
         <ul><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="flex:none;margin-top:6px"><path d="m5 13 4 4L19 7"/></svg><span>Complete action plan</span></li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="flex:none;margin-top:6px"><path d="m5 13 4 4L19 7"/></svg><span>Whole-property scope</span></li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="flex:none;margin-top:6px"><path d="m5 13 4 4L19 7"/></svg><span>Prioritised by urgency and cost</span></li><li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" style="flex:none;margin-top:6px"><path d="m5 13 4 4L19 7"/></svg><span>Introduction to a local partner</span></li></ul>
         <a class="b b-ghost" href="#book">Book 60 minutes</a>
       </div>
+        </div>
+      </div>
     </div>
-    <p class="plans-hint num">Swipe for the other sessions</p>
+    <p class="plans-hint num"><i class="ph-rail"><i></i></i>Keep scrolling</p>
   </div>
 </section>
 
@@ -189,6 +193,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=80"></script>
+<script src="js/v2.js?v=82"></script>
 </body>
 </html>
