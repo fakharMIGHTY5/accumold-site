@@ -418,12 +418,62 @@
     const START = 34;                                   // vw, the resting frame
     let queued = false, on = false;
 
-    sound.addEventListener('click', () => {
-      vid.muted = !vid.muted;
+    // Turning the sound on means someone wants to watch it properly, so it goes
+    // fullscreen with real controls. The click is the user gesture fullscreen
+    // needs. Where fullscreen is unavailable or refused this still just unmutes.
+    const label = () => {
       sound.textContent = vid.muted ? 'Sound off' : 'Sound on';
       sound.setAttribute('aria-pressed', String(!vid.muted));
-      if (!vid.muted) vid.play().catch(() => {});
+    };
+
+    function goFull() {
+      const el = vid;
+      const req = el.requestFullscreen || el.webkitRequestFullscreen
+        || el.webkitEnterFullscreen || el.msRequestFullscreen;
+      if (!req) return false;
+      try {
+        const p = req.call(el);
+        if (p && typeof p.catch === 'function') p.catch(() => { vid.controls = false; });
+        return true;
+      } catch (e) { return false; }
+    }
+
+    function exitFull() {
+      const ex = document.exitFullscreen || document.webkitExitFullscreen;
+      if (!ex) return;
+      try {
+        const p = ex.call(document);
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      } catch (e) {}
+    }
+
+    sound.addEventListener('click', () => {
+      if (vid.muted) {
+        vid.muted = false;
+        vid.controls = true;
+        vid.play().catch(() => {});
+        if (!goFull()) vid.controls = false;   // no fullscreen, no stray controls
+      } else {
+        vid.muted = true;
+        vid.controls = false;
+        if (document.fullscreenElement || document.webkitFullscreenElement) exitFull();
+      }
+      label();
     });
+
+    // Leaving fullscreen by any route — Escape, the browser chrome, iOS's own
+    // control — puts it back to a silent loop rather than playing on unseen.
+    const onFsChange = () => {
+      const el = document.fullscreenElement || document.webkitFullscreenElement;
+      if (el !== vid) {
+        vid.muted = true;
+        vid.controls = false;
+        label();
+      }
+    };
+    document.addEventListener('fullscreenchange', onFsChange);
+    document.addEventListener('webkitfullscreenchange', onFsChange);
+    vid.addEventListener('webkitendfullscreen', onFsChange);   // iOS Safari
 
     function layout() {
       if (small.matches || reduced) { stage.style.height = ''; return; }
