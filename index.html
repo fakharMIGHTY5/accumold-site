@@ -9,10 +9,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=76">
+<link rel="stylesheet" href="css/v2.css?v=77">
+<script>
+/* Set before the loader can paint, so a repeat page hides it with no flash.
+   sessionStorage, not localStorage: once per visit, and a person coming back
+   tomorrow gets the loader again. try/catch because storage throws outright
+   in some privacy modes. */
+try{ if(sessionStorage.getItem('am-seen')) document.documentElement.className += ' seen'; }catch(e){}
+</script>
 <style>
 /* Loader. Timed entirely in CSS — if the JS never runs, or throws, the page
    still uncovers itself on schedule. */
+html.seen #load{ display:none }
 #load{
   position:fixed; inset:0; z-index:9999; background:#fff;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:24px;
@@ -57,6 +65,7 @@
 /* The CSS animation does the fade, but animations are paused in a hidden tab.
    A timer still fires there, so this guarantees the loader is gone either way.
    Inline and immediate, so it does not wait on v2.js. */
+try{ sessionStorage.setItem('am-seen','1'); }catch(e){}
 setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(); }, 2400);
 </script>
 
@@ -505,6 +514,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=76"></script>
+<script src="js/v2.js?v=77"></script>
 </body>
 </html>
