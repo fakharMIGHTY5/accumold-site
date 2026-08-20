@@ -334,6 +334,13 @@
   /* =========================================================
      3b. About: video
      ========================================================= */
+  $$('[data-flip]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btn.setAttribute('aria-expanded',
+        btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+    });
+  });
+
   $$('[data-video]').forEach((root) => {
     const vid = $('video', root);
     const btn = $('.vbtn', root);
