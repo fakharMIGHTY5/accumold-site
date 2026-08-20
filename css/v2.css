@@ -60,7 +60,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   padding:calc(var(--nav-h) + 6vh) var(--gut) 10vh; overflow:hidden;
 }
 .panel-auto{ min-height:0; padding-block:clamp(80px,14vh,180px); }
-.inner{ width:100%; max-width:var(--maxw); margin-inline:auto; }
+.inner{ width:100%; max-width:min(var(--maxw),100%); min-width:0; margin-inline:auto; }
 .mid{ text-align:center; }
 .mid .kicker{ display:block; }
 .narrow{ max-width:24ch; margin-inline:auto; }
@@ -368,7 +368,17 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 /* ---------- Plans ---------- */
 .plans{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(14px,1.6vw,22px); align-items:stretch; }
 @media(max-width:1000px){ .plans{ grid-template-columns:1fr 1fr; } }
-@media(max-width:600px){ .plans{ grid-template-columns:1fr; } }
+.plans-hint{ display:none; text-align:center; margin-top:20px; }
+@media(max-width:600px){
+  .plans{
+    display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding-inline:var(--gut); margin-inline:calc(var(--gut) * -1);
+    scrollbar-width:none; -webkit-overflow-scrolling:touch;
+  }
+  .plans::-webkit-scrollbar{ display:none }
+  .plan{ flex:0 0 78%; scroll-snap-align:center; }
+  .plans-hint{ display:block; }
+}
 .plan{
   display:flex; flex-direction:column; padding:clamp(24px,2.4vw,34px);
   border:1px solid var(--line); border-radius:20px; background:var(--white);
@@ -767,7 +777,13 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .demo-ui h3{ font-family:var(--fd); font-size:clamp(1.5rem,2.8vw,2.2rem); font-weight:700; letter-spacing:-.04em; line-height:1; margin:0 0 12px; }
 .demo-ui p{ margin:0 auto; max-width:38ch; font-size:clamp(.95rem,1.1vw,1.05rem); line-height:1.6; color:var(--ink-2); }
 .blue .demo-ui p{ color:rgba(255,255,255,.78); }
-.track{ display:flex; gap:0; justify-content:center; margin-top:clamp(20px,3vh,32px); }
+.track{
+  display:flex; gap:0; justify-content:center; margin-top:clamp(20px,3vh,32px);
+  overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+}
+.track::-webkit-scrollbar{ display:none }
+.track button{ flex:none }
+@media(max-width:560px){ .track{ justify-content:flex-start; padding-inline:var(--gut); margin-inline:calc(var(--gut) * -1); } }
 .track button{
   font-family:var(--fm); font-size:.56rem; letter-spacing:.16em; text-transform:uppercase;
   padding:11px 16px; color:var(--ink-3); border-bottom:2px solid var(--line); transition:.3s var(--ease);
