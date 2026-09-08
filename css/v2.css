@@ -683,6 +683,78 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   .reel-kick{ opacity:1; }
 }
 
+/* ---------- app UI: the new free build ----------
+   Added when the client shipped the rebuilt app: a Getting Started stepper on
+   the dashboard, a report made of plain-language findings, consultation
+   lengths, and a pro directory. The old weather row is gone with the version
+   that had it. */
+.a-gs{ display:flex; align-items:center; gap:3%; margin-top:5%; }
+.a-gs span{ font-size:.6rem; font-weight:800; letter-spacing:-.02em; }
+.a-gs i{
+  flex:none; width:14px; height:14px; border-radius:50%; display:grid; place-items:center;
+  font-size:.42rem; font-weight:700; font-style:normal;
+  background:rgba(255,255,255,.28); color:#fff;
+}
+.a-gs i.on{ background:#fff; color:var(--ab); }
+.a-gs b{ flex:1; height:1px; background:rgba(255,255,255,.34); }
+
+.a-step{ background:#fff; border-radius:12px; padding:6% 5.5%; box-shadow:0 1px 3px rgba(16,24,40,.07); }
+.a-step + .a-step{ margin-top:4.5%; }
+.a-step-h{ display:flex; align-items:center; gap:4%; margin-bottom:5%; }
+.a-step-h b{ font-size:1rem; font-weight:800; color:#C7CDD6; line-height:1; }
+.a-step-h h6{ margin:0; font-size:.66rem; font-weight:800; letter-spacing:-.02em; color:var(--aink); }
+.a-step .a-btn small{ display:block; font-size:.42rem; font-weight:500; opacity:.85; margin-top:1px; }
+.a-step > p{ margin:4.5% 0 0; font-size:.46rem; line-height:1.45; color:var(--agrey); text-align:center; }
+
+.a-tabs.three div{ flex:1; }
+
+.a-nav{
+  display:flex; justify-content:space-between; align-items:center;
+  margin:0 0 5%; font-size:.6rem; font-weight:700; color:var(--aink);
+}
+.a-nav span{ font-size:.52rem; font-weight:500; color:var(--ab); }
+.a-step-n{ margin:3% 0 0; font-size:.46rem; color:var(--agrey); }
+.a-help{ margin:3% 0 5%; font-size:.46rem; line-height:1.5; color:var(--agrey); }
+.a-sub{ margin:5% 0 3%; font-size:.5rem; font-weight:700; }
+.a-sub.ok{ color:#2E9E5B; }
+.a-sub.no{ color:#D14343; }
+.a-list .ck.x{ background:#D14343; }
+
+.a-pill-row{ text-align:center; margin-bottom:5%; }
+.a-fact{ margin-top:5%; }
+.a-fact.lead{ border-left:2px solid #2E9E5B; padding-left:4%; }
+.a-fact b{ display:block; font-size:.54rem; font-weight:800; color:var(--aink); letter-spacing:-.01em; }
+.a-fact p{ margin:2% 0 0; font-size:.46rem; line-height:1.45; color:var(--agrey); }
+
+.a-second{ background:var(--ab); color:#fff; border-radius:12px; padding:6% 5.5%; margin-top:5%; }
+.a-second b{ display:block; font-size:.6rem; font-weight:800; }
+.a-second p{ margin:3% 0 4%; font-size:.46rem; line-height:1.45; opacity:.92; }
+.a-second span{ display:block; font-size:.42rem; opacity:.82; border-top:1px solid rgba(255,255,255,.28); padding-top:4%; }
+
+.a-note{
+  margin:5% 0 0; padding:4%; border-radius:9px; background:#FFF8E6;
+  font-size:.42rem; line-height:1.5; color:#8A6D1F;
+}
+
+.a-len{ position:relative; background:#fff; border:1px solid var(--aline); border-radius:11px; padding:5.5%; margin-top:4%; }
+.a-len.sel{ border-color:var(--ab); box-shadow:0 0 0 2px rgba(30,111,184,.16); }
+.a-len b{ font-size:.66rem; font-weight:800; color:var(--aink); }
+.a-len em{ font-style:normal; font-size:.6rem; font-weight:600; color:var(--agrey); margin-left:4%; }
+.a-len p{ margin:2% 0 0; font-size:.44rem; line-height:1.4; color:var(--agrey); }
+.a-len .pop{
+  position:absolute; top:-7px; right:8%; background:#2E9E5B; color:#fff;
+  font-size:.36rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  padding:2px 7px; border-radius:100px;
+}
+
+.a-chips{ display:flex; gap:2.5%; margin-bottom:4%; }
+.a-chips span{
+  flex:1; text-align:center; padding:2.6% 0; border-radius:7px;
+  font-size:.44rem; font-weight:600; background:#EEF1F5; color:var(--agrey);
+}
+.a-chips span.on{ background:var(--ab); color:#fff; }
+.a-addr{ margin:3% 0 5%; font-size:.46rem; line-height:1.45; color:var(--agrey); }
+
 /* ---------- Accordion ---------- */
 .acc{ border-top:1px solid var(--line); }
 .acc-item{ border-bottom:1px solid var(--line); }

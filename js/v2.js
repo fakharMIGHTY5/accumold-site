@@ -615,15 +615,15 @@
     const bar = $('.an2-bar i', root);
     const rows = $$('.an2-list div', root);
     const CAPS = [
-      ['Spot it.', 'Your dashboard shows the risk where you are before you scan anything. Tap Quick Mold Scan.'],
-      ['Pick your scan.', 'AccuMold\'s own AI analysis, or send it straight to a certified expert for review.'],
-      ['Texture.', 'Fuzzy and powdery reads very differently from flat and smooth. Tap what you can see.'],
-      ['Spread.', 'Clustered and patchy suggests growth. A single isolated mark usually does not.'],
-      ['Frame it properly.', 'Eight to twelve inches out, surface filling the frame, held steady. Good input, good answer.'],
+      ['Spot it.', 'Three steps, in order: scan it, talk to a certified pro, then find one near you.'],
+      ['Start the scan.', 'One tap opens the scanner. It reads the surface, not just the picture.'],
+      ['Answer a few questions.', 'What you can see about the surface, weighed alongside the photo.'],
+      ['Frame it properly.', 'Eight to twelve inches out, surface filling the frame. Good input, good answer.'],
       ['Take the photo.', 'Flash on for surface detail. One shot of the area you just described.'],
-      ['Let it read.', 'AccuMold locks onto the area and analyses the surface against the conditions where you are.'],
-      ['Get the report.', 'A clear detection result, the reasoning written out, and a certified expert one tap away.'],
-      ['Find a pro.', 'Verified local professionals, filtered by distance. Call them or open their site from the app.']
+      ['Let it read.', 'AccuMold analyses the surface against the conditions where you are.'],
+      ['Review the report.', 'A clear result, the reasoning written out, and what to watch for next.'],
+      ['Schedule a consultation.', 'One flat price for the length you pick. Paid once, up front.'],
+      ['Find a pro.', 'Verified local professionals, filtered by distance. Call them from the app.']
     ];
     let i = 0, timers = [];
 
@@ -637,12 +637,18 @@
       if (cap) cap.innerHTML = '<h3>' + CAPS[n][0] + '</h3><p>' + CAPS[n][1] + '</p>';
 
       // the analysing step runs itself, then hands over to the report
-      if (n === 6) {
-        timers.push(setTimeout(() => show(7), 2600));
+      if (n === 5) {
+        timers.push(setTimeout(() => show(6), 2600));
       }
     }
 
     tabs.forEach((t, n) => t.addEventListener('click', () => show(n)));
+
+    // "Reporting" in the nav points here and opens on the report screen, since
+    // that is what the label promises. It has no room of its own yet.
+    const toReport = () => { if (location.hash === '#report') show(6); };
+    addEventListener('hashchange', toReport);
+    toReport();
     $$('[data-go]', root).forEach((el) => {
       el.addEventListener('click', () => show(parseInt(el.dataset.go, 10)));
       el.style.cursor = 'pointer';

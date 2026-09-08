@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=91">
+<link rel="stylesheet" href="css/v2.css?v=92">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -78,8 +78,9 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
     </a>
     <button class="burger" aria-expanded="false" aria-label="Menu"><i></i><i></i><i></i></button>
     <nav class="links">
-      <a href="#how">The scan</a>
-      <a href="consultations.html">Consultations</a>
+      <a href="#how">Mold Scans</a>
+      <a href="#report">Reporting</a>
+      <a href="consultations.html">Video Consultations</a>
       <a href="journal.html">Journal</a>
       <a href="about.html">About</a>
       <a class="b" href="#get">Download free</a>
@@ -105,7 +106,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
 
   <div class="inner hero-in">
     <h1 class="d1">Photo in.<br><em>Report out.</em></h1>
-    <p class="t1">A free app that turns a phone photo into an instant mold risk report.</p>
+    <p class="t1">Turn your smartphone into a visual mold detector.</p>
     <div class="row mid">
       <a class="b" href="#get">Download free</a>
       <a class="b b-ghost" href="#how">See how it works</a>
@@ -120,285 +121,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
     <span>RH <b data-out-rh>54%</b></span>
     <span class="sep"></span>
     <span><b class="lv" data-out-lv data-lv="clear">Clear</b></span>
-  </div>
-</section>
-
-<!-- ============ THE MARKET ============ -->
-<section class="panel blue" id="why">
-  <div class="inner mid">
-    <div data-r>
-      <p class="kicker">Why it matters here</p>
-      <h2 class="d2 narrow">Florida and Pennsylvania are two of the most mold-exposed states in the country.</h2>
-    </div>
-    <div class="stats" data-r data-d="1">
-      <div><b data-count="76" data-suf="%">76%</b><span>Average humidity in Florida</span></div>
-      <div><b>24&ndash;48</b><span>Hours for growth to begin</span></div>
-      <div><b data-count="264000">264,000</b><span>US mold claims filed in 2022</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 3 · THE SCAN, RUN IT YOURSELF ============ -->
-<!-- ============ THE SCAN ============ -->
-<section class="panel" id="how" data-demo>
-  <div class="inner">
-    <div class="mid" data-r style="margin-bottom:clamp(20px,3vh,36px)">
-      <p class="kicker">Spot it &middot; Scan it &middot; Report it</p>
-      <h2 class="d3">Try the scan. It works like the app.</h2>
-    </div>
-
-    <div style="display:flex;justify-content:center">
-      <div class="iphone">
-        <i class="rail v1"></i><i class="rail v2"></i><i class="rail v3"></i><i class="rail pw"></i>
-        <div class="screen">
-          <div class="island"></div>
-          <div class="demo">
-
-            <!-- 0 · dashboard -->
-            <div class="view on">
-              <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll">
-                <div class="a-hd"><h4>AccuMold Dashboard</h4><p>Welcome back!</p></div>
-                <div class="a-pad">
-                  <div class="a-stats">
-                    <div class="a-stat"><div class="i">&#128737;&#65039;</div><b>High</b><span>Mold Risk</span></div>
-                    <div class="a-stat"><div class="i">&#128167;</div><b>79%</b><span>Humidity</span></div>
-                    <div class="a-stat"><div class="i">&#127777;&#65039;</div><b>84&deg;F</b><span>Today's High</span></div>
-                  </div>
-                  <p class="a-t">Quick Actions</p>
-                  <div class="a-qa">
-                    <div data-go="1"><div class="i">&#128247;</div><span>Quick Mold Scan</span></div>
-                    <div><div class="i">&#128269;</div><span>Find Mold Pros</span></div>
-                    <div><div class="i">&#9878;&#65039;</div><span>Expert Reviews</span></div>
-                  </div>
-                  <p class="a-t row">Recent Scans <span class="all">View All &rsaquo;</span></p>
-                  <div class="a-empty">
-                    <div class="i">&#128247;</div>
-                    <p>No scans yet</p>
-                    <span class="a-lime" data-go="1">Take Your First Scan</span>
-                  </div>
-                </div>
-              </div>
-              <div class="a-tabs">
-                <div class="on"><span class="i">&#127968;</span>Home</div>
-                <div><span class="i">&#128138;</span>Health</div>
-                <div><span class="i">&#128269;</span>Inspection</div>
-                <div><span class="i">&#9776;</span>Advice</div>
-                <div><span class="i">&#128100;</span>Profile</div>
-              </div>
-            </div>
-
-            <!-- 1 · choose scan type -->
-            <div class="view">
-              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll a-pad">
-                <div class="a-logo">
-                  <img src="assets/ui/logo-full.png" alt="AccuMold">
-                  <small>For comprehensive analysis, use our Whole House Inspection</small>
-                </div>
-                <div class="a-card">
-                  <h6>Scan Usage</h6>
-                  <p style="margin:0;font-size:.5rem;color:#6B7280">0/3 scans used today &middot; resets at 12:00 AM</p>
-                </div>
-                <div class="a-card">
-                  <h6>Select Scan Type:</h6>
-                  <div class="a-btn" data-go="2">&#128200;&nbsp; AccuMold Powered Scan Analysis</div>
-                  <div class="a-btn g">&#128100;&nbsp; Expert Review Scan Analysis</div>
-                </div>
-                <div class="a-card">
-                  <h6>How to scan for mold:</h6>
-                  <ul class="a-list">
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Position camera 6&ndash;12 inches from the surface</li>
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Enable flash for better mold detection</li>
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Ensure good lighting for accuracy</li>
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Hold steady while scanning</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- 2 · visual pre-check -->
-            <div class="view">
-              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll a-pad">
-                <div class="a-prog"><i></i></div>
-                <p class="a-step">1 of 5</p>
-                <p class="a-q">What does the surface texture look like?</p>
-                <div class="a-opt" data-pick data-next="3">Fuzzy / Powdery</div>
-                <div class="a-opt" data-pick data-next="3">Flat / Smooth</div>
-                <p style="margin:9% 0 0;font-size:.46rem;color:#6B7280;line-height:1.5;text-align:center">
-                  Five quick questions about what you can see. It takes under
-                  15 seconds and sharpens the analysis.</p>
-              </div>
-            </div>
-
-            <!-- 3 · pre-check question two -->
-            <div class="view">
-              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll a-pad">
-                <div class="a-prog"><i style="width:40%"></i></div>
-                <p class="a-step">2 of 5</p>
-                <p class="a-q">How does the mark appear to spread?</p>
-                <div class="a-opt" data-pick data-next="4">Clustered spots / Patchy</div>
-                <div class="a-opt" data-pick data-next="4">Single mark / Isolated</div>
-                <p style="margin:9% 0 0;font-size:.46rem;color:#6B7280;line-height:1.5;text-align:center">
-                  Your answers are weighed alongside the photo, so the analysis
-                  is not working from an image alone.</p>
-              </div>
-            </div>
-
-            <!-- 3 · photo guidelines -->
-            <div class="view">
-              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll a-pad">
-                <p class="a-q" style="text-align:center;font-size:.66rem">Now take a photo of the area you just inspected</p>
-                <div class="a-card">
-                  <h6>&#128248; Photo Guidelines</h6>
-                  <p style="margin:0 0 4%;font-size:.5rem;font-weight:700;color:#2E9E5B">&#9989; Requirements</p>
-                  <ul class="a-list">
-                    <li><span class="ck g"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>I am 8&ndash;12 inches from the concern</li>
-                    <li><span class="ck g"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>The surface fills most of the frame</li>
-                    <li><span class="ck g"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>A flat angle, so markings stay clear</li>
-                    <li><span class="ck g"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Camera held steady to prevent blur</li>
-                  </ul>
-                </div>
-                <div class="a-btn" data-go="5">&#128247;&nbsp; Take Photo</div>
-                <div class="a-btn o" data-go="5">&#128444;&nbsp; Choose from Library</div>
-              </div>
-            </div>
-
-            <!-- 4 · camera -->
-            <div class="view">
-              <div class="a-cam">
-                <img src="assets/img/mold-12.jpg" alt="">
-                <p class="a-tip">Be 8&ndash;12 inches away. Zoom in so the suspicious spot fills the screen. Eight inches is about the blade of a kitchen knife.</p>
-                <div class="a-shot">
-                  <div class="fl"><span class="i">&#9889;</span>Flash On</div>
-                  <div class="a-ring" data-go="6"></div>
-                  <div class="lib"><span class="i">&#128443;</span>Library</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 5 · analysing -->
-            <div class="view">
-              <div class="a-analyse">
-                <div class="a-frame">
-                  <img src="assets/img/mold-12.jpg" alt="">
-                  <div class="amscan">
-                    <div class="tint"></div>
-                    <div class="box"><i></i><i></i><i></i><i></i></div>
-                    <div class="ring"></div>
-                    <div class="arm"></div>
-                    <div class="dot"></div>
-                    <div class="sweep"></div>
-                    <span class="spec" style="left:22%;top:26%"></span>
-                    <span class="spec" style="left:71%;top:34%"></span>
-                    <span class="spec" style="left:58%;top:63%"></span>
-                    <span class="spec" style="left:34%;top:71%"></span>
-                  </div>
-                </div>
-                <p class="a-scanning">Analyzing image with AccuMold AI&hellip;</p>
-                <div class="a-know">
-                  <div class="i">&#128161;</div>
-                  <p>Mold growth can start within 24&ndash;48 hours in damp conditions.</p>
-                  <b>Did you know?</b>
-                </div>
-              </div>
-            </div>
-
-            <!-- 6 · result -->
-            <div class="view">
-              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll">
-                <div class="a-res-top"><span class="a-pill">NO MOLD<br>DETECTED</span></div>
-                <p class="a-when">Scanned today at 8:29 PM</p>
-                <div class="a-pad" style="padding-top:0">
-                  <div class="a-card">
-                    <h6>AccuMold Analysis</h6>
-                    <div class="a-det">Detection result &middot; No mold detected</div>
-                    <div class="a-ana">
-                      <b>Analysis</b>
-                      <p>No mold has been detected in the area you selected. Confidence for mold presence is low and the surface validation indicates a clean painted drywall surface. Maintain regular cleaning and ventilation to prevent growth.</p>
-                    </div>
-                  </div>
-                  <div class="a-card">
-                    <h6>Expert Review</h6>
-                    <p style="margin:0 0 4%;font-size:.48rem;color:#6B7280">&#11088; 4.9 &middot; 2,481 reviews &middot; 24-hour response</p>
-                    <div class="a-btn g">Start Expert Review</div>
-                    <div class="a-btn o" data-go="8">Find Mold Pros Near You</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 8 · find mold pros near you -->
-            <div class="view">
-              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll">
-                <div class="a-hd" style="padding:2.5% 7% 4%"><h4 style="font-size:.8rem">Mold Professionals Near You</h4></div>
-                <div class="a-pad">
-                  <div class="a-card">
-                    <p style="margin:0 0 4%;font-size:.5rem;font-weight:700;color:#1A1D21">Max Distance</p>
-                    <div class="a-chips">
-                      <span>10 miles</span><span class="on">25 miles</span><span>50 miles</span>
-                    </div>
-                    <div class="a-seg" style="margin-top:5%">
-                      <span class="on">Verified</span><span>All</span>
-                    </div>
-                  </div>
-                  <p style="margin:0 0 4%;font-size:.46rem;color:#6B7280">1 verified professional within 25 miles</p>
-                  <div class="a-card">
-                    <div class="a-pro">
-                      <div class="a-pro-mark">MMP</div>
-                      <div>
-                        <b>Moisture Master Pros</b>
-                        <span>General Contractor</span>
-                        <span class="star">&#11088; 4.8 &middot; Verified</span>
-                      </div>
-                    </div>
-                    <p style="margin:4% 0 5%;font-size:.46rem;color:#6B7280;line-height:1.5">
-                      100 Monument Rd, Ste 207<br>Bala Cynwyd, PA 19004</p>
-                    <div class="a-row2">
-                      <div class="a-btn g">&#128222;&nbsp; Call</div>
-                      <div class="a-btn o">&#127760;&nbsp; Website</div>
-                    </div>
-                  </div>
-                  <div class="a-btn o" data-go="0" style="margin-top:4%">Back to dashboard</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="demo-ui">
-      <div class="cap"></div>
-      <div class="track">
-        <button>Home</button><button>Type</button><button>Q1</button><button>Q2</button>
-        <button>Guides</button><button>Camera</button><button>Analyse</button><button>Report</button><button>Pros</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============ 4 · THE APP ============ -->
-<section class="panel blue" id="app">
-  <div class="inner two">
-    <div data-r>
-      <p class="kicker">The app</p>
-      <h2 class="d2">Your home, read in three numbers.</h2>
-      <p class="t1 narrow-w" style="margin-top:26px">Risk, humidity and temperature the moment you open it, before you scan anything. Then a room-by-room inspection when you want the whole picture.</p>
-      <div class="row" style="margin-top:34px">
-        <a class="b" href="#get">Get the app</a>
-      </div>
-    </div>
-    <div class="figure" data-r data-d="1">
-      <img src="assets/brand/post-couch.jpg" alt="Using AccuMold at home">
-    </div>
   </div>
 </section>
 
@@ -418,6 +140,252 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
       </div>
 
       <p class="num reel-cue">Keep scrolling</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE MARKET ============ -->
+<section class="panel blue" id="why">
+  <div class="inner mid">
+    <div data-r>
+      <p class="kicker">Why it matters here</p>
+      <h2 class="d2 narrow">Florida is the most mold-exposed state in the country. Pennsylvania has some of its oldest housing.</h2>
+    </div>
+    <div class="stats" data-r data-d="1">
+      <div><b data-count="76" data-suf="%">76%</b><span>Average humidity in Florida</span></div>
+      <div><b>24&ndash;48</b><span>Hours for growth to begin</span></div>
+      <div><b data-count="264000">264,000</b><span>US mold claims filed in 2022</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · THE SCAN, RUN IT YOURSELF ============ -->
+<span id="report" aria-hidden="true"></span>
+<!-- ============ THE SCAN ============ -->
+<section class="panel" id="how" data-demo>
+  <div class="inner">
+    <div class="mid" data-r style="margin-bottom:clamp(20px,3vh,36px)">
+      <p class="kicker">Spot it &middot; Scan it &middot; Review Report &middot; Schedule Consultation</p>
+      <h2 class="d3">Try the scan. It works like the app.</h2>
+    </div>
+
+    <div style="display:flex;justify-content:center">
+      <div class="iphone">
+        <i class="rail v1"></i><i class="rail v2"></i><i class="rail v3"></i><i class="rail pw"></i>
+        <div class="screen">
+          <div class="island"></div>
+          <div class="demo">
+
+            <!-- 0 · dashboard, the new Getting Started -->
+            <div class="view on">
+              <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll">
+                <div class="a-hd">
+                  <h4>&#127968;&nbsp; AccuMold Dashboard</h4>
+                  <p>Welcome back!</p>
+                  <div class="a-gs"><span>Getting Started</span><i class="on">1</i><b></b><i>2</i><b></b><i>3</i></div>
+                </div>
+                <div class="a-pad">
+                  <div class="a-step" data-go="1">
+                    <div class="a-step-h"><b>1</b><h6>Start Your AccuMold Mold Scan</h6></div>
+                    <div class="a-btn">&#128247;&nbsp; Quick Mold Scan<small>Launch Scanner</small></div>
+                    <p>Scan and document visible mold, moisture, stains, and leak concerns using your phone camera. Get your report.</p>
+                  </div>
+                  <div class="a-step" data-go="7">
+                    <div class="a-step-h"><b>2</b><h6>Book a Live Video Consultation</h6></div>
+                    <div class="a-btn">&#128197;&nbsp; Meet with an AccuMold Certified Pro</div>
+                    <p>Get live video guidance and advice from a certified mold and moisture professional before hiring a Mold Professional near you.</p>
+                  </div>
+                  <div class="a-step" data-go="8">
+                    <div class="a-step-h"><b>3</b><h6>Find Mold Professionals Near You</h6></div>
+                    <div class="a-btn">&#128269;&nbsp; Locate Your Mold Pro</div>
+                    <p>Find local mold, moisture, leak detection, and remediation professionals near you.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="a-tabs three">
+                <div><span class="i">&#9974;</span>Scan</div>
+                <div class="on"><span class="i">&#127968;</span>Home</div>
+                <div><span class="i">&#128100;</span>Profile</div>
+              </div>
+            </div>
+
+            <!-- 1 · scan type -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <div class="a-logo"><img src="assets/ui/logo-full.png" alt="AccuMold"><small>Powered by AccuMold</small></div>
+                <div class="a-card">
+                  <h6>Select Scan Type:</h6>
+                  <div class="a-btn" data-go="2">&#128200;&nbsp; AccuMold Powered Scan Analysis</div>
+                </div>
+                <div class="a-card">
+                  <h6>How to scan for mold:</h6>
+                  <ul class="a-list">
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Position camera 6&ndash;12 inches from the surface</li>
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Enable flash for better mold detection</li>
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Ensure good lighting for accuracy</li>
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Hold steady while scanning</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2 · visual pre-check -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <p class="a-nav">Visual Pre-Check<span>Skip</span></p>
+                <div class="a-prog"><i></i></div>
+                <p class="a-step-n">1 of 5</p>
+                <p class="a-q">What does the surface texture look like?</p>
+                <div class="a-opt" data-pick data-next="3">Fuzzy / Powdery</div>
+                <div class="a-opt" data-pick data-next="3">Flat / Smooth</div>
+              </div>
+            </div>
+
+            <!-- 3 · photo guidelines -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <p class="a-nav">Take Photo<span>Cancel</span></p>
+                <p class="a-q" style="font-size:.62rem">Now take a photo of the area you just inspected</p>
+                <div class="a-card">
+                  <h6>&#128248; Photo Guidelines</h6>
+                  <p class="a-sub ok">&#9989; Requirements</p>
+                  <ul class="a-list">
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>I am 8&ndash;12 inches from the potential mold concern</li>
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>The surface fills most of the frame</li>
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>A flat angle, so markings stay clear</li>
+                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Camera held steady to prevent blur</li>
+                  </ul>
+                  <p class="a-sub no">&#10060; Things to Avoid</p>
+                  <ul class="a-list">
+                    <li><span class="ck x"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>People, pets or random objects in the frame</li>
+                    <li><span class="ck x"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Shots taken too far away to show surface detail</li>
+                  </ul>
+                </div>
+                <div class="a-btn" data-go="4">&#128247;&nbsp; Take Photo</div>
+                <div class="a-btn o" data-go="4">&#128444;&nbsp; Choose from Library</div>
+              </div>
+            </div>
+
+            <!-- 4 · camera -->
+            <div class="view">
+              <div class="a-cam">
+                <img src="assets/img/mold-12.jpg" alt="">
+                <p class="a-tip">Remember to be 8&ndash;12 inches away. Zoom in so the suspicious spot fills the whole screen.</p>
+                <div class="a-shot">
+                  <div class="fl"><span class="i">&#9889;</span>Flash On</div>
+                  <div class="a-ring" data-go="5"></div>
+                  <div class="lib"><span class="i">&#128443;</span>Library</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 · analysing -->
+            <div class="view">
+              <div class="a-analyse">
+                <div class="a-frame">
+                  <img src="assets/img/mold-12.jpg" alt="">
+                  <div class="a-box"><span></span><span></span><span></span><span></span></div>
+                  <div class="a-target"></div>
+                </div>
+                <p class="a-scanning">Analyzing image with AccuMold AI&hellip;</p>
+                <div class="a-know">
+                  <div class="i">&#128161;</div>
+                  <p>There are over 100,000 known species of mold.</p>
+                  <b>Did you know?</b>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6 · the report -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <p class="a-nav">Back<span>&#10005;</span></p>
+                <div class="a-pill-row"><span class="a-pill">NO MOLD DETECTED</span></div>
+                <div class="a-card">
+                  <h6>AccuMold Analysis</h6>
+                  <div class="a-det">Detection Results:</div>
+                  <div class="a-fact lead">
+                    <b>Looking clean &mdash; keep it that way</b>
+                    <p>No mold detected in this image. Good news &mdash; but moisture problems often start out of sight, so it pays to know the warning signs.</p>
+                  </div>
+                  <div class="a-fact"><b>&#128167; Watch for moisture</b><p>Leaks, condensation, and humidity above 60&#37; are what let mold start.</p></div>
+                  <div class="a-fact"><b>&#128065; Recheck trouble spots</b><p>Bathrooms, basements, and under sinks are worth a monthly look.</p></div>
+                </div>
+                <div class="a-second" data-go="7">
+                  <b>Want a second opinion?</b>
+                  <p>A quick video call with a certified expert can confirm you&rsquo;re in the clear and flag anything to keep an eye on.</p>
+                  <span>Certified mold expert &middot; from $250 &middot; no in-person visit needed</span>
+                </div>
+                <div class="a-btn o" data-go="8">&#128269;&nbsp; Find Mold Professionals Near You</div>
+                <p class="a-note">Please note: AccuMold does not test for airborne mold. For concerns about air quality, consult a professional mold inspector.</p>
+              </div>
+            </div>
+
+            <!-- 7 · choose a consultation -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <p class="a-nav">Choose Length<span></span></p>
+                <p class="a-q" style="font-size:.72rem">How long do you need?</p>
+                <p class="a-help">One flat price for the length you pick. Pay once, up front &mdash; no per-minute charges and nothing extra afterwards.</p>
+                <div class="a-len" data-pick data-next="8"><span class="pop">Most popular</span><b>30 min</b><em>$250</em><p>Full walkthrough of your scan results + next steps</p></div>
+                <div class="a-len" data-pick data-next="8"><b>45 min</b><em>$375</em><p>Deeper dive &mdash; multiple areas or complex situations</p></div>
+                <div class="a-len" data-pick data-next="8"><b>60 min</b><em>$500</em><p>Comprehensive &mdash; full home assessment + remediation plan</p></div>
+              </div>
+            </div>
+
+            <!-- 8 · find a pro -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <p class="a-nav">Mold Professionals Near You<span></span></p>
+                <p class="a-help" style="margin-top:0">Max Distance</p>
+                <div class="a-chips"><span>10 miles</span><span class="on">25 miles</span><span>50 miles</span></div>
+                <div class="a-chips"><span class="on">Verified</span><span>All</span></div>
+                <div class="a-card">
+                  <h6>Moisture Master Pros</h6>
+                  <p class="a-sub">General Contractor &middot; &#11088; 4.8 &middot; Verified</p>
+                  <p class="a-addr">100 Monument Rd, Ste 207<br>Bala Cynwyd, PA 19004</p>
+                  <div class="a-row2"><div class="a-btn">&#128222;&nbsp; Call</div><div class="a-btn o">&#127760;&nbsp; Website</div></div>
+                </div>
+                <div class="a-btn o" data-go="0">Back to dashboard</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-ui">
+      <div class="cap"></div>
+      <div class="track">
+        <button>Home</button><button>Scan</button><button>Check</button><button>Photo</button>
+        <button>Camera</button><button>Analyse</button><button>Report</button><button>Consult</button><button>Pros</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 4 · THE APP ============ -->
+<section class="panel blue" id="app">
+  <div class="inner two">
+    <div data-r>
+      <p class="kicker">The app</p>
+      <h2 class="d2">Your home, read in three numbers.<br>Inspect every room of your home.</h2>
+      <p class="t1 narrow-w" style="margin-top:26px">Risk, humidity and temperature the moment you open it, before you scan anything. Then a room-by-room inspection when you want the whole picture.</p>
+      <div class="row" style="margin-top:34px">
+        <a class="b" href="#get">Get the app</a>
+      </div>
+    </div>
+    <div class="figure" data-r data-d="1">
+      <img src="assets/brand/post-couch.jpg" alt="Using AccuMold at home">
     </div>
   </div>
 </section>
@@ -515,8 +483,9 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
         <img class="word" src="assets/ui/logo-word.png" alt="AccuMold" style="filter:brightness(0) invert(1)">
       </a>
       <nav class="foot-nav">
-        <a href="#how">The scan</a>
-        <a href="consultations.html">Consultations</a>
+        <a href="#how">Mold Scans</a>
+        <a href="#report">Reporting</a>
+        <a href="consultations.html">Video Consultations</a>
         <a href="journal.html">Journal</a>
         <a href="about.html">About</a>
         <a href="#get">Download</a>
@@ -534,6 +503,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=91"></script>
+<script src="js/v2.js?v=92"></script>
 </body>
 </html>
