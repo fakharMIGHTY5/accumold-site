@@ -755,6 +755,41 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .a-chips span.on{ background:var(--ab); color:#fff; }
 .a-addr{ margin:3% 0 5%; font-size:.46rem; line-height:1.45; color:var(--agrey); }
 
+.hero-lead{
+  margin:clamp(18px,2.4vh,26px) auto 0; max-width:30ch;
+  font-family:var(--fd); font-weight:700; letter-spacing:-.028em;
+  font-size:clamp(1.15rem,2vw,1.6rem); line-height:1.2; color:var(--ink);
+}
+
+/* ---------- the four steps, and the four demo screens ---------- */
+.steps4{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.6vw,22px);
+  list-style:none; margin:0 0 clamp(26px,4vh,42px); padding:0;
+}
+@media(max-width:760px){ .steps4{ grid-template-columns:1fr 1fr; } }
+.steps4 li{
+  display:flex; gap:10px; align-items:flex-start;
+  padding-top:14px; border-top:1px solid var(--line);
+  font-size:.92rem; line-height:1.4; color:var(--ink-2);
+}
+.blue .steps4 li{ border-top-color:var(--line-inv); color:rgba(255,255,255,.78); }
+.steps4 b{
+  flex:none; font-family:var(--fm); font-size:.6rem; letter-spacing:.1em;
+  color:var(--blue); padding-top:2px;
+}
+
+.a-mid{ text-align:center; }
+.a-lead{ margin:6% 0 3%; font-size:.66rem; font-weight:800; letter-spacing:-.02em; color:var(--aink); line-height:1.25; }
+.a-help.mid{ text-align:center; }
+.a-store{
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  background:#111418; color:#fff; border-radius:8px; padding:3.4% 4%; margin-top:3.5%;
+}
+.a-store svg{ width:13px; height:13px; flex:none; }
+.a-store div{ text-align:left; line-height:1.05; }
+.a-store span{ display:block; font-size:.34rem; opacity:.8; }
+.a-store strong{ display:block; font-size:.5rem; font-weight:700; }
+
 /* ---------- Accordion ---------- */
 .acc{ border-top:1px solid var(--line); }
 .acc-item{ border-bottom:1px solid var(--line); }
