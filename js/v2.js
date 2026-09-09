@@ -611,12 +611,15 @@
   $$('[data-demo]').forEach((root) => {
     const views = $$('.view', root);
     const tabs = $$('.track button', root);
+    const tabView = tabs.map((t, k) => parseInt(t.dataset.view, 10) || k);
     const cap = $('.cap', root);
     const bar = $('.an2-bar i', root);
     const rows = $$('.an2-list div', root);
     const CAPS = [
       ['Download AccuMold.', 'Free on the App Store and Google Play. Scanning and reporting cost nothing.'],
-      ['Start your scan.', 'Point the camera at the concern. AccuMold reads the surface and writes the report.'],
+      ['Start your scan.', 'Point the camera at the concern, eight to twelve inches out. Tap the shutter.'],
+      ['It reads the surface.', 'AccuMold analyses what you photographed against the conditions where you are.'],
+      ['Get your report.', 'A clear result in plain English, and what to watch for next.'],
       ['Book a live video consultation.', 'A certified mold expert, on video, before you hire anyone.'],
       ['Find mold professionals near you.', 'Verified local pros for the work itself, filtered by distance.']
     ];
@@ -628,16 +631,22 @@
       clear();
       i = n;
       views.forEach((v, k) => v.classList.toggle('on', k === n));
-      tabs.forEach((t, k) => t.setAttribute('aria-current', String(k === n)));
+        // four labels over six screens, so the current one is the last label at
+      // or before this view — Scan stays lit through scanning and the report
+      let active = 0;
+      tabView.forEach((v, k) => { if (v <= n) active = k; });
+      tabs.forEach((t, k) => t.setAttribute('aria-current', String(k === active)));
       if (cap) cap.innerHTML = '<h3>' + CAPS[n][0] + '</h3><p>' + CAPS[n][1] + '</p>';
+
+      if (n === 2) timers.push(setTimeout(() => show(3), 2600));
 
     }
 
-    tabs.forEach((t, n) => t.addEventListener('click', () => show(n)));
+    tabs.forEach((t, k) => t.addEventListener('click', () => show(tabView[k])));
 
     // "Reporting" in the nav points here and opens on the report screen, since
     // that is what the label promises. It has no room of its own yet.
-    const toReport = () => { if (location.hash === '#report') show(1); };
+    const toReport = () => { if (location.hash === '#report') show(3); };
     addEventListener('hashchange', toReport);
     toReport();
     $$('[data-go]', root).forEach((el) => {

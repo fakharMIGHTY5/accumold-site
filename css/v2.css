@@ -954,6 +954,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
                   background:#6EE7A8; transform:translate(-50%,-50%); }
 .a-scanning{ margin-top:5%; color:#fff; font-size:.58rem; font-weight:600; text-align:center; }
 .a-scanning.dark{ color:var(--aink); margin:4% 0 5%; }
+.a-cam.short{ position:relative; inset:auto; flex:1; }
 .a-know{ margin-top:6%; background:rgba(58,62,70,.9); border-radius:10px; padding:6% 6% 4%; text-align:center; width:100%; }
 .a-know .i{ font-size:.7rem; }
 .a-know p{ margin:4% 0 5%; font-size:.5rem; line-height:1.5; color:#fff; }

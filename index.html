@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=97">
+<link rel="stylesheet" href="css/v2.css?v=98">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -204,11 +204,24 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
               </div>
             </div>
 
-            <!-- 2 · start your scan -->
+            <!-- 1 · camera, take the photo -->
             <div class="view">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-hd"><h4>&#127968;&nbsp; 1 &middot; Start Your Mold Scan</h4><p>Launch Scanner</p></div>
-              <div class="a-scroll a-pad">
+              <div class="a-hd"><h4>&#128247;&nbsp; 1 &middot; Start Your Mold Scan</h4><p>Launch Scanner</p></div>
+              <div class="a-cam short">
+                <img src="assets/img/mold-12.jpg" alt="">
+                <p class="a-tip">Be 8&ndash;12 inches away. Zoom in so the suspicious spot fills the screen.</p>
+                <div class="a-shot">
+                  <div class="fl"><span class="i">&#9889;</span>Flash On</div>
+                  <div class="a-ring" data-go="2"></div>
+                  <div class="lib"><span class="i">&#128443;</span>Library</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2 · scanning -->
+            <div class="view">
+              <div class="a-analyse">
                 <div class="a-frame">
                   <img src="assets/img/mold-12.jpg" alt="">
                   <div class="amscan">
@@ -224,22 +237,30 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
                     <span class="spec" style="left:34%;top:71%"></span>
                   </div>
                 </div>
-                <p class="a-scanning dark">Analyzing image with AccuMold AI&hellip;</p>
-                <div class="a-card">
-                  <h6>Select Scan Type:</h6>
-                  <div class="a-btn">&#128200;&nbsp; AccuMold Powered Scan Analysis</div>
-                  <p class="a-help">Scan and document visible mold, moisture, stains, and leak concerns using your phone camera. Get your report.</p>
+                <p class="a-scanning">Analyzing image with AccuMold AI&hellip;</p>
+                <div class="a-know">
+                  <div class="i">&#128161;</div>
+                  <p>There are over 100,000 known species of mold.</p>
+                  <b>Did you know?</b>
                 </div>
+              </div>
+            </div>
+
+            <!-- 3 · your report -->
+            <div class="view">
+              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-scroll a-pad">
+                <div class="a-pill-row"><span class="a-pill">NO MOLD DETECTED</span></div>
                 <div class="a-card">
-                  <h6>How to scan for mold:</h6>
-                  <ul class="a-list">
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Position camera 6&ndash;12 inches from the surface</li>
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Enable flash for better mold detection</li>
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Ensure good lighting for accuracy</li>
-                    <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Hold steady while scanning</li>
-                  </ul>
+                  <h6>AccuMold Analysis</h6>
+                  <div class="a-fact lead">
+                    <b>Looking clean &mdash; keep it that way</b>
+                    <p>No mold detected in this image. Good news &mdash; but moisture problems often start out of sight, so it pays to know the warning signs.</p>
+                  </div>
+                  <div class="a-fact"><b>&#128167; Watch for moisture</b><p>Leaks, condensation, and humidity above 60&#37; are what let mold start.</p></div>
                 </div>
-                <div class="a-btn o" data-go="2">Next: book a consultation &rsaquo;</div>
+                <p class="a-note">Please note: AccuMold does not test for airborne mold. For concerns about air quality, consult a professional mold inspector.</p>
+                <div class="a-btn" data-go="4">Book a live video consultation &rsaquo;</div>
               </div>
             </div>
 
@@ -260,7 +281,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
                   </ul>
                 </div>
                 <div class="a-len"><span class="pop">Most popular</span><b>30 min</b><em>$250</em><p>Full walkthrough of your scan results + next steps</p></div>
-                <div class="a-btn o" data-go="3">Next: find a pro &rsaquo;</div>
+                <div class="a-btn o" data-go="5">Next: find a pro &rsaquo;</div>
               </div>
             </div>
 
@@ -289,7 +310,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
     <div class="demo-ui">
       <div class="cap"></div>
       <div class="track">
-        <button>Download</button><button>Scan</button><button>Consult</button><button>Find a pro</button>
+        <button data-view="0">Download</button><button data-view="1">Scan</button><button data-view="4">Consult</button><button data-view="5">Find a pro</button>
       </div>
     </div>
   </div>
@@ -426,6 +447,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=97"></script>
+<script src="js/v2.js?v=98"></script>
 </body>
 </html>
