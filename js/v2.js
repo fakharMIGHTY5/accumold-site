@@ -539,20 +539,27 @@
       if (!en.isIntersecting) return;
       const el = en.target;
       cio.unobserve(el);
-      const end = parseFloat(el.dataset.count);
+      // data-count takes one number, or two separated by | for a range, which
+      // then count together. data-dec keeps decimal places that would
+      // otherwise round away.
+      const end = el.dataset.count.split('|').map(parseFloat);
+      const dec = parseInt(el.dataset.dec || '0', 10);
+      const join = el.dataset.join || '';
       const pre = el.dataset.pre || '';
       const suf = el.dataset.suf || '';
-      const final = () => { el.textContent = pre + end.toLocaleString() + suf; };
+      const fmt = (v) => v.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+      const at = (vals) => { el.textContent = pre + vals.map(fmt).join(join) + suf; };
+      const final = () => at(end);
       if (reduced) { final(); return; }
       // the real figure ships in the markup, so counting starts from zero here
-      el.textContent = pre + '0' + suf;
+      at(end.map(() => 0));
       const dur = 1500, t0 = performance.now();
       // rAF stops while the tab is hidden, which would strand a partial number
       const settle = setTimeout(final, dur + 120);
       (function tick(now) {
         const p = clamp((now - t0) / dur, 0, 1);
-        const v = end * (1 - Math.pow(1 - p, 3));
-        el.textContent = pre + Math.round(v).toLocaleString() + suf;
+        const e = 1 - Math.pow(1 - p, 3);
+        at(end.map((v) => v * e));
         if (p < 1) requestAnimationFrame(tick);
         else { clearTimeout(settle); final(); }
       })(t0);
