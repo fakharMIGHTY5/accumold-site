@@ -620,164 +620,48 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 
 /* ---------- The film ----------
-   Not a video in a box. It starts as a small framed capture inside the site's
-   own reticle and opens to full bleed as you scroll, brackets pulling apart
-   and fading as it goes. The sweep runs over it until it is open. */
-.reel{ background:var(--white); }
-.reel-stage{ position:relative; }
-.reel-stick{
-  position:sticky; top:0; height:100svh;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:clamp(18px,3vh,30px);
-}
-.reel-kick, .reel-cue{
-  opacity:calc(1 - var(--p,0) * 2.2);          /* gone well before full bleed */
-}
+   Full bleed from the moment you reach it. The scroll-driven open that used to
+   be here made the visitor operate a mechanism before they could watch
+   anything; the client wants this front and centre, so it just is. The corner
+   brackets keep it in the scanner's language without asking for a gesture. */
+.reel{ background:var(--ink); }
 .reel-frame{
-  position:relative;
-  width:var(--w, 34vw);
-  aspect-ratio:16/9;
-  border-radius:calc(20px * (1 - var(--p,0)));
+  position:relative; width:100%; height:min(78svh, 56.25vw); min-height:320px;
   overflow:hidden; background:var(--ink);
-  box-shadow:0 30px 80px -40px rgba(10,16,32,calc(.55 * (1 - var(--p,0))));
 }
 .reel-frame video{ width:100%; height:100%; object-fit:cover; display:block; }
 
-/* a viewfinder over the film, inset so the frame's own clipping cannot eat it */
 .reel-frame b{
-  position:absolute; width:22px; height:22px; border:2px solid rgba(255,255,255,.92);
-  opacity:calc(1 - var(--p,0) * 1.8); pointer-events:none; z-index:2;
-  --o:calc(16px + 18px * var(--p,0));
+  position:absolute; width:26px; height:26px; border:2px solid rgba(255,255,255,.85);
+  pointer-events:none; --o:clamp(16px,2.2vw,30px);
 }
 .reel-frame b:nth-of-type(1){ top:var(--o); left:var(--o); border-right:0; border-bottom:0 }
 .reel-frame b:nth-of-type(2){ top:var(--o); right:var(--o); border-left:0; border-bottom:0 }
 .reel-frame b:nth-of-type(3){ bottom:var(--o); right:var(--o); border-left:0; border-top:0 }
 .reel-frame b:nth-of-type(4){ bottom:var(--o); left:var(--o); border-right:0; border-top:0 }
 
-.reel-sweep{
-  position:absolute; left:0; right:0; top:0; height:2px; z-index:2;
-  background:linear-gradient(90deg,transparent,rgba(5,114,233,.9),transparent);
-  opacity:calc(1 - var(--p,0) * 2);
-  animation:reelSweep 2.6s ease-in-out infinite;
-}
-@keyframes reelSweep{ 0%,100%{ top:0 } 50%{ top:calc(100% - 2px) } }
-
 .reel-tag{
-  position:absolute; left:clamp(14px,1.6vw,22px); bottom:clamp(12px,1.4vw,18px); z-index:3;
-  color:rgba(255,255,255,.9); text-shadow:0 1px 12px rgba(0,0,0,.6);
+  position:absolute; left:clamp(28px,3.4vw,48px); bottom:clamp(26px,3.2vw,44px); z-index:3;
+  color:rgba(255,255,255,.9); text-shadow:0 1px 12px rgba(0,0,0,.7);
 }
 .reel-sound{
-  position:absolute; right:clamp(14px,1.6vw,22px); bottom:clamp(12px,1.4vw,18px); z-index:3;
-  padding:9px 16px; border-radius:100px; color:#fff;
-  background:rgba(10,16,32,.5); backdrop-filter:blur(6px);
-  transition:background .25s;
+  position:absolute; right:clamp(28px,3.4vw,48px); bottom:clamp(24px,3vw,40px); z-index:3;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:11px 18px; border-radius:100px; color:#fff;
+  background:rgba(10,16,32,.45); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.22);
+  transition:background .25s, border-color .25s;
 }
-.reel-sound:hover{ background:rgba(10,16,32,.75); }
+.reel-sound:hover{ background:rgba(10,16,32,.72); border-color:rgba(255,255,255,.45); }
+.reel-sound svg{ flex:none; }
 
-/* Without the scroll driver this is simply a film at a sensible size. */
-@media(max-width:900px), (prefers-reduced-motion:reduce){
-  .reel-stage{ height:auto !important; }
-  .reel-stick{ position:static; height:auto; padding:clamp(70px,11vh,120px) var(--gut); }
-  .reel-frame{ width:100% !important; border-radius:18px; }
-  .reel-frame b, .reel-sweep, .reel-cue{ display:none; }
-  .reel-kick{ opacity:1; }
-}
-
-/* ---------- app UI: the new free build ----------
-   Added when the client shipped the rebuilt app: a Getting Started stepper on
-   the dashboard, a report made of plain-language findings, consultation
-   lengths, and a pro directory. The old weather row is gone with the version
-   that had it. */
-.a-gs{ display:flex; align-items:center; gap:3%; margin-top:5%; }
-.a-gs span{ font-size:.6rem; font-weight:800; letter-spacing:-.02em; }
-.a-gs i{
-  flex:none; width:14px; height:14px; border-radius:50%; display:grid; place-items:center;
-  font-size:.42rem; font-weight:700; font-style:normal;
-  background:rgba(255,255,255,.28); color:#fff;
-}
-.a-gs i.on{ background:#fff; color:var(--ab); }
-.a-gs b{ flex:1; height:1px; background:rgba(255,255,255,.34); }
-
-.a-step{ background:#fff; border-radius:12px; padding:6% 5.5%; box-shadow:0 1px 3px rgba(16,24,40,.07); }
-.a-step + .a-step{ margin-top:4.5%; }
-.a-step-h{ display:flex; align-items:center; gap:4%; margin-bottom:5%; }
-.a-step-h b{ font-size:1rem; font-weight:800; color:#C7CDD6; line-height:1; }
-.a-step-h h6{ margin:0; font-size:.66rem; font-weight:800; letter-spacing:-.02em; color:var(--aink); }
-.a-step .a-btn small{ display:block; font-size:.42rem; font-weight:500; opacity:.85; margin-top:1px; }
-.a-step > p{ margin:4.5% 0 0; font-size:.46rem; line-height:1.45; color:var(--agrey); text-align:center; }
-
-.a-tabs.three div{ flex:1; }
-
-.a-nav{
-  display:flex; justify-content:space-between; align-items:center;
-  margin:0 0 5%; font-size:.6rem; font-weight:700; color:var(--aink);
-}
-.a-nav span{ font-size:.52rem; font-weight:500; color:var(--ab); }
-.a-step-n{ margin:3% 0 0; font-size:.46rem; color:var(--agrey); }
-.a-help{ margin:3% 0 5%; font-size:.46rem; line-height:1.5; color:var(--agrey); }
-.a-sub{ margin:5% 0 3%; font-size:.5rem; font-weight:700; }
-.a-sub.ok{ color:#2E9E5B; }
-.a-sub.no{ color:#D14343; }
-.a-list .ck.x{ background:#D14343; }
-
-.a-pill-row{ text-align:center; margin-bottom:5%; }
-.a-fact{ margin-top:5%; }
-.a-fact.lead{ border-left:2px solid #2E9E5B; padding-left:4%; }
-.a-fact b{ display:block; font-size:.54rem; font-weight:800; color:var(--aink); letter-spacing:-.01em; }
-.a-fact p{ margin:2% 0 0; font-size:.46rem; line-height:1.45; color:var(--agrey); }
-
-.a-second{ background:var(--ab); color:#fff; border-radius:12px; padding:6% 5.5%; margin-top:5%; }
-.a-second b{ display:block; font-size:.6rem; font-weight:800; }
-.a-second p{ margin:3% 0 4%; font-size:.46rem; line-height:1.45; opacity:.92; }
-.a-second span{ display:block; font-size:.42rem; opacity:.82; border-top:1px solid rgba(255,255,255,.28); padding-top:4%; }
-
-.a-note{
-  margin:5% 0 0; padding:4%; border-radius:9px; background:#FFF8E6;
-  font-size:.42rem; line-height:1.5; color:#8A6D1F;
+@media(max-width:760px){
+  .reel-frame{ height:auto; aspect-ratio:16/9; min-height:0; }
+  .reel-frame b{ width:18px; height:18px; --o:12px; }
+  .reel-sound{ padding:9px 14px; }
 }
 
-.a-len{ position:relative; background:#fff; border:1px solid var(--aline); border-radius:11px; padding:5.5%; margin-top:4%; }
-.a-len.sel{ border-color:var(--ab); box-shadow:0 0 0 2px rgba(30,111,184,.16); }
-.a-len b{ font-size:.66rem; font-weight:800; color:var(--aink); }
-.a-len em{ font-style:normal; font-size:.6rem; font-weight:600; color:var(--agrey); margin-left:4%; }
-.a-len p{ margin:2% 0 0; font-size:.44rem; line-height:1.4; color:var(--agrey); }
-.a-len .pop{
-  position:absolute; top:-7px; right:8%; background:#2E9E5B; color:#fff;
-  font-size:.36rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-  padding:2px 7px; border-radius:100px;
-}
-
-.a-chips{ display:flex; gap:2.5%; margin-bottom:4%; }
-.a-chips span{
-  flex:1; text-align:center; padding:2.6% 0; border-radius:7px;
-  font-size:.44rem; font-weight:600; background:#EEF1F5; color:var(--agrey);
-}
-.a-chips span.on{ background:var(--ab); color:#fff; }
-.a-addr{ margin:3% 0 5%; font-size:.46rem; line-height:1.45; color:var(--agrey); }
-
-.hero-lead{
-  margin:clamp(18px,2.4vh,26px) auto 0; max-width:30ch;
-  font-family:var(--fd); font-weight:700; letter-spacing:-.028em;
-  font-size:clamp(1.15rem,2vw,1.6rem); line-height:1.2; color:var(--ink);
-}
-
-/* ---------- the four steps, and the four demo screens ---------- */
-.steps4{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.6vw,22px);
-  list-style:none; margin:0 0 clamp(26px,4vh,42px); padding:0;
-}
-@media(max-width:760px){ .steps4{ grid-template-columns:1fr 1fr; } }
-.steps4 li{
-  display:flex; gap:10px; align-items:flex-start;
-  padding-top:14px; border-top:1px solid var(--line);
-  font-size:.92rem; line-height:1.4; color:var(--ink-2);
-}
-.blue .steps4 li{ border-top-color:var(--line-inv); color:rgba(255,255,255,.78); }
-.steps4 b{
-  flex:none; font-family:var(--fm); font-size:.6rem; letter-spacing:.1em;
-  color:var(--blue); padding-top:2px;
-}
-
+/* ---------- the four demo screens ---------- */
 .a-mid{ text-align:center; }
 .a-lead{ margin:6% 0 3%; font-size:.66rem; font-weight:800; letter-spacing:-.02em; color:var(--aink); line-height:1.25; }
 .a-help.mid{ text-align:center; }

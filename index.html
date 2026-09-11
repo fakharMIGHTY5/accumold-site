@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=99">
+<link rel="stylesheet" href="css/v2.css?v=100">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -126,22 +126,16 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
 </section>
 
 <!-- ============ THE FILM ============ -->
-<section class="reel">
-  <div class="reel-stage" data-reel>
-    <div class="reel-stick">
-      <p class="kicker reel-kick">The film</p>
-
-      <div class="reel-frame">
-        <video src="assets/video/accumold.mp4" poster="assets/video/accumold-poster.jpg"
-               muted loop playsinline preload="none" aria-label="AccuMold film"></video>
-        <b></b><b></b><b></b><b></b>
-        <i class="reel-sweep"></i>
-        <span class="reel-tag num">AccuMold &middot; 0:33</span>
-        <button class="reel-sound num" type="button" data-sound aria-pressed="false">Sound off</button>
-      </div>
-
-      <p class="num reel-cue">Keep scrolling</p>
-    </div>
+<section class="reel" data-reel>
+  <div class="reel-frame">
+    <video src="assets/video/accumold.mp4" poster="assets/video/accumold-poster.jpg"
+           muted loop playsinline preload="none" aria-label="AccuMold film"></video>
+    <b></b><b></b><b></b><b></b>
+    <span class="reel-tag num">The film &middot; 0:33</span>
+    <button class="reel-sound num" type="button" data-sound aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M11 5.6 6.8 9H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2.8L11 18.4c.6.5 1.5.1 1.5-.7V6.3c0-.8-.9-1.2-1.5-.7Z"/></svg>
+      Sound off
+    </button>
   </div>
 </section>
 
@@ -170,13 +164,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
       <h2 class="d3">Try the Scan. It works like the App.</h2>
       <p class="t1 narrow-w" style="margin:18px auto 0">Here&rsquo;s how AccuMold works.</p>
     </div>
-
-    <ol class="steps4" data-r data-d="1">
-      <li><b>1</b>Identify suspicious mold area</li>
-      <li><b>2</b>Upload a photo of your mold concern</li>
-      <li><b>3</b>Get your report</li>
-      <li><b>4</b>Schedule a live consultation</li>
-    </ol>
 
     <div style="display:flex;justify-content:center">
       <div class="iphone">
@@ -453,6 +440,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=99"></script>
+<script src="js/v2.js?v=100"></script>
 </body>
 </html>

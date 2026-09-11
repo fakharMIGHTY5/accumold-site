@@ -404,90 +404,37 @@
   });
 
   /* =========================================================
-     3d. The film, opened by the scrollbar
-     One custom property drives the whole panel — width, radius, bracket
-     offset, sweep and label opacity all read var(--p) in CSS. The video only
-     downloads once the panel is close, and only plays while it is on screen.
+     3d. The film
+     Plays muted when it comes into view, pauses when it leaves, and never
+     carries on making noise off screen.
      ========================================================= */
-  $$('[data-reel]').forEach((stage) => {
-    const stick = $('.reel-stick', stage);
-    const frame = $('.reel-frame', stage);
-    const vid = $('video', stage);
-    const sound = $('[data-sound]', stage);
-    const small = matchMedia('(max-width:900px)');
-    const START = 34;                                   // vw, the resting frame
-    let queued = false, on = false;
-
+  $$('[data-reel]').forEach((reel) => {
+    const vid = $('video', reel);
+    const sound = $('[data-sound]', reel);
     const label = () => {
-      sound.textContent = vid.muted ? 'Sound off' : 'Sound on';
+      sound.lastChild.textContent = vid.muted ? ' Sound off' : ' Sound on';
       sound.setAttribute('aria-pressed', String(!vid.muted));
     };
 
-    // Sound comes on by itself once the film reaches full size, and goes again
-    // when it shrinks back. Browsers only allow unmuted playback after the
-    // visitor has interacted with the page, and scrolling does not count — so
-    // if it is refused the video goes back to muted rather than being left
-    // paused and silent, and the button is still there to do it by hand.
-    let manual = false;
-    function autoSound(full) {
-      if (manual) { if (!full) manual = false; return; }   // hands off until they leave
-      if (full === !vid.muted) return;
-      if (full) {
-        vid.muted = false;
-        vid.play().catch(() => { vid.muted = true; label(); });
-      } else {
-        vid.muted = true;
-      }
-      label();
-    }
-
     sound.addEventListener('click', () => {
-      manual = true;                                       // their choice wins
       vid.muted = !vid.muted;
-      if (!vid.muted) vid.play().catch(() => {});
+      if (!vid.muted) vid.play().catch(() => { vid.muted = true; label(); });
       label();
     });
 
-    function layout() {
-      if (small.matches || reduced) { stage.style.height = ''; return; }
-      // enough travel to open it, plus a beat of full bleed before it lets go
-      stage.style.height = Math.round(window.innerHeight * 2.1) + 'px';
-      update();
-    }
-
-    function update() {
-      if (small.matches || reduced) return;
-      const r = stage.getBoundingClientRect();
-      const travel = r.height - stick.offsetHeight;
-      const p = travel > 0 ? clamp(-r.top / travel, 0, 1) : 0;
-      // open over the first 70% so it holds full bleed for a moment
-      const o = clamp(p / 0.7, 0, 1);
-      frame.style.setProperty('--p', o.toFixed(4));
-      frame.style.setProperty('--w', (START + (100 - START) * o).toFixed(2) + 'vw');
-      stick.style.setProperty('--p', o.toFixed(4));
-      autoSound(o >= 0.985);                 // full size, so let it speak
-    }
-
-    const q = () => {
-      if (queued) return;
-      queued = true;
-      const run = () => { queued = false; update(); };
-      document.hidden ? run() : requestAnimationFrame(run);
-    };
-    addEventListener('scroll', q, { passive: true });
-    addEventListener('resize', layout);
-    small.addEventListener('change', layout);
-
-    // fetch it only when it is nearly in view, then play only while it is
+    // fetched only when it is nearly in view, and played only while it is
+    let started = false;
     new IntersectionObserver((es) => {
       es.forEach((e) => {
         if (e.isIntersecting) {
-          if (!on) { on = true; vid.preload = 'auto'; vid.play().catch(() => {}); }
-        } else if (on) { vid.pause(); }
+          if (!started) { started = true; vid.preload = 'auto'; }
+          vid.play().catch(() => {});
+        } else {
+          vid.pause();
+          if (!vid.muted) { vid.muted = true; label(); }   // never plays on unseen
+        }
       });
-    }, { rootMargin: '200px' }).observe(stage);
-
-    layout();
+    }, { rootMargin: '200px' }).observe(reel);
   });
 
   /* =========================================================
