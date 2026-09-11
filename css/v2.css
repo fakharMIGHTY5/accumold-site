@@ -663,10 +663,19 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   box-shadow:0 14px 44px -12px rgba(5,114,233,.8);
   transition:transform .3s var(--ease), background .25s, opacity .3s var(--ease);
 }
-.reel-play svg{ margin-left:4px; }
+.reel-play .ic-play{ margin-left:4px; }
+.reel-play .ic-pause{ display:none; }
 .reel-play:hover{ transform:scale(1.08); background:var(--blue-deep); }
-.reel.playing .reel-play,
-.reel.playing .reel-tag{ opacity:0; pointer-events:none; }
+
+/* The whole frame is the control: click anywhere to play or pause. While it is
+   playing the button gets out of the way, and hovering brings it back wearing
+   the pause icon, so the gesture is always visible before you make it. */
+.reel-frame{ cursor:pointer; }
+.reel.playing .reel-tag{ opacity:0; }
+.reel.playing .reel-play{ opacity:0; transform:scale(.85); }
+.reel.playing .reel-frame:hover .reel-play{ opacity:1; transform:none; }
+.reel.playing .reel-play .ic-play{ display:none; }
+.reel.playing .reel-play .ic-pause{ display:block; }
 
 @media(max-width:760px), (prefers-reduced-motion:reduce){
   .reel-stage{ height:auto !important; }

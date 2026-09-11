@@ -414,7 +414,6 @@
   $$('[data-reel]').forEach((stage) => {
     const stick = $('.reel-stick', stage);
     const vid   = $('video', stage);
-    const play  = $('[data-play]', stage);
     const reel  = stage.closest('.reel') || stage;
     if (!vid) return;
     const navH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0;
@@ -437,15 +436,22 @@
     addEventListener('resize', q);
     draw();
 
-    /* --- press to play --- */
-    if (play) play.addEventListener('click', () => {
+    /* --- click anywhere on the frame to play or pause ---
+       The button is inside the frame, so its own click bubbles here and it
+       needs no separate handler. Sound comes on with the first press: pressing
+       play is the permission. If the browser refuses audio anyway, fall back to
+       muted rather than not playing at all. */
+    const frame = $('.reel-frame', stage);
+    if (frame) frame.addEventListener('click', () => {
+      if (!vid.paused) { vid.pause(); return; }
       vid.preload = 'auto';
       vid.muted = false;
-      vid.play().then(() => reel.classList.add('playing'))
-                .catch(() => { vid.muted = true; vid.play().catch(() => {}); reel.classList.add('playing'); });
+      vid.play().catch(() => { vid.muted = true; vid.play().catch(() => {}); });
     });
-    vid.addEventListener('pause', () => reel.classList.remove('playing'));
     vid.addEventListener('play',  () => reel.classList.add('playing'));
+    vid.addEventListener('pause', () => reel.classList.remove('playing'));
+    // at the end it settles back on the closing card, which is the poster
+    vid.addEventListener('ended', () => { reel.classList.remove('playing'); });
 
     // never keeps talking off screen
     new IntersectionObserver((es) => {
