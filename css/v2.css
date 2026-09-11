@@ -620,20 +620,32 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 
 /* ---------- The film ----------
-   Full bleed from the moment you reach it. The scroll-driven open that used to
-   be here made the visitor operate a mechanism before they could watch
-   anything; the client wants this front and centre, so it just is. The corner
-   brackets keep it in the scanner's language without asking for a gesture. */
+   Opens as you scroll, but the frame keeps the video's own 16:9 the whole way
+   and its width is capped by the height available, so it never crops. The
+   previous version fixed the height and let object-fit:cover eat the top and
+   bottom of the picture. It waits paused on its poster until someone presses
+   play. */
 .reel{ background:var(--ink); }
-.reel-frame{
-  position:relative; width:100%; height:min(78svh, 56.25vw); min-height:320px;
-  overflow:hidden; background:var(--ink);
+.reel-stage{ position:relative; height:220svh; }
+.reel-stick{
+  position:sticky; top:var(--nav-h); height:calc(100svh - var(--nav-h));
+  display:grid; place-items:center; overflow:hidden;
 }
-.reel-frame video{ width:100%; height:100%; object-fit:cover; display:block; }
+.reel-frame{
+  position:relative;
+  /* whichever is smaller: the scroll-driven width, or the width that still
+     fits the viewport height at 16:9 */
+  width:min(var(--w,34vw), calc((100svh - var(--nav-h) - 48px) * 16 / 9));
+  aspect-ratio:16/9;
+  border-radius:calc(18px * (1 - var(--p,0)));
+  overflow:hidden; background:#000;
+  box-shadow:0 30px 80px -40px rgba(0,0,0,calc(.8 * (1 - var(--p,0))));
+}
+.reel-frame video{ width:100%; height:100%; object-fit:contain; display:block; background:#000; }
 
 .reel-frame b{
-  position:absolute; width:26px; height:26px; border:2px solid rgba(255,255,255,.85);
-  pointer-events:none; --o:clamp(16px,2.2vw,30px);
+  position:absolute; width:24px; height:24px; border:2px solid rgba(255,255,255,.85);
+  pointer-events:none; opacity:calc(1 - var(--p,0) * 1.6); --o:clamp(14px,1.6vw,22px);
 }
 .reel-frame b:nth-of-type(1){ top:var(--o); left:var(--o); border-right:0; border-bottom:0 }
 .reel-frame b:nth-of-type(2){ top:var(--o); right:var(--o); border-left:0; border-bottom:0 }
@@ -641,24 +653,26 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .reel-frame b:nth-of-type(4){ bottom:var(--o); left:var(--o); border-right:0; border-top:0 }
 
 .reel-tag{
-  position:absolute; left:clamp(28px,3.4vw,48px); bottom:clamp(26px,3.2vw,44px); z-index:3;
-  color:rgba(255,255,255,.9); text-shadow:0 1px 12px rgba(0,0,0,.7);
+  position:absolute; left:clamp(16px,1.8vw,26px); bottom:clamp(14px,1.6vw,22px); z-index:3;
+  color:rgba(255,255,255,.88); text-shadow:0 1px 12px rgba(0,0,0,.75);
 }
-.reel-sound{
-  position:absolute; right:clamp(28px,3.4vw,48px); bottom:clamp(24px,3vw,40px); z-index:3;
-  display:inline-flex; align-items:center; gap:8px;
-  padding:11px 18px; border-radius:100px; color:#fff;
-  background:rgba(10,16,32,.45); backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.22);
-  transition:background .25s, border-color .25s;
+.reel-play{
+  position:absolute; inset:0; margin:auto; z-index:4;
+  width:clamp(62px,6vw,86px); aspect-ratio:1; border-radius:50%;
+  display:grid; place-items:center; color:#fff; background:var(--blue);
+  box-shadow:0 14px 44px -12px rgba(5,114,233,.8);
+  transition:transform .3s var(--ease), background .25s, opacity .3s var(--ease);
 }
-.reel-sound:hover{ background:rgba(10,16,32,.72); border-color:rgba(255,255,255,.45); }
-.reel-sound svg{ flex:none; }
+.reel-play svg{ margin-left:4px; }
+.reel-play:hover{ transform:scale(1.08); background:var(--blue-deep); }
+.reel.playing .reel-play,
+.reel.playing .reel-tag{ opacity:0; pointer-events:none; }
 
-@media(max-width:760px){
-  .reel-frame{ height:auto; aspect-ratio:16/9; min-height:0; }
-  .reel-frame b{ width:18px; height:18px; --o:12px; }
-  .reel-sound{ padding:9px 14px; }
+@media(max-width:760px), (prefers-reduced-motion:reduce){
+  .reel-stage{ height:auto !important; }
+  .reel-stick{ position:static; height:auto; padding:clamp(30px,5vh,60px) 0; }
+  .reel-frame{ width:100% !important; border-radius:0; }
+  .reel-frame b{ width:16px; height:16px; --o:10px; opacity:1; }
 }
 
 /* ---------- the four demo screens ---------- */
@@ -993,6 +1007,45 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 /* side-by-side actions inside the phone */
 .a-row2{ display:flex; gap:4%; }
 .a-row2 .a-btn{ flex:1; margin-top:0; font-size:.54rem; padding:5% 2%; }
+
+/* ---------- screens the client asked for: pre-check, report, booking ----------
+   Same scale language as the rest of the phone: every size is a fraction of a
+   rem so the whole app shrinks with the device, and the paddings are
+   percentages of the screen width. */
+.a-help{ font-size:.44rem; line-height:1.6; color:var(--agrey); margin:6% 0 0; }
+.a-step-n{ text-align:center; font-size:.48rem; color:var(--agrey); margin:3% 0 7%; }
+
+/* the report */
+.a-pill-row{ display:flex; justify-content:center; margin:0 0 5%; }
+.a-fact{ border-top:1px solid var(--aline); margin-top:4.5%; padding-top:4.5%; }
+.a-fact:first-of-type{ border-top:0; margin-top:0; padding-top:0; }
+.a-fact b{ display:block; font-size:.52rem; font-weight:800; letter-spacing:-.01em; color:var(--aink); }
+.a-fact p{ margin:2.5% 0 0; font-size:.46rem; line-height:1.55; color:#45505F; }
+.a-fact.lead b{ font-size:.6rem; letter-spacing:-.02em; }
+.a-fact.lead p{ font-size:.48rem; }
+.a-note{ margin:0 0 5%; font-size:.4rem; line-height:1.5; color:var(--agrey); }
+
+/* the three consultation lengths. Flex so the price sits on the title's
+   baseline and the description drops to its own line; the badge is absolute so
+   it cannot push that row down. */
+.a-len{
+  position:relative; display:flex; flex-wrap:wrap; align-items:baseline;
+  background:#fff; border:1px solid var(--aline); border-radius:11px;
+  padding:5.5% 5%; margin-bottom:4%; box-shadow:0 1px 3px rgba(16,24,40,.06);
+}
+.a-len:first-of-type{ margin-top:4%; }
+.a-len b{ font-size:.62rem; font-weight:800; letter-spacing:-.02em; color:var(--aink); }
+.a-len em{ margin-left:auto; font-style:normal; font-size:.66rem; font-weight:800; letter-spacing:-.02em; color:var(--ab); }
+.a-len p{ flex:0 0 100%; margin:2.5% 0 0; font-size:.44rem; line-height:1.5; color:var(--agrey); }
+.a-len .pop{
+  position:absolute; top:-7px; left:5%;
+  background:var(--alime); color:#fff; font-size:.36rem; font-weight:800;
+  letter-spacing:.06em; text-transform:uppercase; padding:2px 7px; border-radius:100px;
+}
+
+/* the pro card */
+.a-sub{ margin:-2% 0 0; font-size:.44rem; color:var(--agrey); }
+.a-addr{ margin:3% 0 5%; font-size:.44rem; line-height:1.5; color:#45505F; }
 
 /* ============================================================
    Tap affordance — only some controls in the demo are live, so

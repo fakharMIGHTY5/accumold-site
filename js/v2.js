@@ -405,36 +405,52 @@
 
   /* =========================================================
      3d. The film
-     Plays muted when it comes into view, pauses when it leaves, and never
-     carries on making noise off screen.
+     Scroll opens it: the frame widens from a card to the full viewport as you
+     travel past the stage. The width is capped in CSS by the height available
+     at 16:9, so growing it can never crop the picture. It waits on its poster
+     until someone presses play, and then it plays with sound — pressing play
+     is the permission, so no separate sound toggle is needed.
      ========================================================= */
-  $$('[data-reel]').forEach((reel) => {
-    const vid = $('video', reel);
-    const sound = $('[data-sound]', reel);
-    const label = () => {
-      sound.lastChild.textContent = vid.muted ? ' Sound off' : ' Sound on';
-      sound.setAttribute('aria-pressed', String(!vid.muted));
+  $$('[data-reel]').forEach((stage) => {
+    const stick = $('.reel-stick', stage);
+    const vid   = $('video', stage);
+    const play  = $('[data-play]', stage);
+    const reel  = stage.closest('.reel') || stage;
+    if (!vid) return;
+    const navH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 0;
+
+    /* --- the scroll-driven open --- */
+    let p = -1;
+    const draw = () => {
+      const travel = stage.offsetHeight - stick.offsetHeight;
+      const gone   = -stage.getBoundingClientRect().top + navH();
+      // full open three quarters of the way through, so it holds there a while
+      const n = travel > 0 ? clamp(gone / (travel * .75), 0, 1) : 1;
+      if (Math.abs(n - p) < .002) return;
+      p = n;
+      stage.style.setProperty('--p', n.toFixed(4));
+      stage.style.setProperty('--w', (34 + 66 * n).toFixed(2) + 'vw');
     };
+    let queued = false;
+    const q = () => { if (queued) return; queued = true; requestAnimationFrame(() => { queued = false; draw(); }); };
+    addEventListener('scroll', q, { passive: true });
+    addEventListener('resize', q);
+    draw();
 
-    sound.addEventListener('click', () => {
-      vid.muted = !vid.muted;
-      if (!vid.muted) vid.play().catch(() => { vid.muted = true; label(); });
-      label();
+    /* --- press to play --- */
+    if (play) play.addEventListener('click', () => {
+      vid.preload = 'auto';
+      vid.muted = false;
+      vid.play().then(() => reel.classList.add('playing'))
+                .catch(() => { vid.muted = true; vid.play().catch(() => {}); reel.classList.add('playing'); });
     });
+    vid.addEventListener('pause', () => reel.classList.remove('playing'));
+    vid.addEventListener('play',  () => reel.classList.add('playing'));
 
-    // fetched only when it is nearly in view, and played only while it is
-    let started = false;
+    // never keeps talking off screen
     new IntersectionObserver((es) => {
-      es.forEach((e) => {
-        if (e.isIntersecting) {
-          if (!started) { started = true; vid.preload = 'auto'; }
-          vid.play().catch(() => {});
-        } else {
-          vid.pause();
-          if (!vid.muted) { vid.muted = true; label(); }   // never plays on unseen
-        }
-      });
-    }, { rootMargin: '200px' }).observe(reel);
+      es.forEach((e) => { if (!e.isIntersecting && !vid.paused) vid.pause(); });
+    }, { threshold: 0 }).observe(stage);
   });
 
   /* =========================================================
