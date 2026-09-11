@@ -617,10 +617,11 @@
     const rows = $$('.an2-list div', root);
     const CAPS = [
       ['Download AccuMold.', 'Free on the App Store and Google Play. Scanning and reporting cost nothing.'],
-      ['Start your scan.', 'Point the camera at the concern, eight to twelve inches out. Tap the shutter.'],
+      ['Start your scan.', 'A few quick questions about what you can see, before the photo is taken.'],
+      ['Take the photo.', 'Point the camera at the concern, eight to twelve inches out. Tap the shutter.'],
       ['It reads the surface.', 'AccuMold analyses what you photographed against the conditions where you are.'],
       ['Get your report.', 'A clear result in plain English, and what to watch for next.'],
-      ['Book a live video consultation.', 'A certified mold expert, on video, before you hire anyone.'],
+      ['Book a live video consultation.', 'One flat price for the length you pick, paid once, up front.'],
       ['Find mold professionals near you.', 'Verified local pros for the work itself, filtered by distance.']
     ];
     let i = 0, timers = [];
@@ -638,7 +639,7 @@
       tabs.forEach((t, k) => t.setAttribute('aria-current', String(k === active)));
       if (cap) cap.innerHTML = '<h3>' + CAPS[n][0] + '</h3><p>' + CAPS[n][1] + '</p>';
 
-      if (n === 2) timers.push(setTimeout(() => show(3), 2600));
+      if (n === 3) timers.push(setTimeout(() => show(4), 2600));
 
     }
 
@@ -646,7 +647,7 @@
 
     // "Reporting" in the nav points here and opens on the report screen, since
     // that is what the label promises. It has no room of its own yet.
-    const toReport = () => { if (location.hash === '#report') show(3); };
+    const toReport = () => { if (location.hash === '#report') show(4); };
     addEventListener('hashchange', toReport);
     toReport();
     $$('[data-go]', root).forEach((el) => {
