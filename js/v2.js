@@ -592,11 +592,11 @@
     const bar = $('.an2-bar i', root);
     const rows = $$('.an2-list div', root);
     const CAPS = [
-      ['Download AccuMold.', 'Free on the App Store and Google Play. Scanning and reporting cost nothing.'],
-      ['Start your scan.', 'A few quick questions about what you can see, before the photo is taken.'],
+      ['Start your AccuMold scan.', 'Find the area you are concerned about and open a scan. Free, and there is no limit on them.'],
+      ['Answer one quick question.', 'What you can see about the surface, weighed alongside the photo.'],
       ['Take the photo.', 'Point the camera at the concern, eight to twelve inches out. Tap the shutter.'],
       ['It reads the surface.', 'AccuMold analyses what you photographed against the conditions where you are.'],
-      ['Get your report.', 'A clear result in plain English, and what to watch for next.'],
+      ['Get your report.', 'A clear result in plain English, and the next step if it finds something.'],
       ['Book a live video consultation.', 'One flat price for the length you pick, paid once, up front.'],
       ['Find mold professionals near you.', 'Verified local pros for the work itself, filtered by distance.']
     ];

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=106">
+<link rel="stylesheet" href="css/v2.css?v=108">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -165,8 +165,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   <div class="inner">
     <div class="mid" data-r style="margin-bottom:clamp(18px,2.6vh,30px)">
       <p class="kicker">Spot it &middot; Scan it &middot; Review Report &middot; Schedule Consultation</p>
-      <h2 class="d3">Try the Scan. It works like the App.</h2>
-      <p class="t1 narrow-w" style="margin:18px auto 0">Here&rsquo;s how AccuMold works.</p>
+      <h2 class="d3">Here&rsquo;s a Demo of How AccuMold Works</h2>
       <ol class="flow">
         <li>Identify suspicious mold area</li>
         <li>Upload a photo of your mold concern</li>
@@ -182,22 +181,21 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
           <div class="island"></div>
           <div class="demo">
 
-            <!-- 0 · download -->
+            <!-- 0 · start your AccuMold scan -->
             <div class="view on">
-              <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-scroll a-pad a-mid">
-                <div class="a-logo"><img src="assets/ui/logo-full.png" alt="AccuMold"><small>Powered by AccuMold</small></div>
-                <p class="a-lead">Turn your smartphone into a visual mold detector.</p>
-                <p class="a-help mid">Free to download. Free to scan. Free to report.</p>
-                <div class="a-store">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.7ZM14.2 5.6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3Z"/></svg>
-                  <div><span>Download on the</span><strong>App Store</strong></div>
+              <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-hd"><h4>&#128247;&nbsp; 1 &middot; Start Your AccuMold Scan</h4><p>Visual Mold Analysis</p></div>
+              <div class="a-scroll a-pad">
+                <div class="a-card">
+                  <h6>Before you begin</h6>
+                  <ul class="a-list">
+                    <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Find the area you are concerned about</li>
+                    <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Answer one quick question about it</li>
+                    <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Take a photo and get your report</li>
+                  </ul>
                 </div>
-                <div class="a-store">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.5v16.4c0 .7.2 1.2.5 1.5l.1.1 9.2-9.2v-.2L3.6 2.3ZM16 15.3l-3-3v-.2l3-3 .1.1 3.6 2c1 .6 1 1.6 0 2.2l-3.7 1.9ZM15.9 15.4 12.8 12.3 3.6 21.5c.3.4.9.4 1.5.1l10.8-6.2M15.9 8.6 5.1 2.4c-.6-.4-1.2-.3-1.5.1l9.2 9.2 3.1-3.1Z"/></svg>
-                  <div><span>Get it on</span><strong>Google Play</strong></div>
-                </div>
-                <div class="a-btn" data-go="1" style="margin-top:9%">Start your AccuMold Scan &rsaquo;</div>
+                <div class="a-btn" data-go="1">Start Your AccuMold Scan &rsaquo;</div>
+                <p class="a-help">Free, unlimited, and nothing leaves your phone until you send it.</p>
               </div>
             </div>
 
@@ -218,7 +216,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
             <!-- 2 · camera, take the photo -->
             <div class="view">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-hd"><h4>&#128247;&nbsp; 1 &middot; Start Your AccuMold Scan</h4><p>Take Photo</p></div>
+              <div class="a-hd"><h4>&#128247;&nbsp; 1 &middot; Take the Photo</h4><p>Frame the concern</p></div>
               <div class="a-cam short">
                 <img src="assets/img/mold-12.jpg" alt="">
                 <p class="a-tip">Be 8&ndash;12 inches away. Zoom in so the suspicious spot fills the screen.</p>
@@ -261,17 +259,17 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
             <div class="view">
               <div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
               <div class="a-scroll a-pad">
-                <div class="a-pill-row"><span class="a-pill">NO MOLD DETECTED</span></div>
+                <div class="a-pill-row"><span class="a-pill red">MOLD DETECTED</span></div>
                 <div class="a-card">
                   <h6>AccuMold Analysis</h6>
                   <div class="a-fact lead">
-                    <b>Looking clean &mdash; keep it that way</b>
-                    <p>No mold detected in this image. Good news &mdash; but moisture problems often start out of sight, so it pays to know the warning signs.</p>
+                    <b>Mold detected in this area</b>
+                    <p>Growth is visible on the surface you photographed, and the pattern suggests moisture is still reaching it.</p>
                   </div>
-                  <div class="a-fact"><b>&#128167; Watch for moisture</b><p>Leaks, condensation, and humidity above 60&#37; are what let mold start.</p></div>
+                  <div class="a-fact"><b>&#128167; What happens next</b><p>Your report is ready to download. The next step is a live consultation with a certified pro.</p></div>
                 </div>
                 <p class="a-note">Please note: AccuMold does not test for airborne mold. For concerns about air quality, consult a professional mold inspector.</p>
-                <div class="a-btn" data-go="5">Book a live video consultation &rsaquo;</div>
+                <div class="a-btn" data-go="5">Book a Live Video Consultation &rsaquo;</div>
               </div>
             </div>
 
@@ -313,7 +311,24 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
     <div class="demo-ui">
       <div class="cap"></div>
       <div class="track">
-        <button data-view="0">Download</button><button data-view="1">Scan</button><button data-view="5">Consult</button><button data-view="6">Find a pro</button>
+        <button data-view="0">Scan</button><button data-view="4">Report</button><button data-view="5">Consult</button><button data-view="6">Find a pro</button>
+      </div>
+    </div>
+
+    <!-- Catch them here. Someone who has just walked the demo is as close to
+         downloading as they will get, and making them scroll on to find the
+         buttons loses some of them. -->
+    <div class="demo-get" data-r>
+      <h3 class="d3">Download AccuMold.</h3>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/us/app/accumold-ai-mold-detector/id6756345105" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.8-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.4-.9-2.4-3.7ZM14.2 5.6c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 0 2.1-.5 2.7-1.3Z"/></svg>
+          <div><span>Download on the</span><strong>App Store</strong></div>
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.accumold.ai" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.5v16.4c0 .7.2 1.2.5 1.5l.1.1 9.2-9.2v-.2L3.6 2.3ZM16 15.3l-3-3v-.2l3-3 .1.1 3.6 2c1 .6 1 1.6 0 2.2l-3.7 1.9ZM15.9 15.4 12.8 12.3 3.6 21.5c.3.4.9.4 1.5.1l10.8-6.2M15.9 8.6 5.1 2.4c-.6-.4-1.2-.3-1.5.1l9.2 9.2 3.1-3.1Z"/></svg>
+          <div><span>Get it on</span><strong>Google Play</strong></div>
+        </a>
       </div>
     </div>
   </div>
@@ -348,7 +363,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
     <div class="who-pick" data-r data-d="1">
       <button aria-current="true">Renters</button>
       <button>Homeowners</button>
-      <button>Buyers &amp; managers</button>
+      <button>Home Buyers &amp; Property Managers</button>
     </div>
 
     <div class="who-stage" data-r data-d="2">
@@ -365,7 +380,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
       <div class="who-card">
         <p class="who-q">&ldquo;I'm looking at four units this week.&rdquo;</p>
         <h3 class="d2">Screen a unit<br>before you sign.</h3>
-        <p class="t1 narrow-w">A remediation you didn't price into the offer is the difference between a good deal and a bad one. Walk the rooms, scan as you go.</p>
+        <p class="t1 narrow-w">A remediation cost you didn't factor into the offer is the difference between a good deal and a bad one. Walk the rooms, scan as you go.</p>
       </div>
     </div>
   </div>
@@ -380,18 +395,11 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
       <p class="t1 narrow-w" style="margin:26px auto 0">The app matches you with certified local professionals when remediation is needed, or puts a certified inspector on a live call with you first.</p>
     </div>
 
-    <div class="tiers" style="margin-top:clamp(44px,7vh,80px)" data-r data-d="1">
-      <div class="tier"><div class="lb">Scan &amp; report</div><div class="amt">$0</div><p>Unlimited. Forever.</p></div>
-      <div class="tier"><div class="lb">30 minutes</div><div class="amt"><sup>$</sup>250</div><p>Live inspector, real answers.</p></div>
-      <div class="tier"><div class="lb">45 minutes</div><div class="amt"><sup>$</sup>375</div><p>Certified walkthrough.</p></div>
-      <div class="tier"><div class="lb">60 minutes</div><div class="amt"><sup>$</sup>500</div><p>Complete action plan.</p></div>
-    </div>
-
-    <div class="row mid" style="margin-top:clamp(34px,5vh,54px)" data-r data-d="2">
+    <div class="row mid" style="margin-top:clamp(40px,6vh,64px)" data-r data-d="1">
       <a class="b" href="consultations.html">Book a consultation</a>
     </div>
 
-    <div class="approved" data-r data-d="3">
+    <div class="approved" data-r data-d="2">
       <span class="num">Approved &amp; accredited</span>
       <div class="marks-l">
         <span><img class="iaqa" src="assets/img/trust-iaqa.png" alt="Indoor Air Quality Association"></span>
@@ -406,7 +414,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   <div class="inner mid">
     <div data-r>
       <p class="kicker">Stop guessing</p>
-      <h2 class="d2 narrow">Find it before it finds you.</h2>
+      <h2 class="d2 narrow">Find mold before it finds you.</h2>
       <p class="t1" style="max-width:34ch;margin:28px auto 44px">Free to download. Free to scan. Free to report.</p>
     </div>
     <div class="stores" data-r data-d="1">
@@ -444,12 +452,12 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
       </div>
     </div>
     <div class="foot-base">
-      <span>© AccuMold · Built by Moisture Master Pros</span>
+      <span>&copy;2026 by AccuMold. All rights reserved.</span>
       <span>accumold.app</span>
     </div>
   </div>
 </footer>
 
-<script src="js/v2.js?v=106"></script>
+<script src="js/v2.js?v=108"></script>
 </body>
 </html>
