@@ -1126,6 +1126,93 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .who-card h3{ margin:0 0 24px; }
 .who-card .t1{ margin-inline:auto; }
 
+/* ---------- speaker kit ----------
+   A press page, so it is built to be scanned and grabbed from rather than
+   read: every asset is a link that downloads, and the bios sit in blocks
+   someone can select and paste straight into a programme. */
+.sk-top{ padding-top:calc(var(--nav-h) + clamp(50px,9vh,110px)); }
+
+.sk-split{ display:grid; grid-template-columns:minmax(0,.86fr) minmax(0,1fr); gap:clamp(30px,5vw,72px); align-items:start; }
+@media(max-width:900px){ .sk-split{ grid-template-columns:1fr; } }
+
+.sk-photo{ margin:0; position:relative; }
+.sk-photo img{ width:100%; height:auto; display:block; border-radius:14px; background:var(--blue); }
+.sk-photo figcaption{ margin-top:12px; color:var(--ink-2); }
+.sk-dl{
+  display:inline-block; margin-top:10px; padding:8px 14px; border-radius:100px;
+  font-size:.82rem; font-weight:600; color:var(--blue);
+  box-shadow:inset 0 0 0 1px rgba(5,114,233,.3); transition:background .2s, box-shadow .2s;
+}
+.sk-dl:hover{ background:rgba(5,114,233,.07); box-shadow:inset 0 0 0 1px rgba(5,114,233,.55); }
+
+.sk-role{ margin:6px 0 clamp(22px,3.4vh,34px); color:var(--ink-2); }
+
+.sk-bio{ border-top:1px solid var(--line); padding-top:18px; margin-top:18px; }
+.sk-bio:first-of-type{ margin-top:0; }
+.sk-bio-head{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin-bottom:10px; }
+.sk-bio-head h4{ margin:0; font-size:.95rem; font-weight:700; letter-spacing:-.01em; }
+.sk-bio-head span{ color:var(--ink-2); opacity:.7; }
+.sk-bio p{ margin:0 0 10px; font-size:1rem; line-height:1.65; color:var(--ink-2); }
+.sk-bio p:last-child{ margin-bottom:0; }
+
+.sk-topics{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  gap:clamp(18px,2.4vw,30px); margin-top:clamp(30px,4.5vh,50px);
+}
+.sk-topics div{ background:rgba(255,255,255,.1); border-radius:14px; padding:clamp(20px,2.4vw,28px); }
+.sk-topics b{ display:block; font-size:1.02rem; font-weight:700; letter-spacing:-.015em; margin-bottom:8px; }
+.sk-topics p{ margin:0; font-size:.92rem; line-height:1.6; color:rgba(255,255,255,.78); }
+
+.sk-facts{ margin:clamp(30px,4.5vh,50px) 0 0; }
+.sk-facts > div{
+  display:grid; grid-template-columns:minmax(0,13rem) minmax(0,1fr); gap:clamp(14px,2.4vw,34px);
+  border-top:1px solid var(--line); padding:16px 0;
+}
+.sk-facts > div:last-child{ border-bottom:1px solid var(--line); }
+.sk-facts dt{ font-weight:700; letter-spacing:-.01em; }
+.sk-facts dd{ margin:0; color:var(--ink-2); line-height:1.6; }
+@media(max-width:620px){ .sk-facts > div{ grid-template-columns:1fr; gap:4px; } }
+
+.sk-stats{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));
+  gap:clamp(20px,3vw,40px); margin-top:clamp(34px,5vh,56px);
+}
+.sk-stats b{ display:block; font-family:var(--fd); font-size:clamp(2.1rem,4vw,3rem); font-weight:800; letter-spacing:-.04em; line-height:1; color:var(--blue); }
+.sk-stats span{ display:block; margin-top:10px; font-size:.9rem; line-height:1.55; color:var(--ink-2); }
+
+.sk-grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));
+  gap:clamp(14px,1.8vw,22px); margin-top:clamp(30px,4.5vh,50px);
+}
+.sk-card{
+  display:block; border-radius:14px; padding:12px 12px 16px;
+  box-shadow:inset 0 0 0 1px var(--line); transition:box-shadow .22s, transform .22s var(--ease);
+}
+.sk-card:hover{ box-shadow:inset 0 0 0 1px rgba(5,114,233,.55); transform:translateY(-2px); }
+.sk-card-art{
+  aspect-ratio:16/10; border-radius:9px; overflow:hidden; background:var(--ink);
+  display:grid; place-items:center; margin-bottom:12px;
+}
+.sk-card-art.light{ background:#F2F5F9; }
+.sk-card-art.zip{ background:rgba(5,114,233,.08); color:var(--blue); }
+.sk-card-art.zip svg{ width:34px; height:34px; }
+.sk-card-art img{ max-width:62%; max-height:58%; object-fit:contain; }
+.sk-card-art img.sm{ max-width:34%; }
+.sk-card-art img.cover{ max-width:100%; max-height:100%; width:100%; height:100%; object-fit:cover; }
+.sk-card b{ display:block; font-size:.95rem; font-weight:700; letter-spacing:-.01em; }
+.sk-card span{ display:block; margin-top:3px; color:var(--ink-2); opacity:.75; }
+
+.sk-colors{ margin-top:clamp(30px,4.5vh,48px); }
+.sk-colors > span{ display:block; color:var(--ink-2); opacity:.75; margin-bottom:14px; }
+.sk-colors > div{ display:flex; flex-wrap:wrap; gap:clamp(16px,2.4vw,34px); }
+.sk-colors i{
+  width:34px; height:34px; border-radius:9px; background:var(--c);
+  display:inline-block; vertical-align:middle; margin-right:10px;
+  box-shadow:inset 0 0 0 1px rgba(10,16,32,.12);
+}
+.sk-colors > div > span{ display:inline-flex; align-items:center; font-size:.92rem; }
+.sk-colors b{ font-weight:400; color:var(--ink-2); margin-left:8px; }
+
 /* ---------- journal: coming soon ---------- */
 /* The site's own reticle, pointed at an empty field. It says "nothing here
    yet" in the product's language rather than with another sentence. */

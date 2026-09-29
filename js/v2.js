@@ -593,7 +593,7 @@
     const rows = $$('.an2-list div', root);
     const CAPS = [
       ['Start your AccuMold scan.', 'Find the area you are concerned about and open a scan. Free, and there is no limit on them.'],
-      ['Answer one quick question.', 'What you can see about the surface, weighed alongside the photo.'],
+      ['Answer five quick questions.', 'What you can see about the surface, weighed alongside the photo.'],
       ['Take the photo.', 'Point the camera at the concern, eight to twelve inches out. Tap the shutter.'],
       ['It reads the surface.', 'AccuMold analyses what you photographed against the conditions where you are.'],
       ['Get your report.', 'A clear result in plain English, and the next step if it finds something.'],
