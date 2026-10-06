@@ -696,6 +696,12 @@
       el.addEventListener('click', () => {
         $$('[data-pick]', el.parentElement).forEach((o) => o.classList.remove('sel'));
         el.classList.add('sel');
+        // a consultation length carries its own price through to Confirm & pay,
+        // so the next screen bills what was actually chosen
+        if (el.dataset.price) {
+          $$('[data-pay-price]', root).forEach((n) => { n.textContent = el.dataset.price; });
+          $$('[data-pay-mins]', root).forEach((n) => { n.textContent = el.dataset.mins; });
+        }
         clear();
         timers.push(setTimeout(() => show(parseInt(el.dataset.next, 10)), 420));
       });

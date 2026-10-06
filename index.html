@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=123">
+<link rel="stylesheet" href="css/v2.css?v=127">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -299,11 +299,11 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
               <div class="a-scroll a-pad">
                 <p class="a-help" style="margin-top:0">Get a live video consultation, customized next steps and answers to your questions, before you hire anyone.</p>
                 <p class="a-t">What you get</p>
-                <ul class="a-list">
-                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Real-time visual inspection</li>
-                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>A customized next-steps plan</li>
-                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Your questions answered</li>
-                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Confidence before hiring</li>
+                <ul class="a-list rich">
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span><div><b>Real-time visual inspection</b><span class="d">Show the expert exactly what you&rsquo;re seeing via video</span></div></li>
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span><div><b>A customized next-steps plan</b><span class="d">Get a specific action plan, not generic advice</span></div></li>
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span><div><b>Your questions answered</b><span class="d">No more guessing, talk through your concerns</span></div></li>
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span><div><b>Confidence before hiring</b><span class="d">Know what to ask contractors before you commit</span></div></li>
                 </ul>
                 <div class="a-btn" data-go="6">Get Started &rsaquo;</div>
               </div>
@@ -316,9 +316,9 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
               <div class="a-scroll a-pad">
                 <p class="a-q" style="font-size:.68rem">How long do you need?</p>
                 <p class="a-help">One flat price for the length you pick. Pay once, up front &mdash; no per-minute charges and nothing extra afterwards.</p>
-                <div class="a-len" data-pick data-next="7"><span class="pop">Most popular</span><b>30 min</b><em>$250</em><p>Full walkthrough of your scan results + next steps</p></div>
-                <div class="a-len" data-pick data-next="7"><b>45 min</b><em>$375</em><p>Deeper dive &mdash; multiple areas or complex situations</p></div>
-                <div class="a-len" data-pick data-next="7"><b>60 min</b><em>$500</em><p>Comprehensive &mdash; full home assessment + remediation plan</p></div>
+                <div class="a-len" data-pick data-next="7" data-mins="30" data-price="250"><span class="pop">Most popular</span><b>30 min</b><em>$250</em><p>Full walkthrough of your scan results + next steps</p></div>
+                <div class="a-len" data-pick data-next="7" data-mins="45" data-price="375"><b>45 min</b><em>$375</em><p>Deeper dive &mdash; multiple areas or complex situations</p></div>
+                <div class="a-len" data-pick data-next="7" data-mins="60" data-price="500"><b>60 min</b><em>$500</em><p>Comprehensive &mdash; full home assessment + remediation plan</p></div>
               </div>
             </div>
 
@@ -330,17 +330,17 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
                 <p class="a-help" style="margin-top:0">Pay now to reserve your consultation. You&rsquo;ll pick a time on the next step.</p>
                 <div class="a-card">
                   <div class="a-pay">
-                    <div><b>AccuPro Live Consultation</b><span>30 minutes with a certified mold expert</span></div>
-                    <em>$250</em>
+                    <div><b>AccuPro Live Consultation</b><span><i data-pay-mins>30</i> minutes with a certified mold expert</span></div>
+                    <em>$<i data-pay-price>250</i></em>
                   </div>
                   <div class="a-pay total">
                     <div><b>Total due today</b></div>
-                    <em>$250</em>
+                    <em>$<i data-pay-price>250</i></em>
                   </div>
                 </div>
                 <div class="a-code"><span>Discount code</span><i>Apply</i></div>
                 <p class="a-secure">&#128274; Secured by Stripe. Your card details are entered in Stripe&rsquo;s payment sheet, never in this app.</p>
-                <div class="a-btn" data-go="0">Pay $250 &rsaquo;</div>
+                <div class="a-btn" data-go="0">Pay $<i data-pay-price>250</i> &rsaquo;</div>
               </div>
             </div>
 
@@ -520,6 +520,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=123"></script>
+<script src="js/v2.js?v=127"></script>
 </body>
 </html>
