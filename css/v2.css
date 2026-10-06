@@ -1040,19 +1040,25 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   box-shadow:0 0 10px rgba(5,114,233,.5); animation:amSweep 2.8s ease-in-out infinite;
 }
 
-/* ---------- find-a-pro screen ---------- */
-.a-chips{ display:flex; gap:4%; }
+/* ---------- find-a-pro screen ----------
+   Laid out as the app has it: distance in its own card behind a label, the
+   BBB filter as a full-width pair under it, then the count, then the
+   listings. They were stacked flush before and collided. */
+.a-filter{ display:flex; align-items:center; gap:4%; padding:4% 5%; }
+.a-filter-l{ flex:none; font-size:.44rem; font-weight:700; color:var(--aink); }
+.a-chips{ display:flex; gap:3.5%; flex:1; }
 .a-chips span{
-  flex:1; text-align:center; font-size:.46rem; padding:3.5% 2%; border-radius:7px;
-  background:#EEF2F7; color:#6B7280;
+  flex:1; text-align:center; font-size:.42rem; padding:3.5% 1%; border-radius:100px;
+  background:#EEF2F7; color:#6B7280; white-space:nowrap;
 }
 .a-chips span.on{ background:#1E6FB8; color:#fff; font-weight:700; }
-.a-seg{ display:flex; gap:4%; }
+.a-seg{ display:flex; gap:3.5%; margin-bottom:4%; }
 .a-seg span{
-  flex:1; text-align:center; font-size:.48rem; padding:3.5% 2%; border-radius:7px;
+  flex:1; text-align:center; font-size:.46rem; padding:4% 2%; border-radius:9px;
   background:#EEF2F7; color:#6B7280; font-weight:600;
 }
 .a-seg span.on{ background:#1E6FB8; color:#fff; }
+.a-found{ margin:0 0 4%; font-size:.42rem; font-style:italic; color:var(--agrey); }
 .a-pro{ display:flex; gap:4%; align-items:center; }
 .a-pro-mark{
   width:14%; aspect-ratio:1; border-radius:9px; background:#1E6FB8; color:#fff;
@@ -1065,6 +1071,22 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 /* side-by-side actions inside the phone */
 .a-row2{ display:flex; gap:4%; }
 .a-row2 .a-btn{ flex:1; margin-top:0; font-size:.54rem; padding:5% 2%; }
+
+/* ---------- confirm and pay ---------- */
+.a-pay{ display:flex; align-items:flex-start; gap:4%; }
+.a-pay b{ display:block; font-size:.52rem; font-weight:800; color:var(--aink); letter-spacing:-.01em; }
+.a-pay span{ display:block; margin-top:2%; font-size:.42rem; line-height:1.45; color:var(--agrey); }
+.a-pay em{ margin-left:auto; font-style:normal; font-size:.56rem; font-weight:800; color:var(--aink); }
+.a-pay.total{ border-top:1px solid var(--aline); margin-top:4.5%; padding-top:4.5%; }
+.a-pay.total em{ color:var(--ab); font-size:.62rem; }
+.a-code{
+  display:flex; align-items:center; gap:4%;
+  background:#fff; border:1px solid var(--aline); border-radius:10px;
+  padding:4% 5%; margin-bottom:4%;
+}
+.a-code span{ flex:1; font-size:.46rem; color:#9AA3B0; }
+.a-code i{ font-style:normal; font-size:.46rem; font-weight:700; color:var(--ab); }
+.a-secure{ margin:0 0 5%; font-size:.4rem; line-height:1.5; color:var(--agrey); }
 
 /* ---------- the dashboard, the way into the three flows ----------
    The app's home screen numbers what it does one, two, three. Each card is

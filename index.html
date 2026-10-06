@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=121">
+<link rel="stylesheet" href="css/v2.css?v=123">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -206,7 +206,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
                     <span class="a-btn">&#128197;&nbsp; Meet with an AccuMold Certified Pro</span>
                   </div>
                 </div>
-                <div class="a-home" data-go="7">
+                <div class="a-home" data-go="8">
                   <div class="a-home-n">3</div>
                   <div>
                     <b>Find BBB Mold Professionals Near You</b>
@@ -288,7 +288,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
                 </div>
                 <p class="a-note">Please note: AccuMold does not test for airborne mold. For concerns about air quality, consult a professional mold inspector.</p>
                 <div class="a-btn" data-go="5">Book a Live Video Consultation &rsaquo;</div>
-                <div class="a-btn o" data-go="7">Find BBB Mold Professionals Near You &rsaquo;</div>
+                <div class="a-btn o" data-go="8">Find BBB Mold Professionals Near You &rsaquo;</div>
               </div>
             </div>
 
@@ -322,13 +322,39 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
               </div>
             </div>
 
-            <!-- 7 · find BBB mold professionals -->
+            <!-- 7 · confirm and pay -->
+            <div class="view">
+              <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-hd"><h4>&#128197;&nbsp; 2 &middot; Confirm &amp; pay</h4><p>Reserve your consultation</p></div>
+              <div class="a-scroll a-pad">
+                <p class="a-help" style="margin-top:0">Pay now to reserve your consultation. You&rsquo;ll pick a time on the next step.</p>
+                <div class="a-card">
+                  <div class="a-pay">
+                    <div><b>AccuPro Live Consultation</b><span>30 minutes with a certified mold expert</span></div>
+                    <em>$250</em>
+                  </div>
+                  <div class="a-pay total">
+                    <div><b>Total due today</b></div>
+                    <em>$250</em>
+                  </div>
+                </div>
+                <div class="a-code"><span>Discount code</span><i>Apply</i></div>
+                <p class="a-secure">&#128274; Secured by Stripe. Your card details are entered in Stripe&rsquo;s payment sheet, never in this app.</p>
+                <div class="a-btn" data-go="0">Pay $250 &rsaquo;</div>
+              </div>
+            </div>
+
+            <!-- 8 · find BBB mold professionals -->
             <div class="view">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
               <div class="a-hd"><h4>&#128269;&nbsp; 3 &middot; Mold Professionals Near You</h4><p>BBB accredited, close to home</p></div>
               <div class="a-scroll a-pad">
-                <div class="a-chips"><span>10 miles</span><span class="on">25 miles</span><span>50 miles</span></div>
+                <div class="a-card a-filter">
+                  <span class="a-filter-l">Max Distance:</span>
+                  <div class="a-chips"><span>10 mi</span><span class="on">25 mi</span><span>50 mi</span></div>
+                </div>
                 <div class="a-seg"><span class="on">BBB Accredited</span><span>All BBB Listed</span></div>
+                <p class="a-found">1 BBB-accredited professional within 25 miles</p>
                 <div class="a-card">
                   <h6>Moisture Master Pros</h6>
                   <p class="a-sub">General Contractor &middot; &#11088; 4.8 &middot; BBB Accredited</p>
@@ -347,7 +373,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
     <div class="demo-ui">
       <div class="cap"></div>
       <div class="track">
-        <button data-view="0">Home</button><button data-view="1">Scan</button><button data-view="4">Report</button><button data-view="5">Video Consult</button><button data-view="7">Find a Mold Pro</button>
+        <button data-view="0">Home</button><button data-view="1">Scan</button><button data-view="4">Report</button><button data-view="5">Video Consult</button><button data-view="8">Find a Mold Pro</button>
       </div>
     </div>
 
@@ -494,6 +520,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=121"></script>
+<script src="js/v2.js?v=123"></script>
 </body>
 </html>

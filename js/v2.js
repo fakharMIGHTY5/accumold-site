@@ -655,6 +655,7 @@
       ['Get your report.', 'A clear result in plain English, and the two things you can do about it.'],
       ['Talk to a certified mold expert.', 'A live video consultation, a plan for what to do next, and your questions answered.'],
       ['Pick your length.', 'One flat price for the time you book, paid once, up front.'],
+      ['Confirm and pay.', 'Card details go to Stripe, not to AccuMold. Then you pick a time.'],
       ['Find a pro near you.', 'BBB accredited mold and moisture professionals, filtered by distance.']
     ];
     let i = 0, timers = [];
