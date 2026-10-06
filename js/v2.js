@@ -533,39 +533,95 @@
 
   /* =========================================================
      3g. Count-up stats
+     One counter, used both by the stats that run once on scroll and by the
+     cycling market panel below, so a number always rises the same way.
      ========================================================= */
+  // ends is an array: one number, or two for a range that counts together.
+  function countTo(el, ends, o) {
+    o = o || {};
+    const dec = o.dec || 0, join = o.join || '', pre = o.pre || '', suf = o.suf || '';
+    const dur = o.dur || 1500;
+    const fmt = (v) => v.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    const at = (vals) => { el.textContent = pre + vals.map(fmt).join(join) + suf; };
+    const final = () => at(ends);
+    if (el._countStop) el._countStop();          // a cycle may interrupt the last one
+    if (reduced) { final(); return; }
+    at(ends.map(() => 0));
+    const t0 = performance.now();
+    let dead = false;
+    const done = () => { dead = true; el._countStop = null; final(); };
+    // rAF stops while the tab is hidden, which would strand a partial number.
+    // The timer finishes the job and kills the loop with it, so a frame that
+    // arrives late cannot paint a half-counted number over the settled one.
+    const settle = setTimeout(done, dur + 120);
+    el._countStop = () => { dead = true; clearTimeout(settle); };
+    (function tick(now) {
+      if (dead) return;
+      const p = clamp((now - t0) / dur, 0, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      at(ends.map((v) => v * e));
+      if (p < 1) requestAnimationFrame(tick);
+      else { clearTimeout(settle); done(); }
+    })(t0);
+  }
+
   const cio = new IntersectionObserver((es) => {
     es.forEach((en) => {
       if (!en.isIntersecting) return;
       const el = en.target;
       cio.unobserve(el);
-      // data-count takes one number, or two separated by | for a range, which
-      // then count together. data-dec keeps decimal places that would
-      // otherwise round away.
-      const end = el.dataset.count.split('|').map(parseFloat);
-      const dec = parseInt(el.dataset.dec || '0', 10);
-      const join = el.dataset.join || '';
-      const pre = el.dataset.pre || '';
-      const suf = el.dataset.suf || '';
-      const fmt = (v) => v.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
-      const at = (vals) => { el.textContent = pre + vals.map(fmt).join(join) + suf; };
-      const final = () => at(end);
-      if (reduced) { final(); return; }
-      // the real figure ships in the markup, so counting starts from zero here
-      at(end.map(() => 0));
-      const dur = 1500, t0 = performance.now();
-      // rAF stops while the tab is hidden, which would strand a partial number
-      const settle = setTimeout(final, dur + 120);
-      (function tick(now) {
-        const p = clamp((now - t0) / dur, 0, 1);
-        const e = 1 - Math.pow(1 - p, 3);
-        at(end.map((v) => v * e));
-        if (p < 1) requestAnimationFrame(tick);
-        else { clearTimeout(settle); final(); }
-      })(t0);
+      countTo(el, el.dataset.count.split('|').map(parseFloat), {
+        dec: parseInt(el.dataset.dec || '0', 10),
+        join: el.dataset.join || '',
+        pre: el.dataset.pre || '',
+        suf: el.dataset.suf || ''
+      });
     });
   }, { threshold: 0.4 });
   $$('[data-count]').forEach((el) => cio.observe(el));
+
+  /* =========================================================
+     3h. The market panel, two states in turn
+     Figures all come from one source so the two states are comparable:
+     FDP Mold Remediation, "Mold Risk Across America". Florida is first of
+     forty-nine on their index; Pennsylvania is mid-table on climate but
+     a quarter of its housing predates 1939, which is the point of showing it.
+     ========================================================= */
+  $$('[data-cycle]').forEach((root) => {
+    const STATES = [
+      { stats: [ { v: [72],    suf: '%' },
+                 { v: [24, 48], join: '\u2013' },
+                 { v: [38.76], dec: 2 } ] },
+      { stats: [ { v: [65.5],  dec: 1, suf: '%' },
+                 { v: [24, 48], join: '\u2013' },
+                 { v: [33.37], dec: 2 } ] }
+    ];
+    const lines = $$('.cyc-lines span', root);
+    const dots  = $$('.cyc-dots i', root);
+    const nums  = STATES[0].stats.map((_, i) => $('[data-cyc="' + i + '"]', root));
+    if (!lines.length || nums.some((n) => !n)) return;
+
+    let i = 0, timer = null;
+
+    const paint = (n) => {
+      lines.forEach((l, k) => l.classList.toggle('on', k === n));
+      dots.forEach((d, k) => d.classList.toggle('on', k === n));
+      STATES[n].stats.forEach((s, k) => countTo(nums[k], s.v, s));
+    };
+
+    // Only while it is on screen: it should always be seen from Florida, and
+    // there is no sense counting numbers nobody is looking at.
+    const stop = () => { clearInterval(timer); timer = null; };
+    const start = () => {
+      if (timer) return;
+      i = 0; paint(0);
+      timer = setInterval(() => { i = (i + 1) % STATES.length; paint(i); }, 6200);
+    };
+
+    new IntersectionObserver((es) => {
+      es.forEach((e) => (e.isIntersecting ? start() : stop()));
+    }, { threshold: 0.35 }).observe(root);
+  });
 
   /* =========================================================
      4. Reveals

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=118">
+<link rel="stylesheet" href="css/v2.css?v=120">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -144,16 +144,26 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
 </section>
 
 <!-- ============ THE MARKET ============ -->
-<section class="panel blue" id="why">
+<section class="panel blue" id="why" data-cycle>
   <div class="inner mid">
     <div data-r>
       <p class="kicker">Why it matters here</p>
-      <h2 class="d2 narrow">Florida is the most mold-exposed state in the country.</h2>
+      <!-- Both lines are stacked in the same grid cell, so the heading is
+           already as tall as the taller of the two and nothing below it jumps
+           when they swap. -->
+      <h2 class="d2 narrow cyc-lines">
+        <span class="on">Florida is the most mold-exposed state in the country.</span>
+        <span>Pennsylvania&rsquo;s homes are among the oldest in America.</span>
+      </h2>
     </div>
     <div class="stats" data-r data-d="1">
-      <div><b data-count="74" data-suf="%">74%</b><span>Average relative humidity in Florida</span></div>
-      <div><b data-count="24|48" data-join="&ndash;">24&ndash;48</b><span>Hours for mold to take hold</span></div>
-      <div><b data-count="27.6" data-dec="1" data-suf="%">27.6%</b><span>Of 2022 US home insurance losses were water or mold</span></div>
+      <div><b data-cyc="0">72%</b><span>Average relative humidity</span></div>
+      <div><b data-cyc="1">24&ndash;48</b><span>Hours for mold to take hold</span></div>
+      <div><b data-cyc="2">38.76</b><span>Mold index, out of 40</span></div>
+    </div>
+    <div class="cyc-foot" data-r data-d="2">
+      <div class="cyc-dots" aria-hidden="true"><i class="on"></i><i></i></div>
+      <p class="cyc-src num">Source: FDP Mold Remediation, Mold Risk Across America</p>
     </div>
   </div>
 </section>
@@ -452,6 +462,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=118"></script>
+<script src="js/v2.js?v=120"></script>
 </body>
 </html>
