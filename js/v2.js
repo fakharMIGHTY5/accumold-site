@@ -648,13 +648,14 @@
     const bar = $('.an2-bar i', root);
     const rows = $$('.an2-list div', root);
     const CAPS = [
-      ['Start your AccuMold scan.', 'Find the area you are concerned about and open a scan. Free, and there is no limit on them.'],
+      ['Everything starts here.', 'The app does three things, and the dashboard is the way into each of them. Tap one.'],
       ['Answer five quick questions.', 'What you can see about the surface, weighed alongside the photo.'],
       ['Take the photo.', 'Point the camera at the concern, eight to twelve inches out. Tap the shutter.'],
       ['It reads the surface.', 'AccuMold analyses what you photographed against the conditions where you are.'],
-      ['Get your report.', 'A clear result in plain English, and the next step if it finds something.'],
-      ['Book a live video consultation.', 'One flat price for the length you pick, paid once, up front.'],
-      ['Find mold professionals near you.', 'Verified local pros for the work itself, filtered by distance.']
+      ['Get your report.', 'A clear result in plain English, and the two things you can do about it.'],
+      ['Talk to a certified mold expert.', 'A live video consultation, a plan for what to do next, and your questions answered.'],
+      ['Pick your length.', 'One flat price for the time you book, paid once, up front.'],
+      ['Find a pro near you.', 'BBB accredited mold and moisture professionals, filtered by distance.']
     ];
     let i = 0, timers = [];
 

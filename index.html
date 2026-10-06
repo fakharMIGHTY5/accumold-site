@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=120">
+<link rel="stylesheet" href="css/v2.css?v=121">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -185,25 +185,39 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
           <div class="island"></div>
           <div class="demo">
 
-            <!-- 0 · start your AccuMold scan -->
+            <!-- 0 · the dashboard, and the three things the app does -->
             <div class="view on">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-hd"><h4>&#128247;&nbsp; 1 &middot; Start Your AccuMold Scan</h4><p>Visual Mold Analysis</p></div>
+              <div class="a-hd"><h4>AccuMold Dashboard</h4><p>Welcome back!</p></div>
               <div class="a-scroll a-pad">
-                <div class="a-card">
-                  <h6>Before you begin</h6>
-                  <ul class="a-list">
-                    <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Find the area you are concerned about</li>
-                    <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Answer five quick questions about it</li>
-                    <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Take a photo and get your report</li>
-                  </ul>
+                <div class="a-home" data-go="1">
+                  <div class="a-home-n">1</div>
+                  <div>
+                    <b>Start Your AccuMold Mold Scan</b>
+                    <p>Scan and document visible mold, moisture, stains and leak concerns using your phone camera. Get your report.</p>
+                    <span class="a-btn">&#128247;&nbsp; Quick Mold Scan</span>
+                  </div>
                 </div>
-                <div class="a-btn" data-go="1">Start Your AccuMold Scan &rsaquo;</div>
-                <p class="a-help">Free, unlimited, and nothing leaves your phone until you send it.</p>
+                <div class="a-home" data-go="5">
+                  <div class="a-home-n">2</div>
+                  <div>
+                    <b>Book a Live Video Consultation</b>
+                    <p>Get live video guidance and advice from a certified mold and moisture professional.</p>
+                    <span class="a-btn">&#128197;&nbsp; Meet with an AccuMold Certified Pro</span>
+                  </div>
+                </div>
+                <div class="a-home" data-go="7">
+                  <div class="a-home-n">3</div>
+                  <div>
+                    <b>Find BBB Mold Professionals Near You</b>
+                    <p>Find local mold, moisture, leak detection and remediation professionals near you.</p>
+                    <span class="a-btn">&#128269;&nbsp; Locate Your Mold Pro</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- 1 · the pre-check question -->
+            <!-- 1 · the pre-check -->
             <div class="view">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
               <div class="a-hd"><h4>&#128247;&nbsp; 1 &middot; Start Your AccuMold Scan</h4><p>Visual Pre-Check</p></div>
@@ -217,7 +231,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
               </div>
             </div>
 
-            <!-- 2 · camera, take the photo -->
+            <!-- 2 · take the photo -->
             <div class="view">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
               <div class="a-hd"><h4>&#128247;&nbsp; 1 &middot; Take the Photo</h4><p>Frame the concern</p></div>
@@ -232,7 +246,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
               </div>
             </div>
 
-            <!-- 3 · scanning -->
+            <!-- 3 · analysing -->
             <div class="view">
               <div class="a-analyse">
                 <div class="a-frame">
@@ -274,36 +288,54 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
                 </div>
                 <p class="a-note">Please note: AccuMold does not test for airborne mold. For concerns about air quality, consult a professional mold inspector.</p>
                 <div class="a-btn" data-go="5">Book a Live Video Consultation &rsaquo;</div>
+                <div class="a-btn o" data-go="7">Find BBB Mold Professionals Near You &rsaquo;</div>
               </div>
             </div>
 
-            <!-- 5 · book a live video consultation, with the pricing -->
+            <!-- 5 · AccuPro consultation -->
             <div class="view">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-hd"><h4>&#128197;&nbsp; 2 &middot; Book a Live Video Consultation</h4><p>AccuPro Consultation &middot; talk to a certified mold expert</p></div>
+              <div class="a-hd"><h4>&#128197;&nbsp; 2 &middot; AccuPro Consultation</h4><p>Talk to a certified mold expert</p></div>
+              <div class="a-scroll a-pad">
+                <p class="a-help" style="margin-top:0">Get a live video consultation, customized next steps and answers to your questions, before you hire anyone.</p>
+                <p class="a-t">What you get</p>
+                <ul class="a-list">
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Real-time visual inspection</li>
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>A customized next-steps plan</li>
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Your questions answered</li>
+                  <li><span class="ck"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 6.2 4.6 8.8 10 3.4"/></svg></span>Confidence before hiring</li>
+                </ul>
+                <div class="a-btn" data-go="6">Get Started &rsaquo;</div>
+              </div>
+            </div>
+
+            <!-- 6 · choose length -->
+            <div class="view">
+              <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
+              <div class="a-hd"><h4>&#128197;&nbsp; 2 &middot; Choose Length</h4><p>Pay once, up front</p></div>
               <div class="a-scroll a-pad">
                 <p class="a-q" style="font-size:.68rem">How long do you need?</p>
                 <p class="a-help">One flat price for the length you pick. Pay once, up front &mdash; no per-minute charges and nothing extra afterwards.</p>
-                <div class="a-len" data-pick data-next="6"><span class="pop">Most popular</span><b>30 min</b><em>$250</em><p>Full walkthrough of your scan results + next steps</p></div>
-                <div class="a-len" data-pick data-next="6"><b>45 min</b><em>$375</em><p>Deeper dive &mdash; multiple areas or complex situations</p></div>
-                <div class="a-len" data-pick data-next="6"><b>60 min</b><em>$500</em><p>Comprehensive &mdash; full home assessment + remediation plan</p></div>
+                <div class="a-len" data-pick data-next="7"><span class="pop">Most popular</span><b>30 min</b><em>$250</em><p>Full walkthrough of your scan results + next steps</p></div>
+                <div class="a-len" data-pick data-next="7"><b>45 min</b><em>$375</em><p>Deeper dive &mdash; multiple areas or complex situations</p></div>
+                <div class="a-len" data-pick data-next="7"><b>60 min</b><em>$500</em><p>Comprehensive &mdash; full home assessment + remediation plan</p></div>
               </div>
             </div>
 
-            <!-- 6 · find mold professionals near you -->
+            <!-- 7 · find BBB mold professionals -->
             <div class="view">
               <div class="sb on-blue"><span>9:41</span><span>&#9679;&#9679;&#9679;&#9679;</span></div>
-              <div class="a-hd"><h4>&#128269;&nbsp; 3 &middot; Find Mold Professionals Near You</h4><p>Locate Your Mold Pro</p></div>
+              <div class="a-hd"><h4>&#128269;&nbsp; 3 &middot; Mold Professionals Near You</h4><p>BBB accredited, close to home</p></div>
               <div class="a-scroll a-pad">
-                <p class="a-help" style="margin-top:0">Find local mold, moisture, leak detection, and remediation professionals near you.</p>
                 <div class="a-chips"><span>10 miles</span><span class="on">25 miles</span><span>50 miles</span></div>
+                <div class="a-seg"><span class="on">BBB Accredited</span><span>All BBB Listed</span></div>
                 <div class="a-card">
                   <h6>Moisture Master Pros</h6>
-                  <p class="a-sub">General Contractor &middot; &#11088; 4.8 &middot; Verified</p>
+                  <p class="a-sub">General Contractor &middot; &#11088; 4.8 &middot; BBB Accredited</p>
                   <p class="a-addr">100 Monument Rd, Ste 207<br>Bala Cynwyd, PA 19004</p>
                   <div class="a-row2"><div class="a-btn">&#128222;&nbsp; Call</div><div class="a-btn o">&#127760;&nbsp; Website</div></div>
                 </div>
-                <div class="a-btn o" data-go="0">Start again &rsaquo;</div>
+                <div class="a-btn o" data-go="0">Back to dashboard &rsaquo;</div>
               </div>
             </div>
 
@@ -315,7 +347,7 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
     <div class="demo-ui">
       <div class="cap"></div>
       <div class="track">
-        <button data-view="0">Scan</button><button data-view="4">Report</button><button data-view="5">Video Consult</button><button data-view="6">Find a Mold Pro</button>
+        <button data-view="0">Home</button><button data-view="1">Scan</button><button data-view="4">Report</button><button data-view="5">Video Consult</button><button data-view="7">Find a Mold Pro</button>
       </div>
     </div>
 
@@ -462,6 +494,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=120"></script>
+<script src="js/v2.js?v=121"></script>
 </body>
 </html>

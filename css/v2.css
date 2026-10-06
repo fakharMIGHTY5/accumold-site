@@ -1066,6 +1066,24 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .a-row2{ display:flex; gap:4%; }
 .a-row2 .a-btn{ flex:1; margin-top:0; font-size:.54rem; padding:5% 2%; }
 
+/* ---------- the dashboard, the way into the three flows ----------
+   The app's home screen numbers what it does one, two, three. Each card is
+   the whole tap target, so the demo opens on a hub rather than part way
+   through one journey. */
+.a-home{
+  position:relative; display:flex; gap:4%; align-items:flex-start;
+  background:#fff; border-radius:12px; padding:5% 5.5%; margin-bottom:4%;
+  box-shadow:0 1px 3px rgba(16,24,40,.07);
+}
+.a-home-n{
+  flex:none; width:16px; height:16px; border-radius:50%;
+  display:grid; place-items:center;
+  background:var(--ab); color:#fff; font-size:.44rem; font-weight:800;
+}
+.a-home b{ display:block; font-size:.56rem; font-weight:800; letter-spacing:-.01em; color:var(--aink); line-height:1.25; }
+.a-home p{ margin:3% 0 0; font-size:.42rem; line-height:1.5; color:var(--agrey); }
+.a-home .a-btn{ margin-top:6%; font-size:.5rem; padding:5.5% 3%; }
+
 /* ---------- screens the client asked for: pre-check, report, booking ----------
    Same scale language as the rest of the phone: every size is a fraction of a
    rem so the whole app shrinks with the device, and the paddings are
