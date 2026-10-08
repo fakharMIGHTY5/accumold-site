@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/v2.css?v=131">
+<link rel="stylesheet" href="css/v2.css?v=132">
 <script>
 /* Set before the loader can paint, so a repeat page hides it with no flash.
    sessionStorage, not localStorage: once per visit, and a person coming back
@@ -95,15 +95,28 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
       <p class="kicker">Contact us</p>
       <h1 class="d2">Tell us how we can help you.</h1>
     </div>
-    <form class="form" data-capture data-r data-d="1">
+    <form class="form" data-capture data-r data-d="1"
+          data-endpoint="https://formsubmit.co/ajax/fakhar@mighty-five.com"
+          data-email="joshkent@accumold.app">
       <div class="f-row">
         <label>Name<input type="text" name="name" required placeholder="Your name"></label>
         <label>Email<input type="email" name="email" required placeholder="you@email.com"></label>
       </div>
       <label>Phone (optional)<input type="tel" name="phone" placeholder="(555) 000 0000"></label>
       <label>Message<textarea name="detail" rows="4"></textarea></label>
+
+      <!-- FormSubmit's own settings. _cc puts Josh on every enquiry, _captcha
+           off because we post with fetch and their captcha page would break it,
+           and _honey is a decoy field: a human never sees it, so anything that
+           fills it in is a bot and the submission is dropped. -->
+      <input type="hidden" name="_subject" value="New enquiry from accumold.app">
+      <input type="hidden" name="_cc" value="joshkent@accumold.app">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+
       <button class="b" type="submit">Send</button>
-          </form>
+    </form>
   </div>
 </section>
 
@@ -151,6 +164,6 @@ setTimeout(function(){ var l = document.getElementById('load'); if (l) l.remove(
   </div>
 </footer>
 
-<script src="js/v2.js?v=131"></script>
+<script src="js/v2.js?v=132"></script>
 </body>
 </html>
