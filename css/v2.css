@@ -500,6 +500,14 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .blue .form label{ color:rgba(255,255,255,.7); }
 .blue .form :is(input,textarea):focus{ box-shadow:0 0 0 4px rgba(255,255,255,.28); border-color:#fff; }
 
+/* form status: only ever shown after a real outcome */
+.form-status{ margin:18px 0 0; font-size:.95rem; line-height:1.6; }
+.form-status:empty{ display:none; }
+.form-status.ok{ color:#fff; }
+.form-status.ok strong{ color:#fff; }
+.form-status.err{ color:#FFD9D4; }
+.form-status a{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+
 /* ---------- About: hero facts ---------- */
 .c-hero{ padding-block:clamp(70px,12vh,140px) clamp(60px,9vh,110px); }
 .c-facts{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
@@ -690,18 +698,30 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   position:absolute; left:clamp(16px,1.8vw,26px); bottom:clamp(14px,1.6vw,22px); z-index:3;
   color:#fff; mix-blend-mode:difference;
 }
+/* Frosted rather than a solid disc: it reads against the white end card and
+   against dark footage without changing colour, and the blur ties it to the
+   picture instead of sitting on top of it like a sticker. */
 .reel-play{
   position:absolute; inset:0; margin:auto; z-index:4;
-  width:clamp(62px,6vw,86px); aspect-ratio:1; border-radius:50%;
-  display:grid; place-items:center; color:#fff; background:var(--blue);
-  /* a white ring so it cuts out cleanly against the logo it now rests on,
-     and still reads as deliberate over dark footage */
-  box-shadow:0 0 0 5px rgba(255,255,255,.92), 0 12px 34px -12px rgba(0,0,0,.45);
-  transition:transform .3s var(--ease), background .25s, opacity .3s var(--ease);
+  width:clamp(60px,5.4vw,80px); aspect-ratio:1; border-radius:50%;
+  display:grid; place-items:center; color:#fff;
+  background:rgba(10,16,32,.52);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);
+  backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.5), 0 12px 34px -12px rgba(0,0,0,.6);
+  transition:transform .45s var(--ease), background .3s, box-shadow .3s, opacity .35s var(--ease);
 }
-.reel-play .ic-play{ margin-left:4px; }
+.reel-play .ic-play{ margin-left:3px; }
 .reel-play .ic-pause{ display:none; }
-.reel-play:hover{ transform:scale(1.08); background:var(--blue-deep); box-shadow:0 0 0 5px rgba(255,255,255,1), 0 14px 38px -12px rgba(0,0,0,.5); }
+.reel-play:hover{
+  transform:scale(1.07); background:rgba(10,16,32,.68);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.72), 0 14px 38px -12px rgba(0,0,0,.6);
+}
+/* Safari and Firefox without backdrop-filter get a solid disc instead of a
+   transparent one, which would otherwise wash out on the white card. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+  .reel-play{ background:rgba(10,16,32,.8); }
+}
 
 /* The whole frame is the control: click anywhere to play or pause. While it is
    playing the button gets out of the way, and hovering brings it back wearing
@@ -713,11 +733,17 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .reel.playing .reel-play .ic-play{ display:none; }
 .reel.playing .reel-play .ic-pause{ display:block; }
 
+/* On one column it stops being a full-bleed strip and becomes a card: inset to
+   the page gutter and rounded, so the white end card reads as deliberate
+   against the dark panel rather than as a letterbox. */
 @media(max-width:760px), (prefers-reduced-motion:reduce){
   .reel-stage{ height:auto !important; }
-  .reel-stick{ position:static; height:auto; padding:clamp(30px,5vh,60px) 0; }
-  .reel-frame{ width:100% !important; border-radius:0; }
-  .reel-frame b{ width:16px; height:16px; --o:10px; opacity:1; }
+  .reel-stick{ position:static; height:auto; padding:clamp(28px,5vh,56px) var(--gut); }
+  .reel-frame{ width:100% !important; border-radius:16px; }
+  /* On a card this size the corner brackets are clutter and they collide with
+     the caption, so the card keeps its rounded edge and loses them. */
+  .reel-frame b{ display:none; }
+  .reel-tag{ left:14px; bottom:11px; }
 }
 
 /* ---------- the four demo screens ---------- */

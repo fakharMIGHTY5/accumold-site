@@ -519,15 +519,52 @@
   });
 
   // No endpoint is wired yet — this only confirms to the person filling it in.
+  /* The form actually sends. It posts to whatever endpoint the markup names in
+     data-endpoint and only claims success when the request succeeds. If no
+     endpoint is configured, or the request fails, it says so and offers the
+     email address instead rather than swallowing the message. */
   $$('form[data-capture]').forEach((f) => {
-    f.addEventListener('submit', (e) => {
+    const status = $('[data-form-status]', f) || (() => {
+      const p = document.createElement('p');
+      p.setAttribute('data-form-status', '');
+      p.className = 'form-status';
+      f.appendChild(p);
+      return p;
+    })();
+    const mail = f.dataset.email || '';
+    const mailLink = mail ? ' <a href="mailto:' + mail + '">' + mail + '</a>' : '';
+
+    const say = (kind, html) => { status.className = 'form-status ' + kind; status.innerHTML = html; };
+
+    f.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const note = $('.form-note', f);
-      $$('label, .b', f).forEach((el) => { el.style.display = 'none'; });
-      note.innerHTML = '<strong style="color:var(--blue)">Request received.</strong> We\'ll come back with times shortly.';
-      note.style.fontSize = '1rem';
-      note.style.letterSpacing = 'normal';
-      note.style.textTransform = 'none';
+      const url = f.dataset.endpoint;
+      const btn = $('button[type="submit"]', f);
+
+      if (!url) {
+        say('err', 'This form is not connected yet. Please email us' + (mail ? ' at' + mailLink : '') + '.');
+        return;
+      }
+
+      btn.disabled = true;
+      const label = btn.textContent;
+      btn.textContent = 'Sending…';
+      say('', '');
+
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(f)
+        });
+        if (!res.ok) throw new Error(res.status);
+        $$('label, button', f).forEach((el) => { el.style.display = 'none'; });
+        say('ok', '<strong>Thanks, that\'s with us.</strong> We\'ll come back to you shortly.');
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = label;
+        say('err', 'That did not send. Please try again, or email us' + (mail ? ' at' + mailLink : '') + '.');
+      }
     });
   });
 
