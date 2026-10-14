@@ -1,0 +1,9 @@
+# AccuMold — accumold.app
+# Deliberately open. Nothing is disallowed: the AI crawlers (ChatGPT,
+# Perplexity, Google AI) are meant to read everything, since being cited in
+# AI answers is part of what this site is for.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://accumold.app/sitemap.xml
