@@ -28,6 +28,14 @@ class Handler(SimpleHTTPRequestHandler):
         self.send_header("Accept-Ranges", "bytes")
         super().end_headers()
 
+    def translate_path(self, path):
+        # Mirror Vercel's cleanUrls: /about serves about.html, so the
+        # extension-less internal links work locally exactly as in production.
+        real = super().translate_path(path)
+        if not os.path.exists(real) and os.path.isfile(real + ".html"):
+            return real + ".html"
+        return real
+
     def send_head(self):
         rng = self.headers.get("Range")
         if not rng:

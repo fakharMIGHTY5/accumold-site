@@ -74,3 +74,12 @@ for p in glob.glob('*.html'):
 - **Social URLs.** Footer TikTok / Instagram / Facebook links point to `#`.
 - **Avatar photography.** There are no photographs of a renter, a family in a kitchen, or a professional at a desk. The three avatar panels currently use scene-led imagery instead. The homeowner panel uses the existing `ebook pic`, which is visibly AI-generated and should be replaced with a real photograph.
 - **A logo SVG.** The lockup is raster only (PNG). An SVG would sharpen the nav and favicon.
+
+## SEO and AI search (added 2026-10-27)
+
+- Every page has a canonical URL, Open Graph and Twitter card tags, and JSON-LD structured data (Organization, WebSite, MobileApplication, Person, VideoObject, Service with prices, BreadcrumbList). **If a price, the founder bio or a social link changes, update the JSON-LD in the page `<head>` too**, or search engines will show stale facts.
+- Internal links use clean URLs (`about`, not `about.html`) to match `cleanUrls` in `vercel.json`. `serve.py` maps them locally; opening files with `file://` no longer follows internal links.
+- `speaker-kit` is `noindex` and out of the sitemap while it says "Coming soon". Remove both when the page has content.
+- `llms.txt` summarises the site for AI assistants. Google ignores it; other AI tools may use it. Keep its facts in step with the pages.
+- `sitemap.xml`: bump `<lastmod>` on any page you materially change.
+- Social share image: `assets/og/accumold-og.jpg` (1200×630).

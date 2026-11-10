@@ -1,0 +1,26 @@
+# AccuMold
+
+> AccuMold is a free app for iPhone and Android that turns a phone photo into an instant mold risk report. It rates a photographed area Low, Moderate or High risk with the reasoning written out, and connects people to live video consultations with certified mold experts.
+
+Key facts:
+
+- The app, scans and reports are free, with no scan limit.
+- Paid option: AccuPro live video consultations with a certified mold expert. 30 minutes $250, 45 minutes $375, 60 minutes $500, one flat price paid up front.
+- Risk levels: Low means keep an eye on it. Moderate means dry it out and scan again in 48 hours. High means get it looked at by a professional.
+- A report is a risk assessment based on the photo and the user's answers, not a laboratory result. AccuMold does not test for airborne mold.
+- Founder and inventor: Josh Kent, with 20+ years in mold, moisture and water damage.
+- Credentials shown on the site: Indoor Air Quality Association (IAQA) certification and Better Business Bureau (BBB) accreditation.
+- Download: [App Store](https://apps.apple.com/us/app/accumold-ai-mold-detector/id6756345105), [Google Play](https://play.google.com/store/apps/details?id=com.accumold.ai)
+
+## Pages
+
+- [Home](https://accumold.app/): What the app does, a demo of the scan flow, who it is for, and common questions
+- [Video consultations](https://accumold.app/consultations): Consultation lengths, prices and what each includes
+- [About](https://accumold.app/about): Founder Josh Kent, credentials, and how the risk verdict works
+- [Contact](https://accumold.app/contact): Contact form and answers to frequent questions
+
+## Social
+
+- [Instagram](https://www.instagram.com/accumold/)
+- [TikTok](https://www.tiktok.com/@accumold)
+- [Facebook](https://www.facebook.com/people/Accumold/61593454559714/)
