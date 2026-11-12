@@ -541,8 +541,22 @@
       const url = f.dataset.endpoint;
       const btn = $('button[type="submit"]', f);
 
+      // No endpoint configured: rather than dead-ending, hand the typed
+      // message to the visitor's mail client already filled in, and show the
+      // address as text so it still works where mailto does nothing.
       if (!url) {
-        say('err', 'This form is not connected yet. Please email us' + (mail ? ' at' + mailLink : '') + '.');
+        if (!mail) { say('err', 'This form is not connected yet.'); return; }
+        const v = (n) => (f.elements[n] && f.elements[n].value || '').trim();
+        const body = [
+          'Name: '  + v('name'),
+          'Email: ' + v('email'),
+          v('phone') ? 'Phone: ' + v('phone') : '',
+          '', v('detail')
+        ].filter((l) => l !== null).join('\n');
+        say('ok', '<strong>Opening your email app.</strong> If nothing happens, write to' + mailLink + '.');
+        location.href = 'mailto:' + mail
+          + '?subject=' + encodeURIComponent('Enquiry from accumold.app')
+          + '&body=' + encodeURIComponent(body);
         return;
       }
 
